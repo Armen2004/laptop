@@ -1,0 +1,116 @@
+ @media (max-width:1200px) {
+
+.container { width: 1000px;  }
+
+.header .right-txt {  bottom: 0px; font-size: 15px; left:auto; right:0; padding:0 0 0 20px; width:70%; }
+
+.ready-to-make-block .laptop-img { bottom: -550px; width: 40%; right: 0; }
+
+.check-out-block .cup { width: 70%; top: -90px; right: 0; }
+
+.footer { font-size: 13px; text-align: left; }
+
+.footer ul li a { padding: 0 7px 0 0; }
+
+.footer .footer-nav ul li a { color: #fff; padding: 0 10px 0 0; text-transform: uppercase; }
+}
+ @media only screen and (max-width: 992px) {
+
+.container { width: 745px; }
+
+.header .logo { top: 20px; }
+
+.header .right-txt {  bottom: 0px; font-size: 14px; left:auto; right:0; padding:0 0 0 20px; width:70%;  }
+
+.login-block .join-now-btn { padding: 15px 50px; margin: 30px 0 0 0; }
+
+.banner { padding: 0px 0 0 0; margin-bottom: 50px; }
+
+.banner p { padding: 60px 0 30px 0; }
+
+.three-grid-block .grid-box { margin-bottom: 30px; }
+
+.ready-to-make-block { margin: 50px 0 0 0; }
+
+.mt-90 { margin-top: 40px !important; }
+
+.ready-to-make-block .laptop-img { bottom: -400px; width: 40%; }
+
+.check-out-block .cup { width: 40%; top: -100px; right: 110px; }
+
+.check-out-block .page-logo { margin: 40px 0 10px 0; }
+
+.check-out-block p,
+.second-check-out-block p { line-height: 1.4; padding-bottom: 10px; font-size: 12px; }
+
+.check-out-block a,
+.second-check-out-block a { font-size: 13px; margin-bottom: 10px; }
+
+.second-check-out-block .laptop-logo { margin: 30px 0 20px 0; }
+
+.social-widgets { text-align: center; }
+
+.footer { text-align: center; }
+
+.footer .footer-nav ul li a { padding: 10px 10px 10px 0; }
+}
+ @media only screen and (max-width: 767px) {
+
+.container { width: 90%; }
+
+.header .logo { width: 20%; top:5px; }
+
+.header .right-txt { bottom: -45px; left: 190px; line-height: 1.3; text-align: left; font-size: 13px; width:70%; }
+
+.login-block { width: 90%; text-align: center; float: none; margin: 0 auto; }
+
+.login-block input[type="text"],
+.login-block input[type="email"] { margin-right: 0px; float: none; }
+
+h2 { font-size: 20px; line-height: 1.3; }
+
+.check-out-block .cup { width: 30%; top: -80px; right: 110px; }
+
+.check-out-block .page-logo { margin: 0px 0 10px 0; }
+
+.ready-to-make-block .laptop-img { bottom: -370px; width: 45%; }
+
+.check-out-block a,
+.second-check-out-block a { z-index: 9999; }
+
+.testimonials-block { text-align: center; }
+
+.testimonials-block .second-grid-box { margin: 20px 0; }
+
+.mt-90 { margin-top: 0px !important; }
+
+.header .right-txt { margin-right: 0px; text-align: center; }
+}
+ @media only screen and (max-width:480px) {
+	 
+	 .header .right-txt {width:100%;}
+
+.header .logo { top: 5px; width: 22%; }
+
+.ready-to-make-block .laptop-img { bottom: -270px; width: 45%; }
+
+.ready-to-make-block .sign-up-btn a { font-size: 14px; padding: 20px 20px; }
+
+.check-out-block .cup { width: 30%; top: -60px; right: 110px; }
+}
+ @media only screen and (max-width:360px) {
+
+.header .right-txt { top: 160px; bottom: 0; left: 0px; text-align: center; font-size: 13px; }
+
+.login-block { padding: 80px 0 55px 0; }
+
+.ready-to-make-block { min-height: 650px; }
+
+.ready-to-make-block .laptop-img { bottom: -270px; width: 60%; }
+
+.ready-to-make-block .sign-up-btn a { font-size: 14px; padding: 20px 10px; }
+
+.check-out-block .cup { width: 30%; top: -50px; right: 110px; }
+
+.footer ul li a { line-height: 1.4; }
+}
