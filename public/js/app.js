@@ -5,7 +5,7 @@ var app = angular.module('app', [
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'home/index.blade.php',
+            templateUrl: 'templates/home/index.blade.php',
             controller: 'HomeController'
         })
         .when('/hillfe', {

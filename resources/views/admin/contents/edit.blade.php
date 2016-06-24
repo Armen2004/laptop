@@ -12,7 +12,7 @@
     <div class="form-group {{ $errors->has('page_id') ? 'has-error' : ''}}">
         <div class="col-sm-12">
             {!! Form::label('page_id', 'Page') !!}
-            {!! Form::number('page_id', null, ['class' => 'form-control']) !!}
+            {!! Form::select('page_id', $pages, null, ['class' => 'form-control', 'placeholder' => 'Select from pages']) !!}
             {!! $errors->first('page_id', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
         <div class="col-sm-12">
             {!! Form::label('content', 'Content') !!}
-            {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('content', 'Enter content', ['class' => 'form-control']) !!}
             {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
         </div>
     </div>

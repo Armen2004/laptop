@@ -15,12 +15,12 @@
 @endif
 
 
-@if(Session::has('flash_message'))
+@if(session()->has('flash_message'))
     <div class="clearfix" style="padding-top: 10px;"></div>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <p>{{ Session::get('flash_message') }}</p>
+        <p>{{ session()->get('flash_message') }}</p>
     </div>
 @endif

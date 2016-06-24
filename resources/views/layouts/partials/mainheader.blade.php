@@ -19,11 +19,39 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
-                @if (Auth::guard('admin')->guest())
-                    <li><a href="{{ url('admin/register') }}">Register</a></li>
+                @if (auth()->guard('admin')->guest())
                     <li><a href="{{ url('admin/login') }}">Login</a></li>
+                    <li><a href="{{ url('admin/register') }}">Register</a></li>
                 @else
-                    <li><a href="{{ url('admin/logout') }}">Sign out</a></li>
+                <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="{{ $admin->image ? '/img/profile/admin-logo/' . $admin->image : '/img/user2-160x160.jpg'}}" class="user-image" alt="User Image"/>
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">{{ $admin->name }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="{{ $admin->image ? '/img/profile/admin-logo/' . $admin->image : '/img/user2-160x160.jpg'}}" class="img-circle" alt="User Image" />
+                                <p>
+                                    {{ $admin->name }}
+                                    <small>Member since {{ $admin->created_at }}</small>
+                                </p>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{{ url('admin/profile') }}" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ url('admin/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </div>

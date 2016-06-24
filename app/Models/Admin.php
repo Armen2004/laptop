@@ -12,7 +12,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'image'
     ];
 
     /**
@@ -27,11 +27,16 @@ class Admin extends Authenticatable
     /**
      * Set the admins's password.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return string
      */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
     }
 }

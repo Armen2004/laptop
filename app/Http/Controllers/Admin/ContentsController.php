@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Models\Page;
 use Session;
+use App\Models\Page;
 use App\Http\Requests;
 use App\Models\Content;
 use Illuminate\Http\Request;
@@ -74,9 +74,10 @@ class ContentsController extends AdminBaseController
      */
     public function edit($id)
     {
+        $pages = Page::pluck('name', 'id');
         $content = Content::findOrFail($id);
 
-        return view('admin.contents.edit', compact('content'));
+        return view('admin.contents.edit', compact('content', 'pages'));
     }
 
     /**

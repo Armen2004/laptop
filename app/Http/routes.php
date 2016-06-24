@@ -31,13 +31,12 @@ Route::group(['prefix' => 'user'], function () {
     });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin',], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('login', 'AdminController@login');
     Route::post('login', 'AdminController@login');
     Route::get('register', 'AdminController@register');
     Route::post('register', 'AdminController@register');
-
     Route::get('logout', 'AdminController@logout');
 
     Route::group(['middleware' => 'auth:admin'], function () {
@@ -45,20 +44,29 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin',], function () {
         Route::get('/', function () {
             return redirect('admin/dashboard');
         });
-        
+
+        Route::resource('profile', 'AdminController', [ 'only' => ['index', 'edit', 'update'] ]);
         Route::get('dashboard', 'DashboardController@index');
 
         Route::resource('pages', 'PagesController');
-        
+
         Route::resource('contents', 'ContentsController');
-        
+
+        Route::resource('user-type', 'UserTypeController');
+
+        Route::resource('blog', 'BlogController');
+        Route::resource('social', 'SocialController');
+
     });
 });
 
 // Templates
-
-Route::get('{templates}/{template}', array(function ($templates, $template) {
-    $template = str_replace(".blade.php", "", $template);
+Route::group(['prefix' => 'templates'], function () {
+    
+    Route::get('{folder}/{page}', array(function ($folder, $page) {
+        $page = str_replace(".blade.php", "", $page);
 //        view()->addExtension('html', 'php');
-    return view($templates . '.' . $template)->render();
-}));
+        return view('templates.' . $folder . '.' . $page)->render();
+    }));
+    
+});

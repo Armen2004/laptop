@@ -45,10 +45,10 @@ elixir(function (mix) {
 
 
         .less([
-            'app.less',
-            'admin-lte/AdminLTE.less',
             'bootstrap/bootstrap.less',
             'font-awesome/font-awesome.less',
+            'app.less',
+            'admin-lte/AdminLTE.less',
             'select2.min.css'
         ], 'public/css/main.css')
 
@@ -70,7 +70,7 @@ elixir(function (mix) {
             'placeholdem.min.js',
             'jquery.sliphover.min.js',
             'adminlte.min.js',
-            'select2.min.js',
+            'select2.min.js'
             // 'ckeditor.js'
         ], 'public/js/main.js');
 

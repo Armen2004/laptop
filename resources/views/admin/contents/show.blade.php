@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <th> Content</th>
-                <td> {{ $content->content }} </td>
+                <td> {!! $content->content !!} </td>
             </tr>
             </tbody>
         </table>

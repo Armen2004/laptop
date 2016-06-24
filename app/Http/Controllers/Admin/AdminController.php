@@ -2,11 +2,60 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
 use App\Models\Admin;
+use App\Http\Requests;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends AdminBaseController
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('admin.profile.index');
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        return view('admin.profile.edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update()
+    {
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'file' => 'image'
+        ]);
+        if (request()->file('file')) {
+            $photo = request()->file('file');
+            $destinationPath = base_path('/public/img/profile/admin-logo/');
+            $image = strtolower($this->user->user()->name) . '-logo.' . $photo->getClientOriginalExtension();
+            if (!\File::isFile($destinationPath)) {
+                \File::makeDirectory($destinationPath, $mode = 0777, true, true);
+            }
+            Image::make($photo->getRealPath())->resize(160, 160)->save($destinationPath . $image);
+            request()->merge(['image' => $image]);
+        }
+        $this->user->user()->update(request()->except(['file']));
+        session()->flash('flash_message', 'Profile updated successfully!');
+        return redirect('admin/profile');
+    }
 
     public function login()
     {
@@ -49,7 +98,7 @@ class AdminController extends AdminBaseController
         ]);
 
         $remember = request()->input('remember') ? true : false;
-        
+
         if ($this->user->login(Admin::create(request()->all()), $remember)) {
             return redirect()->intended('admin/dashboard');
         }
