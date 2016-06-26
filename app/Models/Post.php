@@ -30,6 +30,7 @@ class Post extends Model
         'title',
         'slug',
         'description',
+        'status',
         'image'
     ];
     

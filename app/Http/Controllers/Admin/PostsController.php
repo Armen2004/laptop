@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Social;
 use Session;
 use App\Models\Post;
 use App\Http\Requests;
@@ -17,7 +18,7 @@ class PostsController extends AdminBaseController
      */
     public function index()
     {
-        $posts = Post::paginate(15);
+        $posts = Post::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -43,7 +44,8 @@ class PostsController extends AdminBaseController
             'title' => 'required|unique:posts,title',
             'slug' => 'required|unique:posts,slug',
             'description' => 'required',
-            'file' => 'required|image'
+            'file' => 'required|image',
+            'status' => 'boolean'
         ]);
 
         $image = $this->fileUpload($request);
@@ -100,11 +102,17 @@ class PostsController extends AdminBaseController
             'title' => 'required',
             'slug' => 'required',
             'description' => 'required',
-            'file' => 'image'
+            'file' => 'image',
+            'status' => 'boolean'
         ]);
+
         if ($request->file('file')) {
             $image = $this->fileUpload($request);
             $request->merge(['image' => $image]);
+        }
+
+        if(!$request->has('status')){
+            $request->merge(['status' => 0]);
         }
 
         $post = Post::findOrFail($id);

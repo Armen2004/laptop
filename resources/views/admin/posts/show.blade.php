@@ -34,6 +34,10 @@
                 <td> {{ $post->slug }} </td>
             </tr>
             <tr>
+                <th> Status</th>
+                <td> <span class="label label-{{ $post->status ? "success" : "warning"}}">{{ $post->status ? "Published" : "Not Published"}}</span> </td>
+            </tr>
+            <tr>
                 <th> Description</th>
                 <td> {!! $post->description !!} </td>
             </tr>

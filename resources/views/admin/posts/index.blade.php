@@ -15,7 +15,8 @@
                 <th> Title</th>
                 <th> Image</th>
                 <th> Slug</th>
-                <th> description</th>
+                <th> Description</th>
+                <th> Status</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -30,6 +31,7 @@
                     <td><img src="{{asset($item->image)}}" alt="{{ $item->title }}" width="160"></td>
                     <td>{{ $item->slug }}</td>
                     <td>{{ str_limit($item->description) }}</td>
+                    <td class="text-center"><span class="label label-{{ $item->status ? "success" : "warning"}}">{{ $item->status ? "Published" : "Not Published"}}</span></td>
                     <td>
                         <a href="{{ url('/admin/posts/' . $item->slug) }}" class="btn btn-success btn-xs" title="View Post">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>

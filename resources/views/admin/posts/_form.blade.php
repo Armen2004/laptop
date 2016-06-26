@@ -12,6 +12,7 @@
         {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('description', 'Description') !!}
@@ -36,7 +37,16 @@
 </div>
 
 <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-3">
+    <div class="col-sm-12">
+        <div class="form-control">
+            {!! Form::checkbox('status', 1, null) !!}
+            {!! Form::label('Publish') !!}
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-12">
         {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
     </div>
 </div>

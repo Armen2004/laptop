@@ -18,20 +18,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->boolean('status');
+            $table->boolean('status')->default(0);
             $table->string('image');
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-        });
-
-        Schema::create('post_social', function(Blueprint $table) {
-            $table->unsignedInteger('post_id');
-            $table->unsignedInteger('social_id');
-            $table->string('share_link');
-
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->foreign('social_id')->references('id')->on('socials')->onDelete('cascade');
         });
     }
 
@@ -42,7 +33,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('post_social');
         Schema::drop('posts');
     }
 }
