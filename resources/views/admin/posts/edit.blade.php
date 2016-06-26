@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Blog {{ $blog->id }}</h1>
+    <h1>Edit Post {{ $post->id }}</h1>
 
-    {!! Form::model($blog, [
+    {!! Form::model($post, [
         'method' => 'PATCH',
-        'url' => ['/admin/blog', $blog->id],
+        'url' => ['/admin/posts', $post->id],
         'class' => 'form-horizontal',
         'files' => true
     ]) !!}
 
-    @include('admin.blog._form', ['submitButton' => 'Update'])
+    @include('admin.posts._form', ['submitButton' => 'Update'])
 
     {!! Form::close() !!}
 @endsection

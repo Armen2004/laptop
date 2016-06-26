@@ -39,7 +39,7 @@
                 <li><a href="{{ url('admin/user-type') }}"><i class='fa fa-link'></i><span>User Types</span></a></li>
                 <li><a href="{{ url('admin/pages') }}"><i class='fa fa-link'></i><span>Pages</span></a></li>
                 <li><a href="{{ url('admin/contents') }}"><i class='fa fa-link'></i><span>Page Contents</span></a></li>
-                <li><a href="{{ url('admin/blog') }}"><i class='fa fa-link'></i><span>Blog</span></a></li>
+                <li><a href="{{ url('admin/posts') }}"><i class='fa fa-link'></i><span>Posts</span></a></li>
                 <li class="treeview">
                     <a href="#">
                         <i class='fa fa-link'></i>

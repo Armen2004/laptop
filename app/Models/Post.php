@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Post extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'blogs';
+    protected $table = 'posts';
 
     /**
      * The database primary key value.
@@ -28,18 +28,15 @@ class Blog extends Model
     protected $fillable = [
         'admin_id',
         'title',
-        'short_description',
+        'slug',
         'description',
         'image'
     ];
     
     public function delete()
     {
-        $destinationPath = base_path('img/blog/'.$this->image);
-        if (!\File::exists($destinationPath)) {
-            \File::delete($destinationPath);
-        }
-        return parent::delete();
+        \File::delete($this->image);
+        parent::delete();
     }
 
     public function admin()

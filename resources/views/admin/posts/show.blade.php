@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Blog {{ $blog->id }}
-        <a href="{{ url('admin/blog/' . $blog->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Blog">
+    <h1>{{ $post->title }}
+        <a href="{{ url('admin/posts/' . $post->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
         {!! Form::open([
             'method'=>'DELETE',
-            'url' => ['admin/blog', $blog->id],
+            'url' => ['admin/posts', $post->id],
             'style' => 'display:inline'
         ]) !!}
         {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
                 'type' => 'submit',
                 'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Blog',
+                'title' => 'Delete Post',
                 'onclick'=>'return confirm("Confirm delete?")'
         ))!!}
         {!! Form::close() !!}
@@ -22,20 +22,24 @@
         <table class="table table-bordered table-striped table-hover">
             <tbody>
             <tr>
-                <th>ID</th>
-                <td>{{ $blog->id }}</td>
-            </tr>
-            <tr>
-                <th> Admin Id</th>
-                <td> {{ $blog->admin->name }} </td>
+                <th> Author</th>
+                <td> {{ $post->admin->name }} </td>
             </tr>
             <tr>
                 <th> Title</th>
-                <td> {{ $blog->title }} </td>
+                <td> {{ $post->title }} </td>
             </tr>
             <tr>
-                <th> Short Description</th>
-                <td> {{ $blog->short_description }} </td>
+                <th> Slug</th>
+                <td> {{ $post->slug }} </td>
+            </tr>
+            <tr>
+                <th> Description</th>
+                <td> {!! $post->description !!} </td>
+            </tr>
+            <tr>
+                <th> Image</th>
+                <td><img src="{{asset($post->image)}}" alt="{{$post->title}}" width="50%"></td>
             </tr>
             </tbody>
         </table>

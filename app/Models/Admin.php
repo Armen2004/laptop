@@ -35,8 +35,8 @@ class Admin extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function blogs()
+    public function posts()
     {
-        return $this->hasMany(Blog::class);
+        return $this->hasMany(Post::class);
     }
 }

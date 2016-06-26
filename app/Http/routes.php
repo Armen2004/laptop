@@ -33,17 +33,27 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-    Route::get('login', 'AdminController@login');
-    Route::post('login', 'AdminController@login');
-    Route::get('register', 'AdminController@register');
-    Route::post('register', 'AdminController@register');
-    Route::get('logout', 'AdminController@logout');
+//    Route::get('login', 'AdminController@login');
+//    Route::post('login', 'AdminController@login');
+//    Route::get('register', 'AdminController@register');
+//    Route::post('register', 'AdminController@register');
+//    Route::get('logout', 'AdminController@logout');
 
-    Route::group(['middleware' => 'auth:admin'], function () {
+        //Login Routes...
+        Route::get('login','Auth\AuthController@showLoginForm');
+        Route::post('login','Auth\AuthController@login');
+        Route::get('logout','Auth\AuthController@logout');
 
-        Route::get('/', function () {
+        // Registration Routes...
+        Route::get('register', 'Auth\AuthController@showRegistrationForm');
+        Route::post('register', 'Auth\AuthController@register');
+
+        Route::get('/', function (){
             return redirect('admin/dashboard');
         });
+
+
+    Route::group(['middleware' => 'auth:admin'], function () {
 
         Route::resource('profile', 'AdminController', [ 'only' => ['index', 'edit', 'update'] ]);
         Route::get('dashboard', 'DashboardController@index');
@@ -54,7 +64,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('user-type', 'UserTypeController');
 
-        Route::resource('blog', 'BlogController');
+        Route::resource('posts', 'PostsController', [ 'except' => ['show'] ]);
+        Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');;
         Route::resource('social', 'SocialController');
 
     });

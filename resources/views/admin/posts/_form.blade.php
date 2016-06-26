@@ -1,24 +1,24 @@
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('title', 'Title') !!}
-        {!! Form::text('title', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Enter blog title']) !!}
+        {!! Form::text('title', null, ['class' => 'form-control title', 'required' => 'required', 'placeholder' => 'Enter post title']) !!}
         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="form-group {{ $errors->has('short_description') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('slug') ? 'has-error' : ''}}">
     <div class="col-sm-12">
-        {!! Form::label('short_description', 'Short Description') !!}
-        {!! Form::text('short_description', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => 'Enter blog short description']) !!}
-        {!! $errors->first('short_description', '<p class="help-block">:message</p>') !!}
+        {!! Form::label('slug', 'Slug') !!}
+        {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using title']) !!}
+        {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('description', 'Description') !!}
-        @if(isset($blog))
+        @if(isset($post))
             {!! Form::textarea('description', null, ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
         @else
-            {!! Form::textarea('description', 'Enter blog description', ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
+            {!! Form::textarea('description', 'Enter post description', ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
         @endif
         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
     </div>
@@ -26,7 +26,7 @@
 <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('file', 'Image') !!}
-        @if(isset($blog))
+        @if(isset($post))
             {!! Form::file('file', ['class' => 'form-control']) !!}
         @else
             {!! Form::file('file', ['class' => 'form-control', 'required' => 'required']) !!}
@@ -40,11 +40,11 @@
         {!! Form::submit($submitButton, ['class' => 'btn btn-primary form-control']) !!}
     </div>
 </div>
-@if(isset($blog->image))
+@if(isset($post->image))
     <div class="row">
         <div class="col-sm-12">
             <div class="thumbnail">
-                <img src="{{asset('img/blog/' .$blog->image)}}" alt="{{$blog->title}}">
+                <img src="{{asset($post->image)}}" alt="{{$post->title}}">
             </div>
         </div>
     </div>
@@ -64,6 +64,16 @@
 
             var editor = CKEDITOR.replace('content', config);
             CKFinder.setupCKEditor(editor);
+
+            $('.title').blur(function () {
+                $('.slug').val(convert($(this).val()));
+            })
         });
+
+        function convert(x) {
+            var s = String(x).toLowerCase();
+            var test = /[^a-z0-9]/gi;
+            return s.replace(test, '-');
+        }
     </script>
 @endsection

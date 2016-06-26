@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
-use App\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\Http\Controllers\Admin\AdminBaseController;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+class AuthController extends AdminBaseController
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,9 +28,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
-    protected $redirectAfterLogout = 'login';
-//    protected $guard = 'user';
+    protected $redirectTo = 'admin/dashboard';
+    protected $redirectAfterLogout = 'admin/login';
+    protected $guard = 'admin';
 
     /**
      * Create a new authentication controller instance.
@@ -39,13 +39,28 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+    }
+
+    public function showLoginForm()
+    {
+        if (view()->exists('auth.authenticate')) {
+            return view('auth.authenticate');
+        }
+
+        return view('admin.auth.login');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('admin.auth.register');
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -60,12 +75,12 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Admin::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
