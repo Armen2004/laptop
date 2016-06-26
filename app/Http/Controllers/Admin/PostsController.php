@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Social;
 use Session;
 use App\Models\Post;
 use App\Http\Requests;

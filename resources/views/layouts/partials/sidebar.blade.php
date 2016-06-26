@@ -8,7 +8,7 @@
         @if (! auth()->guard('admin')->guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{ $admin->image ? '/img/profile/admin-logo/' . $admin->image : '/img/user2-160x160.jpg'}}" class="img-circle" alt="User Image" />
+                    <img src="{{ $admin->image ? asset($admin->image) : '/img/user2-160x160.jpg'}}" class="img-circle" alt="{{ $admin->name }}" />
                 </div>
                 <div class="pull-left info">
                     <p>{{ $admin->name }}</p>
@@ -35,7 +35,7 @@
             @if (! auth()->guard('admin')->guest())
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-link'></i><span>Home</span></a></li>
-                <li><a href="{{ url('admin/social') }}"><i class='fa fa-link'></i><span>Social</span></a></li>
+                <li><a href="{{ url('admin/members') }}"><i class='fa fa-link'></i><span>Members</span></a></li>
                 <li><a href="{{ url('admin/user-type') }}"><i class='fa fa-link'></i><span>User Types</span></a></li>
                 <li><a href="{{ url('admin/pages') }}"><i class='fa fa-link'></i><span>Pages</span></a></li>
                 <li><a href="{{ url('admin/contents') }}"><i class='fa fa-link'></i><span>Page Contents</span></a></li>

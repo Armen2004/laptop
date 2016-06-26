@@ -26,8 +26,7 @@
             <tr>
                 <th> Picture</th>
                 <td>
-                    <img src="{{ $admin->image ? '/img/profile/admin-logo/' . $admin->image : '/img/user2-160x160.jpg'}}" class="user-image" alt="User Image">
-
+                    <img src="{{ $admin->image ? asset($admin->image) : '/img/user2-160x160.jpg'}}" class="user-image" alt="{{ $admin->name }}">
                 </td>
             </tr>
             </tbody>

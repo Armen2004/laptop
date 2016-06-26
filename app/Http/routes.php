@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('posts', 'PostsController', [ 'except' => ['show'] ]);
         Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');;
-        Route::resource('social', 'SocialController');
+        Route::resource('members', 'MembersController');
 
     });
 });

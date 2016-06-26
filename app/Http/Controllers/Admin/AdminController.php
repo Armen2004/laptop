@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin;
 use App\Http\Requests;
 use Intervention\Image\Facades\Image;
 
@@ -51,13 +50,13 @@ class AdminController extends AdminBaseController
         ]);
         if (request()->file('file')) {
             $photo = request()->file('file');
-            $destinationPath = base_path('/public/img/profile/admin-logo/');
+            $destinationPath = public_path('img/profile/admin-logo/');
             $image = strtolower($this->user->user()->name) . '-logo.' . $photo->getClientOriginalExtension();
             if (!\File::isFile($destinationPath)) {
                 \File::makeDirectory($destinationPath, $mode = 0777, true, true);
             }
             Image::make($photo->getRealPath())->resize(160, 160)->save($destinationPath . $image);
-            request()->merge(['image' => $image]);
+            request()->merge(['image' => 'img/profile/admin-logo/' . $image]);
         }
         $this->user->user()->update(request()->except(['file']));
         session()->flash('flash_message', 'Profile updated successfully!');

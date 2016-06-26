@@ -8,7 +8,10 @@
 <div class="form-group {{ $errors->has('slug') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('slug', 'Slug') !!}
-        {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using title']) !!}
+        <div class="input-group">
+            <span class="input-group-addon" id="slug">{{ url('posts') }}/</span>
+            {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using title', 'aria-describedby' => 'slug']) !!}
+        </div>
         {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
