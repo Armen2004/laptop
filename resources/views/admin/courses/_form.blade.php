@@ -62,7 +62,7 @@
         @if(isset($course))
             {!! Form::textarea('description', null, ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
         @else
-            {!! Form::textarea('description', 'Enter course name', ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
+            {!! Form::textarea('description', 'Enter course description', ['class' => 'form-control', 'required' => 'required', 'id' => 'content']) !!}
         @endif
         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
     </div>
@@ -79,10 +79,6 @@
     <script src="{{asset('ckfinder/ckfinder.js')}}" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-//            $("select").select2({
-//                minimumResultsForSearch: Infinity
-//            });
-
             showPrice($('.type'));
 
             $('select').change(function () {
@@ -99,9 +95,6 @@
             }
 
             var config = {
-//                fillEmptyBlocks: false,
-//                autoParagraph: false,
-//                allowedContent: true,
                 filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
 //                filebrowserBrowseUrl : '/browser/browse.php',
 //                filebrowserUploadUrl : '/uploader/upload.php'

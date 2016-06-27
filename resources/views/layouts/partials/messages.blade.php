@@ -1,4 +1,4 @@
-@if (count($errors) > 0)
+@if (isset($errors) && count($errors) > 0)
     <div class="clearfix" style="padding-top: 10px;"></div>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

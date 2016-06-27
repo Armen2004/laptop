@@ -42,6 +42,7 @@
                 <li><a href="{{ url('admin/posts') }}"><i class='fa fa-link'></i><span>Posts</span></a></li>
                 <li><a href="{{ url('admin/course-types') }}"><i class='fa fa-link'></i><span>Course Types</span></a></li>
                 <li><a href="{{ url('admin/courses') }}"><i class='fa fa-link'></i><span>Courses</span></a></li>
+                <li><a href="{{ url('admin/lessons') }}"><i class='fa fa-link'></i><span>Lessons</span></a></li>
                 <li class="treeview">
                     <a href="#">
                         <i class='fa fa-link'></i>

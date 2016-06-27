@@ -3,19 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Course extends Model
+class Lesson extends Model
 {
-
-    use SoftDeletes;
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'courses';
+    protected $table = 'lessons';
 
     /**
      * The database primary key value.
@@ -30,26 +26,21 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'admin_id',
-        'course_type_id',
-        'name',
+        'title',
         'slug',
-        'description',
-        'image',
+        'video_length',
+        'video',
+        'admin_id',
+        'course_id',
+        'course_type_id',
+        'price',
         'status',
-        'price'
+        'description'
     ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     public function delete()
     {
-        \File::delete($this->image);
+        \File::delete($this->video);
         parent::delete();
     }
 
@@ -58,8 +49,8 @@ class Course extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function lessons()
+    public function course()
     {
-        return $this->hasMany(Lesson::class);
+        return $this->belongsTo(Course::class);
     }
 }

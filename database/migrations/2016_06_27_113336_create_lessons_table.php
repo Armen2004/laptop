@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCoursesTable extends Migration
+class CreateLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,22 +12,23 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function(Blueprint $table) {
+        Schema::create('lessons', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('admin_id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('course_type_id');
-            $table->string('name')->unique();
+            $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->text('description');
-            $table->string('image');
-            $table->boolean('status')->default(0);
+            $table->integer('video_length');
+            $table->string('video');
             $table->float('price')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->boolean('status')->default(0);
+            $table->text('description');
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
-            
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 
@@ -38,6 +39,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('courses');
+        Schema::drop('lessons');
     }
 }
