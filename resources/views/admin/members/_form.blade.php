@@ -9,7 +9,11 @@
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('email', 'Email') !!}
-        {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter email', 'readonly']) !!}
+        @if(isset($member))
+            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter email', 'readonly']) !!}
+        @else
+            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Enter email']) !!}
+        @endif
         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

@@ -42,8 +42,8 @@ class MembersController extends AdminBaseController
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
-            'image' => 'required'
+            'email' => 'required|email',
+            'image' => 'image'
         ]);
 
         User::create($request->all());
@@ -92,8 +92,8 @@ class MembersController extends AdminBaseController
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
-            'image' => 'required'
+            'email' => 'required|email',
+            'image' => 'image'
         ]);
 
         $member = User::findOrFail($id);

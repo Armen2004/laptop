@@ -97,9 +97,11 @@ class PostsController extends AdminBaseController
      */
     public function update($id, Request $request)
     {
+        $post = Post::findOrFail($id);
+
         $this->validate($request, [
-            'title' => 'required',
-            'slug' => 'required',
+            'title' => 'required|unique:posts,title,' . $post->title . ',title',
+            'slug' => 'required|unique:posts,slug,' . $post->slug . ',slug',
             'description' => 'required',
             'file' => 'image',
             'status' => 'boolean'
@@ -114,7 +116,7 @@ class PostsController extends AdminBaseController
             $request->merge(['status' => 0]);
         }
 
-        $post = Post::findOrFail($id);
+
         $post->update($request->all());
 
         Session::flash('flash_message', 'Post updated!');

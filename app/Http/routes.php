@@ -65,8 +65,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('user-type', 'UserTypeController');
 
         Route::resource('posts', 'PostsController', [ 'except' => ['show'] ]);
-        Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');;
+        Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');
+
         Route::resource('members', 'MembersController');
+
+        Route::resource('courses', 'CoursesController', [ 'except' => ['show'] ]);
+        Route::get('courses/{slug}', 'CoursesController@show')->where('slug', '[A-Za-z0-9-_]+');
 
     });
 });
@@ -81,3 +85,4 @@ Route::group(['prefix' => 'templates'], function () {
     }));
     
 });
+Route::resource('admin/course-types', 'Admin\\CourseTypesController');
