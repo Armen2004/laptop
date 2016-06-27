@@ -19,14 +19,14 @@
         @endif
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form>
+        {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+                {{--<input type="text" name="q" class="form-control" placeholder="Search..."/>--}}
+              {{--<span class="input-group-btn">--}}
+                {{--<button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>--}}
+              {{--</span>--}}
+            {{--</div>--}}
+        {{--</form>--}}
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
@@ -34,15 +34,26 @@
             <li class="header">HEADER</li>
             @if (! auth()->guard('admin')->guest())
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-link'></i><span>Home</span></a></li>
-                <li><a href="{{ url('admin/members') }}"><i class='fa fa-link'></i><span>Members</span></a></li>
-                <li><a href="{{ url('admin/user-type') }}"><i class='fa fa-link'></i><span>User Types</span></a></li>
-                <li><a href="{{ url('admin/pages') }}"><i class='fa fa-link'></i><span>Pages</span></a></li>
-                <li><a href="{{ url('admin/contents') }}"><i class='fa fa-link'></i><span>Page Contents</span></a></li>
-                <li><a href="{{ url('admin/posts') }}"><i class='fa fa-link'></i><span>Posts</span></a></li>
-                <li><a href="{{ url('admin/course-types') }}"><i class='fa fa-link'></i><span>Course Types</span></a></li>
-                <li><a href="{{ url('admin/courses') }}"><i class='fa fa-link'></i><span>Courses</span></a></li>
-                <li><a href="{{ url('admin/lessons') }}"><i class='fa fa-link'></i><span>Lessons</span></a></li>
+                <li class="@if(request()->is('admin/dashboard')) active @endif"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>
+                <li class="treeview">
+                    <a href="#"><i class='fa fa-cogs'></i><span>Settings</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/user-types')) active @endif"><a href="{{ url('admin/user-types') }}"><i class='fa fa-user'></i><span>User Types</span></a></li>
+                        <li class="@if(request()->is('admin/course-types')) active @endif"><a href="{{ url('admin/course-types') }}"><i class='fa fa-tags'></i><span>Course Types</span></a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><i class='fa fa-users'></i><span>Users</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/members')) active @endif"><a href="{{ url('admin/members') }}"><i class='fa fa-user'></i><span>Members</span></a></li>
+                        <li class="@if(request()->is('admin/members/create')) active @endif"><a href="{{ url('admin/members/create') }}"><i class='fa fa-user-plus'></i><span>Create Member</span></a></li>
+                    </ul>
+                </li>
+                <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-file-text-o'></i><span>Pages</span></a></li>
+                <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-file-text'></i><span>Page Contents</span></a></li>
+                <li class="@if(request()->is('admin/posts')) active @endif"><a href="{{ url('admin/posts') }}"><i class='fa fa-tags'></i><span>Posts</span></a></li>
+                <li class="@if(request()->is('admin/courses')) active @endif"><a href="{{ url('admin/courses') }}"><i class='fa fa-tags'></i><span>Courses</span></a></li>
+                <li class="@if(request()->is('admin/lessons')) active @endif"><a href="{{ url('admin/lessons') }}"><i class='fa fa-tags'></i><span>Lessons</span></a></li>
                 <li class="treeview">
                     <a href="#">
                         <i class='fa fa-link'></i>

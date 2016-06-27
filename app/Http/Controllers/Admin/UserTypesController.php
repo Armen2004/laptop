@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 
-class UserTypeController extends AdminBaseController
+class UserTypesController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class UserTypeController extends AdminBaseController
     public function index()
     {
         $usertype = UserType::paginate(15);
-        return view('admin.user-type.index', compact('usertype'));
+        return view('admin.user-types.index', compact('usertype'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UserTypeController extends AdminBaseController
      */
     public function create()
     {
-        return view('admin.user-type.create');
+        return view('admin.user-types.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class UserTypeController extends AdminBaseController
 
         Session::flash('flash_message', 'UserType added!');
 
-        return redirect('admin/user-type');
+        return redirect('admin/user-types');
     }
 
     /**
@@ -57,7 +57,7 @@ class UserTypeController extends AdminBaseController
     {
         $usertype = UserType::findOrFail($id);
 
-        return view('admin.user-type.show', compact('usertype'));
+        return view('admin.user-types.show', compact('usertype'));
     }
 
     /**
@@ -71,7 +71,7 @@ class UserTypeController extends AdminBaseController
     {
         $usertype = UserType::findOrFail($id);
 
-        return view('admin.user-type.edit', compact('usertype'));
+        return view('admin.user-types.edit', compact('usertype'));
     }
 
     /**
@@ -90,7 +90,7 @@ class UserTypeController extends AdminBaseController
 
         Session::flash('flash_message', 'UserType updated!');
 
-        return redirect('admin/user-type');
+        return redirect('admin/user-types');
     }
 
     /**
@@ -106,6 +106,6 @@ class UserTypeController extends AdminBaseController
 
         Session::flash('flash_message', 'User Type deleted!');
 
-        return redirect('admin/user-type');
+        return redirect('admin/user-types');
     }
 }

@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('contents', 'ContentsController');
 
-        Route::resource('user-type', 'UserTypeController');
+        Route::resource('user-types', 'UserTypesController');
 
         Route::resource('posts', 'PostsController', [ 'except' => ['show'] ]);
         Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');

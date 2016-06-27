@@ -14,10 +14,10 @@ class CourseType extends Model
     protected $table = 'course_types';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -26,4 +26,14 @@ class CourseType extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

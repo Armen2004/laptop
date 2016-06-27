@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit User Type {{ $usertype->id }}</h1>
+    <h1>Create New User Type</h1>
+    <hr/>
 
-    {!! Form::model($usertype, [
-        'method' => 'PATCH',
-        'url' => ['/admin/user-type', $usertype->id],
-        'class' => 'form-horizontal'
-    ]) !!}
+    {!! Form::open(['url' => '/admin/user-types', 'class' => 'form-horizontal']) !!}
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
         <div class="col-sm-12">
@@ -19,7 +16,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>
     {!! Form::close() !!}

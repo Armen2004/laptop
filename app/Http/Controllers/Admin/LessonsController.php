@@ -90,7 +90,6 @@ class LessonsController extends AdminBaseController
             abort(404);
 
         $lesson = $course->lessons->where('slug', $lesson)->first();
-        dd($lesson);
         return view('admin.lessons.show', compact('lesson'));
     }
 

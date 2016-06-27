@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>User Types
-        <a href="{{ url('/admin/user-type/create') }}" class="btn btn-primary btn-xs" title="Add New UserType">
+        <a href="{{ url('/admin/user-types/create') }}" class="btn btn-primary btn-xs" title="Add New UserType">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h1>
@@ -23,15 +23,15 @@
                     <td>{{ $x }}</td>
                     <td>{{ $item->name }}</td>
                     <td>
-                        <a href="{{ url('/admin/user-type/' . $item->id) }}" class="btn btn-success btn-xs" title="View UserType">
+                        <a href="{{ url('/admin/user-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View UserType">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ url('/admin/user-type/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit UserType">
+                        <a href="{{ url('/admin/user-types/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit UserType">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                         {!! Form::open([
                             'method'=>'DELETE',
-                            'url' => ['/admin/user-type', $item->id],
+                            'url' => ['/admin/user-types', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
                         {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete UserType" />', array(
