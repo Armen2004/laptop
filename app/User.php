@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\UserType;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image'
+        'name', 'email', 'password', 'image', 'user_type_id'
     ];
 
     /**
@@ -37,12 +38,17 @@ class User extends Authenticatable
     /**
      * Set the user's password.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return string
      */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class);
     }
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\HelperClass;
+use App\Models\UserType;
 use Session;
 use App\User;
 use App\Http\Requests;
@@ -30,7 +32,8 @@ class MembersController extends AdminBaseController
      */
     public function create()
     {
-        return view('admin.members.create');
+        $types = UserType::pluck('name', 'id');
+        return view('admin.members.create', compact('types'));
     }
 
     /**
@@ -41,11 +44,15 @@ class MembersController extends AdminBaseController
     public function store(Request $request)
     {
         $this->validate($request, [
+            'user_type_id' => 'required|integer|exists:user_types,id',
             'name' => 'required',
-            'email' => 'required|email',
-            'image' => 'image'
+            'email' => 'required|email|unique:users,email',
+            'file' => 'image'
         ]);
 
+        $image = HelperClass::imageUpload($request, 'users', 'name');
+        $request->merge(['image' => $image]);
+        dd($request->all());
         User::create($request->all());
 
         Session::flash('flash_message', 'Member added!');
@@ -90,13 +97,15 @@ class MembersController extends AdminBaseController
      */
     public function update($id, Request $request)
     {
+        $member = User::findOrFail($id);
+
         $this->validate($request, [
+            'user_type_id' => 'required|integer|exists:user_types,id',
             'name' => 'required',
-            'email' => 'required|email',
-            'image' => 'image'
+            'email' => 'required|email|unique:users,email,' . $member->email . ',email',
+            'file' => 'image'
         ]);
 
-        $member = User::findOrFail($id);
         $member->update($request->all());
 
         Session::flash('flash_message', 'Member updated!');

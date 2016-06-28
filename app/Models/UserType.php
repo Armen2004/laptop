@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserType extends Model
@@ -14,10 +15,10 @@ class UserType extends Model
     protected $table = 'user_types';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -26,4 +27,9 @@ class UserType extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
