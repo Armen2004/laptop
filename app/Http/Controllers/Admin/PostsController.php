@@ -150,7 +150,7 @@ class PostsController extends AdminBaseController
             $massage = 'Post restored!';
         }else{
             $post->forceDelete();
-            $this->upload->deleteImage($post->image);
+            $this->upload->deleteFile($post->image);
             $massage = 'Post deleted!';
         }
 

@@ -148,7 +148,7 @@ class MembersController extends AdminBaseController
             $massage = 'Member restored!';
         }else{
             $member->forceDelete();
-            $this->upload->deleteImage($member->image);
+            $this->upload->deleteFile($member->image);
             $massage = 'Member deleted!';
         }
 

@@ -1,22 +1,14 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h1>Course {{ $course->id }}
+    <h1>Course {{ $course->name }}
         <a href="{{ url('admin/courses/' . $course->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Course">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
-        {!! Form::open([
-            'method'=>'DELETE',
-            'url' => ['admin/courses', $course->id],
-            'style' => 'display:inline'
-        ]) !!}
-        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Course',
-                'onclick'=>'return confirm("Confirm delete?")'
-        ))!!}
-        {!! Form::close() !!}
+
+        {!! App\FormHelperClass::delete_form("DELETE", 'admin/courses/' . $course->id, 'Course') !!}
+        {!! App\FormHelperClass::block_form("DELETE", 'admin/courses/' . $course->id, 'Course') !!}
+
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -38,12 +30,12 @@
                 <td> {{ $course->description }} </td>
             </tr>
             <tr>
-                <th> Image</th>
-                <td> <img src="{{asset($course->image)}}" alt="{{$course->name}}" width="50%"> </td>
-            </tr>
-            <tr>
                 <th> Status</th>
                 <td> <span class="label label-{{ $course->status ? "success" : "warning"}}">{{ $course->status ? "Published" : "Not Published"}}</span> </td>
+            </tr>
+            <tr>
+                <th> Image</th>
+                <td> <img src="{{ env('S3_PATH') . $course->image }}" alt="{{ $course->name }}" width="50%"> </td>
             </tr>
             </tbody>
         </table>

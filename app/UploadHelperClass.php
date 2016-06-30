@@ -38,27 +38,27 @@ class UploadHelperClass
         return $path . '/' . $file;
     }
 
-    public function deleteImage($image)
+    public function deleteFile($file)
     {
-        if (!is_null($image) && $this->s3->exists($image)) {
-            return $this->s3->delete($image);
+        if (!is_null($file) && $this->s3->exists($file)) {
+            return $this->s3->delete($file);
         }
         return false;
     }
 
     public function videoUpload(Request $request, $path)
     {
+        $video = $request->file('file');
 
-//        dd(Storage::disk('s3')->get('test.text'));
+        $file = sha1(time()) . '.' . $video->getClientOriginalExtension();
 
-        $uploaded_file = $request->file('file');
-        $file = time() . '.' . $uploaded_file->getClientOriginalExtension();
+        $upload = $this->s3->put($path . '/' . $file, file_get_contents($request->file('file')->getRealPath()), 'public');
 
-//        dd(Storage::disk('s3')->put('test.text'));
+        if (!$upload) {
+            abort(404);
+        }
 
-        return $path . $file;
-
-
+        return $path . '/' . $file;
     }
 
 }

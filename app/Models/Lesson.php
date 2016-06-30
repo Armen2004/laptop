@@ -32,7 +32,7 @@ class Lesson extends Model
         'video',
         'admin_id',
         'course_id',
-        'course_type_id',
+        'lesson_type_id',
         'price',
         'status',
         'description'

@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Session;
 use App\Models\Course;
 use App\Http\Requests;
-use App\Models\CourseType;
+use App\UploadHelperClass;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
 class CoursesController extends AdminBaseController
 {
+    /**
+     * @var UploadHelperClass
+     */
+    private $upload;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->upload = new UploadHelperClass;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +41,7 @@ class CoursesController extends AdminBaseController
      */
     public function create()
     {
-        $types = CourseType::pluck('name', 'id');
-
-        return view('admin.courses.create', compact('types'));
+        return view('admin.courses.create');
     }
 
     /**
@@ -48,18 +56,11 @@ class CoursesController extends AdminBaseController
             'slug' => 'required|unique:courses,slug',
             'file' => 'required|image',
             'status' => 'boolean',
-            'description' => 'required',
-            'price' => [ 'regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/' ]
+            'description' => 'required'
         ]);
 
-        if(!$request->has('status')){
-            $request->merge(['status' => 0]);
-        }
-        if(!$request->has('price')){
-            $request->merge(['price' => 0]);
-        }
 
-        $image = $this->fileUpload($request);
+        $image = $this->upload->uploadImage($request, 'courses');
 
         $request->merge(['image' => $image]);
 
@@ -73,14 +74,14 @@ class CoursesController extends AdminBaseController
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  string $slug
      *
      * @return mixed
      */
     public function show($slug)
     {
         $course = Course::whereSlug($slug)->first();
-        if(!$course)
+        if (!$course)
             abort(404);
         return view('admin.courses.show', compact('course'));
     }
@@ -88,22 +89,21 @@ class CoursesController extends AdminBaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
     public function edit($id)
     {
         $course = Course::findOrFail($id);
-        $types = CourseType::pluck('name', 'id');
 
-        return view('admin.courses.edit', compact('course', 'types'));
+        return view('admin.courses.edit', compact('course'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
@@ -116,17 +116,12 @@ class CoursesController extends AdminBaseController
             'slug' => 'required|unique:courses,slug,' . $course->slug . ',slug',
             'file' => 'image',
             'status' => 'boolean',
-            'description' => 'required',
-            'price' => [ 'regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/' ]
+            'description' => 'required'
         ]);
 
-        if ($request->file('file')) {
-            $image = $this->fileUpload($request);
+        if($request->hasFile('file')){
+            $image = $this->upload->uploadImage($request, 'courses', $course->image);
             $request->merge(['image' => $image]);
-        }
-
-        if(!$request->has('status')){
-            $request->merge(['status' => 0]);
         }
 
         $course->update($request->all());
@@ -139,7 +134,7 @@ class CoursesController extends AdminBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
@@ -150,31 +145,17 @@ class CoursesController extends AdminBaseController
         if (request()->has('block')) {
             $course->delete();
             $massage = 'Course blocked!';
-        } elseif(request()->has('restore')) {
+        } elseif (request()->has('restore')) {
             $course->restore();
             $massage = 'Course restored!';
-        }else{
+        } else {
             $course->forceDelete();
+            $this->upload->deleteFile($course->image);
             $massage = 'Course deleted!';
         }
 
         Session::flash('flash_message', $massage);
 
         return redirect('admin/courses');
-    }
-
-    private function fileUpload(Request $request)
-    {
-        $photo = $request->file('file');
-        $destinationPath = public_path('img/courses/');
-        $image = preg_replace('/[^a-zA-Z0-9_.]/', '_', strtolower($request->input('name'))) . '.' . $photo->getClientOriginalExtension();
-
-        if (!\File::isFile($destinationPath)) {
-            \File::makeDirectory($destinationPath, $mode = 0777, true, true);
-        }
-
-        Image::make($photo->getRealPath())->save($destinationPath . $image);
-
-        return 'img/courses/' . $image;
     }
 }

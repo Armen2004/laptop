@@ -31,13 +31,11 @@ class Course extends Model
      */
     protected $fillable = [
         'admin_id',
-        'course_type_id',
         'name',
         'slug',
         'description',
         'image',
-        'status',
-        'price'
+        'status'
     ];
 
     /**

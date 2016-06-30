@@ -71,14 +71,17 @@
                     </ul>
                 </li>
 
+                <li class="treeview @if(request()->is('admin/lessons') || request()->is('admin/lessons/create')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Lessons</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/lessons')) active @endif"><a href="{{ url('admin/lessons') }}"><i class='fa fa-tags'></i><span>Lessons</span></a></li>
+                        <li class="@if(request()->is('admin/lessons/create')) active @endif"><a href="{{ url('admin/lessons/create') }}"><i class='fa fa-plus'></i><span>Create Lesson</span></a></li>
+                    </ul>
+                </li>
 
-                <li class="@if(request()->is('admin/lessons')) active @endif"><a href="{{ url('admin/lessons') }}"><i class='fa fa-tags'></i><span>Lessons</span></a></li>
+
                 <li class="treeview">
-                    <a href="#">
-                        <i class='fa fa-link'></i>
-                        <span>Multi level</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
+                    <a href="#"><i class='fa fa-link'></i><span>Multi level</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="#">link level 2</a></li>
                         <li><a href="#">link level 2</a></li>

@@ -18,6 +18,9 @@
         </div>
     </div>
 
+</div>
+<div class="col-sm-6">
+
     <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
         <div class="col-sm-12">
             {!! Form::label('file', 'Image') !!}
@@ -27,15 +30,6 @@
                 {!! Form::file('file', ['class' => 'form-control', 'required' => 'required']) !!}
             @endif
             {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-</div>
-<div class="col-sm-6">
-
-    <div class="form-group hidden price {{ $errors->has('price') ? 'has-error' : ''}}">
-        <div class="col-sm-12">
-            {!! Form::label('price', 'Price') !!}
-            {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Enter course price']) !!}
         </div>
     </div>
 
@@ -67,30 +61,24 @@
     </div>
 </div>
 
+@if(isset($course->image))
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <img src="{{ env('S3_PATH') . $course->image }}" alt="{{ $course->title }}">
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('main-scripts')
     <script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js" type="text/javascript"></script>
     <script src="{{asset('ckfinder/ckfinder.js')}}" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-            showPrice($('.type'));
-
-            $('select').change(function () {
-                showPrice($(this))
-            });
-
-            function showPrice(selector){
-                if (selector.val() > 1) {
-                    $('.price').removeClass('hidden');
-                } else {
-                    $('#price').val('');
-                    $('.price').addClass('hidden');
-                }
-            }
 
             var config = {
                 filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
-//                filebrowserBrowseUrl : '/browser/browse.php',
-//                filebrowserUploadUrl : '/uploader/upload.php'
             };
 
             var editor = CKEDITOR.replace('content', config);
@@ -102,9 +90,7 @@
         });
 
         function convert(x) {
-            var s = String(x).toLowerCase();
-            var test = /[^a-z0-9]/gi;
-            return s.replace(test, '-');
+            return String(x).toLowerCase().replace(/[^a-z0-9]/gi, '-').replace(/-{2,}/gi, '-');
         }
     </script>
 @endsection

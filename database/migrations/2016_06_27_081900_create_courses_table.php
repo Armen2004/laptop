@@ -20,7 +20,6 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->boolean('status')->default(0);
-            $table->float('price')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 

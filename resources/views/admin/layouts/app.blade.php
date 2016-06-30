@@ -7,14 +7,14 @@
 <body class="skin-blue sidebar-mini">
 <div class="wrapper">
 
-    @include('layouts.partials.mainheader')
+    @include('admin.layouts.partials.mainheader')
 
-    @include('layouts.partials.sidebar')
+    @include('admin.layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-    @include('layouts.partials.messages')
+    @include('admin.layouts.partials.messages')
 
         <!-- Main content -->
         <section class="content">
@@ -23,12 +23,12 @@
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    @include('layouts.partials.footer')
+    @include('admin.layouts.partials.footer')
 
 </div><!-- ./wrapper -->
 
 @section('scripts')
-    @include('layouts.partials.scripts')
+    @include('admin.layouts.partials.scripts')
 @show
 
 </body>

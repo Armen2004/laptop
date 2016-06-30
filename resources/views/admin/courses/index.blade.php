@@ -12,9 +12,8 @@
         <thead>
         <tr>
             <th>S.No</th>
+            <th> Author</th>
             <th> Name</th>
-            <th> Slug</th>
-            <th> Description</th>
             <th> Status</th>
             <th>Actions</th>
         </tr>
@@ -25,9 +24,8 @@
             {{-- */$x++;/* --}}
             <tr>
                 <td>{{ $x }}</td>
+                <td>{{ $item->admin->name }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->slug }}</td>
-                <td>{{ $item->description }}</td>
                 <td class="text-center"><span class="label label-{{ $item->status ? "success" : "warning"}}">{{ $item->status ? "Published" : "Not Published"}}</span></td>
                 <td>
                     <a href="{{ url('/admin/courses/' . $item->slug) }}" class="btn btn-success btn-xs" title="View Course">
@@ -36,19 +34,10 @@
                     <a href="{{ url('/admin/courses/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Course">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
-                    {!! Form::open([
-                        'method'=>'DELETE',
-                        'url' => ['/admin/courses', $item->id],
-                        'style' => 'display:inline'
-                    ]) !!}
-                    {!! Form::text('block', 1, ['class' => 'hidden']) !!}
-                    {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Course" />', array(
-                            'type' => 'submit',
-                            'class' => 'btn btn-danger btn-xs',
-                            'title' => 'Delete Course',
-                            'onclick'=>'return confirm("Confirm delete?")'
-                    ))!!}
-                    {!! Form::close() !!}
+
+                    {!! App\FormHelperClass::delete_form("DELETE", 'admin/courses/' . $item->id, 'Course') !!}
+                    {!! App\FormHelperClass::block_form("DELETE", 'admin/courses/' . $item->id, 'Course') !!}
+
                 </td>
             </tr>
         @endforeach
@@ -62,9 +51,8 @@
             <thead>
             <tr>
                 <th>S.No</th>
+                <th> Author</th>
                 <th> Name</th>
-                <th> Slug</th>
-                <th> Description</th>
                 <th> Status</th>
                 <th>Actions</th>
             </tr>
@@ -75,37 +63,14 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
+                    <td>{{ $item->admin->name }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->slug }}</td>
-                    <td>{{ $item->description }}</td>
                     <td class="text-center"><span class="label label-{{ $item->status ? "success" : "warning"}}">{{ $item->status ? "Published" : "Not Published"}}</span></td>
                     <td class="text-center" style="width: 155px;">
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/courses', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Courses" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete Courses',
-                                'onclick'=>'return confirm("Confirm delete?")'
-                        ))!!}
-                        {!! Form::close() !!}
 
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/courses', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::text('restore', 1, ['class' => 'hidden']) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-ok-circle" aria-hidden="true" title="Restore Courses" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-info btn-xs',
-                                'title' => 'Restore Courses',
-                                'onclick'=>'return confirm("Confirm restore?")'
-                        ))!!}
-                        {!! Form::close() !!}
+                        {!! App\FormHelperClass::delete_form("DELETE", 'admin/courses/' . $item->id, 'Course') !!}
+                        {!! App\FormHelperClass::un_block_form("DELETE", 'admin/courses/' . $item->id, 'Course') !!}
+
                     </td>
                 </tr>
             @endforeach

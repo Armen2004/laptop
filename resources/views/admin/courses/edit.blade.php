@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h1>Edit Course {{ $course->id }}</h1>
+    <h1>Edit Course {{ $course->name }}</h1>
 
     {!! Form::model($course, [
         'method' => 'PATCH',
