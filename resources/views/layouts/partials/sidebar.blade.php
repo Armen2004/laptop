@@ -35,24 +35,43 @@
             @if (! auth()->guard('admin')->guest())
                 <!-- Optionally, you can add icons to the links -->
                 <li class="@if(request()->is('admin/dashboard')) active @endif"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>
-                <li class="treeview">
+
+                <li class="treeview @if(request()->is('admin/user-types') || request()->is('admin/members/course-types')) active @endif">
                     <a href="#"><i class='fa fa-cogs'></i><span>Settings</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li class="@if(request()->is('admin/user-types')) active @endif"><a href="{{ url('admin/user-types') }}"><i class='fa fa-user'></i><span>User Types</span></a></li>
                         <li class="@if(request()->is('admin/course-types')) active @endif"><a href="{{ url('admin/course-types') }}"><i class='fa fa-tags'></i><span>Course Types</span></a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+
+                <li class="treeview @if(request()->is('admin/members') || request()->is('admin/members/create')) active @endif">
                     <a href="#"><i class='fa fa-users'></i><span>Users</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li class="@if(request()->is('admin/members')) active @endif"><a href="{{ url('admin/members') }}"><i class='fa fa-user'></i><span>Members</span></a></li>
-                        <li class="@if(request()->is('admin/members/create')) active @endif"><a href="{{ url('admin/members/create') }}"><i class='fa fa-user-plus'></i><span>Create Member</span></a></li>
+                        <li class="@if(request()->is('admin/members/create')) active @endif"><a href="{{ url('admin/members/create') }}"><i class='fa fa-plus'></i><span>Create Member</span></a></li>
                     </ul>
                 </li>
+
                 <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-file-text-o'></i><span>Pages</span></a></li>
                 <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-file-text'></i><span>Page Contents</span></a></li>
-                <li class="@if(request()->is('admin/posts')) active @endif"><a href="{{ url('admin/posts') }}"><i class='fa fa-tags'></i><span>Posts</span></a></li>
-                <li class="@if(request()->is('admin/courses')) active @endif"><a href="{{ url('admin/courses') }}"><i class='fa fa-tags'></i><span>Courses</span></a></li>
+
+                <li class="treeview @if(request()->is('admin/posts') || request()->is('admin/posts/create')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Posts</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/posts')) active @endif"><a href="{{ url('admin/posts') }}"><i class='fa fa-tags'></i><span>Posts</span></a></li>
+                        <li class="@if(request()->is('admin/posts/create')) active @endif"><a href="{{ url('admin/posts/create') }}"><i class='fa fa-plus'></i><span>Create Post</span></a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview @if(request()->is('admin/courses') || request()->is('admin/courses/create')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Courses</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/courses')) active @endif"><a href="{{ url('admin/courses') }}"><i class='fa fa-tags'></i><span>Courses</span></a></li>
+                        <li class="@if(request()->is('admin/courses/create')) active @endif"><a href="{{ url('admin/courses/create') }}"><i class='fa fa-plus'></i><span>Create Course</span></a></li>
+                    </ul>
+                </li>
+
+
                 <li class="@if(request()->is('admin/lessons')) active @endif"><a href="{{ url('admin/lessons') }}"><i class='fa fa-tags'></i><span>Lessons</span></a></li>
                 <li class="treeview">
                     <a href="#">

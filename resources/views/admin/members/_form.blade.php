@@ -32,7 +32,11 @@
 <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
     <div class="col-sm-12">
         {!! Form::label('file', 'Image') !!}
-        {!! Form::file('file', ['class' => 'form-control']) !!}
+        @if(isset($member))
+            {!! Form::file('file', ['class' => 'form-control']) !!}
+        @else
+            {!! Form::file('file', ['class' => 'form-control', 'required' => 'required']) !!}
+        @endif
         {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

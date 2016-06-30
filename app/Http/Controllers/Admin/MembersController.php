@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 
 class MembersController extends AdminBaseController
 {
+    /**
+     * @var UploadHelperClass
+     */
     private $upload;
     
     public function __construct()
@@ -114,12 +117,12 @@ class MembersController extends AdminBaseController
             'email' => 'required|email|unique:users,email,' . $member->email . ',email',
             'file' => 'image'
         ]);
+        
         if($request->hasFile('file')){
             $image = $this->upload->uploadImage($request, 'users', $member->image);
             $request->merge(['image' => $image]);
         }
         
-
         $member->update($request->all());
 
         Session::flash('flash_message', 'Member updated!');

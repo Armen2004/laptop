@@ -57,7 +57,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="thumbnail">
-                <img src="{{asset($post->image)}}" alt="{{$post->title}}">
+                <img src="{{ env('S3_PATH') . $post->image }}" alt="{{ $post->title }}">
             </div>
         </div>
     </div>
@@ -71,8 +71,6 @@
             $("select").select2();
             var config = {
                 filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
-//                filebrowserBrowseUrl : '/browser/browse.php',
-//                filebrowserUploadUrl : '/uploader/upload.php'
             };
 
             var editor = CKEDITOR.replace('content', config);
@@ -84,9 +82,7 @@
         });
 
         function convert(x) {
-            var s = String(x).toLowerCase();
-            var test = /[^a-z0-9]/gi;
-            return s.replace(test, '-');
+            return String(x).toLowerCase().replace(/[^a-z0-9]/gi, '-').replace(/-{2,}/gi, '-');
         }
     </script>
 @endsection

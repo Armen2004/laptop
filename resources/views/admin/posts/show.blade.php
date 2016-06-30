@@ -5,18 +5,8 @@
         <a href="{{ url('admin/posts/' . $post->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
-        {!! Form::open([
-            'method'=>'DELETE',
-            'url' => ['admin/posts', $post->id],
-            'style' => 'display:inline'
-        ]) !!}
-        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Post',
-                'onclick'=>'return confirm("Confirm delete?")'
-        ))!!}
-        {!! Form::close() !!}
+        {!! App\FormHelperClass::delete_form("DELETE", 'admin/posts/' . $post->id, 'Post') !!}
+        {!! App\FormHelperClass::block_form("DELETE", 'admin/posts/' . $post->id, 'Post') !!}
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -43,7 +33,7 @@
             </tr>
             <tr>
                 <th> Image</th>
-                <td><img src="{{asset($post->image)}}" alt="{{$post->title}}" width="50%"></td>
+                <td><img src="{{ env('S3_PATH') . $post->image }}" alt="{{ $post->title }}" width="50%"></td>
             </tr>
             </tbody>
         </table>

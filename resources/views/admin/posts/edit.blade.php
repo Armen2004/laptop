@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Post {{ $post->id }}</h1>
+    <h1>Edit Post {{ $post->title }}</h1>
 
     {!! Form::model($post, [
         'method' => 'PATCH',

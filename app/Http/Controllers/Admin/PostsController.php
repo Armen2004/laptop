@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Session;
 use App\Models\Post;
 use App\Http\Requests;
+use App\UploadHelperClass;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
 class PostsController extends AdminBaseController
 {
+    /**
+     * @var UploadHelperClass
+     */
+    private $upload;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->upload = new UploadHelperClass;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +28,10 @@ class PostsController extends AdminBaseController
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(15);
+        $activePosts = Post::orderBy('created_at','desc')->paginate(15);
+        $blockedPosts = Post::onlyTrashed()->orderBy('created_at', 'desc')->paginate(15);
 
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('activePosts', 'blockedPosts'));
     }
 
     /**
@@ -47,7 +59,7 @@ class PostsController extends AdminBaseController
             'status' => 'boolean'
         ]);
 
-        $image = $this->fileUpload($request);
+        $image = $this->upload->uploadImage($request, 'posts');
 
         $request->merge(['image' => $image]);
 
@@ -107,15 +119,10 @@ class PostsController extends AdminBaseController
             'status' => 'boolean'
         ]);
 
-        if ($request->file('file')) {
-            $image = $this->fileUpload($request);
+        if($request->hasFile('file')){
+            $image = $this->upload->uploadImage($request, 'posts', $post->image);
             $request->merge(['image' => $image]);
         }
-
-        if(!$request->has('status')){
-            $request->merge(['status' => 0]);
-        }
-
 
         $post->update($request->all());
 
@@ -133,25 +140,22 @@ class PostsController extends AdminBaseController
      */
     public function destroy($id)
     {
-        Post::destroy($id);
 
-        Session::flash('flash_message', 'Post deleted!');
-
-        return redirect('admin/posts');
-    }
-
-    private function fileUpload(Request $request)
-    {
-        $photo = $request->file('file');
-        $destinationPath = public_path('img/posts/');
-        $image = preg_replace('/[^a-zA-Z0-9_.]/', '_', strtolower($request->input('title'))) . '.' . $photo->getClientOriginalExtension();
-
-        if (!\File::isFile($destinationPath)) {
-            \File::makeDirectory($destinationPath, $mode = 0777, true, true);
+        $post = Post::withTrashed()->findOrFail($id);
+        if (request()->has('block')) {
+            $post->delete();
+            $massage = 'Post blocked!';
+        } elseif(request()->has('restore')) {
+            $post->restore();
+            $massage = 'Post restored!';
+        }else{
+            $post->forceDelete();
+            $this->upload->deleteImage($post->image);
+            $massage = 'Post deleted!';
         }
 
-        Image::make($photo->getRealPath())->save($destinationPath . $image);
+        Session::flash('flash_message', $massage);
 
-        return 'img/posts/' . $image;
+        return redirect('admin/posts');
     }
 }
