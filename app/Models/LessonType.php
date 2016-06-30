@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CourseType extends Model
+class LessonType extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'course_types';
+    protected $table = 'lesson_types';
 
     /**
      * The database primary key value.
@@ -26,11 +26,6 @@ class CourseType extends Model
      * @var array
      */
     protected $fillable = ['name'];
-
-    public function courses()
-    {
-        return $this->hasMany(Course::class);
-    }
 
     public function lessons()
     {

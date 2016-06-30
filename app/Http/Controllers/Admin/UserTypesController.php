@@ -37,7 +37,9 @@ class UserTypesController extends AdminBaseController
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, [
+            'name' => 'required|unique:user_types,name'
+        ]);
 
         UserType::create($request->all());
 
@@ -83,7 +85,9 @@ class UserTypesController extends AdminBaseController
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
+        $this->validate($request, [
+            'name' => 'required|unique:user_types,name'
+        ]);
 
         $usertype = UserType::findOrFail($id);
         $usertype->update($request->all());

@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-12">
             {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>

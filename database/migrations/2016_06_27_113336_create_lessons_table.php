@@ -16,7 +16,7 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('admin_id');
             $table->unsignedInteger('course_id');
-            $table->unsignedInteger('course_type_id');
+            $table->unsignedInteger('lesson_type_id');
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->integer('video_length');
@@ -27,7 +27,7 @@ class CreateLessonsTable extends Migration
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
+            $table->foreign('lesson_type_id')->references('id')->on('lesson_types')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }

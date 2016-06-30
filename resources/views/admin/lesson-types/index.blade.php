@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Course types
-        <a href="{{ url('/admin/course-types/create') }}" class="btn btn-primary btn-xs" title="Add New Course Type">
+    <h1>Lesson Types
+        <a href="{{ url('/admin/lesson-types/create') }}" class="btn btn-primary btn-xs" title="Add New Lesson Type">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h1>
@@ -17,27 +17,27 @@
             </thead>
             <tbody>
             {{-- */$x=0;/* --}}
-            @foreach($coursetypes as $item)
+            @foreach($lessontypes as $item)
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
                     <td>{{ $item->name }}</td>
                     <td>
-                        <a href="{{ url('/admin/course-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View Course Type">
+                        <a href="{{ url('/admin/lesson-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View Lesson Type">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ url('/admin/course-types/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Course Type">
+                        <a href="{{ url('/admin/lesson-types/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Lesson Type">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                         {!! Form::open([
                             'method'=>'DELETE',
-                            'url' => ['/admin/course-types', $item->id],
+                            'url' => ['/admin/lesson-types', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Course Type" />', array(
+                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Lesson Type" />', array(
                                 'type' => 'submit',
                                 'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete Course Type',
+                                'title' => 'Delete Lesson Type',
                                 'onclick'=>'return confirm("Confirm delete?")'
                         ))!!}
                         {!! Form::close() !!}
@@ -46,6 +46,6 @@
             @endforeach
             </tbody>
         </table>
-        <div class="pagination-wrapper"> {!! $coursetypes->render() !!} </div>
+        <div class="pagination-wrapper"> {!! $lessontypes->render() !!} </div>
     </div>
 @endsection

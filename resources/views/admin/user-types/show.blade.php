@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>User Type {{ $usertype->id }}
+    <h1>User Type {{ $usertype->name }}
         <a href="{{ url('admin/user-types/' . $usertype->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit UserType">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>

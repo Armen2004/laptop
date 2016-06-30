@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-
 use Session;
 use App\Http\Requests;
-use App\Models\CourseType;
+use App\Models\LessonType;
 use Illuminate\Http\Request;
 
-class CourseTypesController extends AdminBaseController
+class LessonTypesController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class CourseTypesController extends AdminBaseController
      */
     public function index()
     {
-        $coursetypes = CourseType::paginate(15);
+        $lessontypes = LessonType::paginate(15);
 
-        return view('admin.course-types.index', compact('coursetypes'));
+        return view('admin.lesson-types.index', compact('lessontypes'));
     }
 
     /**
@@ -29,7 +28,7 @@ class CourseTypesController extends AdminBaseController
      */
     public function create()
     {
-        return view('admin.course-types.create');
+        return view('admin.lesson-types.create');
     }
 
     /**
@@ -39,13 +38,15 @@ class CourseTypesController extends AdminBaseController
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', ]);
+        $this->validate($request, [
+            'name' => 'required|unique:lesson_types,name'
+        ]);
 
-        CourseType::create($request->all());
+        LessonType::create($request->all());
 
-        Session::flash('flash_message', 'CourseType added!');
+        Session::flash('flash_message', 'Lesson Type added!');
 
-        return redirect('admin/course-types');
+        return redirect('admin/lesson-types');
     }
 
     /**
@@ -57,9 +58,9 @@ class CourseTypesController extends AdminBaseController
      */
     public function show($id)
     {
-        $coursetype = CourseType::findOrFail($id);
+        $lessontype = LessonType::findOrFail($id);
 
-        return view('admin.course-types.show', compact('coursetype'));
+        return view('admin.lesson-types.show', compact('lessontype'));
     }
 
     /**
@@ -71,9 +72,9 @@ class CourseTypesController extends AdminBaseController
      */
     public function edit($id)
     {
-        $coursetype = CourseType::findOrFail($id);
+        $lessontype = LessonType::findOrFail($id);
 
-        return view('admin.course-types.edit', compact('coursetype'));
+        return view('admin.lesson-types.edit', compact('lessontype'));
     }
 
     /**
@@ -85,14 +86,16 @@ class CourseTypesController extends AdminBaseController
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['name' => 'required', ]);
+        $this->validate($request, [
+            'name' => 'required|unique:lesson_types,name'
+        ]);
 
-        $coursetype = CourseType::findOrFail($id);
-        $coursetype->update($request->all());
+        $lessontype = LessonType::findOrFail($id);
+        $lessontype->update($request->all());
 
-        Session::flash('flash_message', 'CourseType updated!');
+        Session::flash('flash_message', 'Lesson Type updated!');
 
-        return redirect('admin/course-types');
+        return redirect('admin/lesson-types');
     }
 
     /**
@@ -104,10 +107,10 @@ class CourseTypesController extends AdminBaseController
      */
     public function destroy($id)
     {
-        CourseType::destroy($id);
+        LessonType::destroy($id);
 
-        Session::flash('flash_message', 'CourseType deleted!');
+        Session::flash('flash_message', 'Lesson Type deleted!');
 
-        return redirect('admin/course-types');
+        return redirect('admin/lesson-types');
     }
 }

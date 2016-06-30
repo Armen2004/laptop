@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create New CourseType</h1>
+    <h1>Create New Lesson Type</h1>
     <hr/>
 
-    {!! Form::open(['url' => '/admin/course-types', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => '/admin/lesson-types', 'class' => 'form-horizontal']) !!}
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
         <div class="col-sm-12">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-12">
             {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>

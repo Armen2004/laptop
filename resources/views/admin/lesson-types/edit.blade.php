@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit CourseType {{ $coursetype->id }}</h1>
+    <h1>Edit Lesson Type {{ $lessontype->name }}</h1>
 
-    {!! Form::model($coursetype, [
+    {!! Form::model($lessontype, [
         'method' => 'PATCH',
-        'url' => ['/admin/course-types', $coursetype->id],
+        'url' => ['/admin/lesson-types', $lessontype->id],
         'class' => 'form-horizontal'
     ]) !!}
 
@@ -17,9 +17,8 @@
         </div>
     </div>
 
-
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-12">
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>

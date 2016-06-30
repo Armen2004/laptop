@@ -15,7 +15,6 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('admin_id');
-            $table->unsignedInteger('course_type_id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->text('description');
@@ -26,7 +25,6 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
             
         });
     }

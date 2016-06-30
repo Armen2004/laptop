@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit User Type {{ $usertype->id }}</h1>
+    <h1>Edit User Type {{ $usertype->name }}</h1>
 
     {!! Form::model($usertype, [
         'method' => 'PATCH',
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-12">
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>

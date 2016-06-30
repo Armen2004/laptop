@@ -47,12 +47,6 @@ class Course extends Model
      */
     protected $dates = ['deleted_at'];
 
-    public function delete()
-    {
-        \File::delete($this->image);
-        parent::delete();
-    }
-
     public function admin()
     {
         return $this->belongsTo(Admin::class);
@@ -61,10 +55,5 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
-    }
-
-    public function courseType()
-    {
-        return $this->belongsTo(CourseType::class);
     }
 }

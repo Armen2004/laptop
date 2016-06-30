@@ -54,8 +54,8 @@ class Lesson extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function courseType()
+    public function lessonType()
     {
-        return $this->belongsTo(CourseType::class);
+        return $this->belongsTo(LessonType::class);
     }
 }

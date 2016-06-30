@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>CourseType {{ $coursetype->id }}
-        <a href="{{ url('admin/course-types/' . $coursetype->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Course Type">
+    <h1>Lesson Type {{ $lessontype->id }}
+        <a href="{{ url('admin/lesson-types/' . $lessontype->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Lesson Type">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
         {!! Form::open([
             'method'=>'DELETE',
-            'url' => ['admin/coursetypes', $coursetype->id],
+            'url' => ['admin/lesson-types', $lessontype->id],
             'style' => 'display:inline'
         ]) !!}
         {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
                 'type' => 'submit',
                 'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Course Type',
+                'title' => 'Delete Lesson Type',
                 'onclick'=>'return confirm("Confirm delete?")'
         ))!!}
         {!! Form::close() !!}
@@ -23,11 +23,11 @@
             <tbody>
             <tr>
                 <th>ID</th>
-                <td>{{ $coursetype->id }}</td>
+                <td>{{ $lessontype->id }}</td>
             </tr>
             <tr>
                 <th> Name</th>
-                <td> {{ $coursetype->name }} </td>
+                <td> {{ $lessontype->name }} </td>
             </tr>
             </tbody>
         </table>
