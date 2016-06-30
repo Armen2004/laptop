@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <link href="http://vjs.zencdn.net/5.10.4/video-js.css" rel="stylesheet">

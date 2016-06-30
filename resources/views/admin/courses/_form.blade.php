@@ -31,13 +31,6 @@
     </div>
 </div>
 <div class="col-sm-6">
-    <div class="form-group {{ $errors->has('course_type_id') ? 'has-error' : ''}}">
-        <div class="col-sm-12">
-            {!! Form::label('course_type_id', 'Course type') !!}
-            {!! Form::select('course_type_id', $types, null, ['class' => 'form-control type', 'required' => 'required', 'placeholder' => 'Select course type']) !!}
-            {!! $errors->first('course_type_id', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
 
     <div class="form-group hidden price {{ $errors->has('price') ? 'has-error' : ''}}">
         <div class="col-sm-12">
