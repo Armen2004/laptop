@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use App\HelperClass;
-use App\Models\UserType;
 use Session;
 use App\User;
 use App\Http\Requests;
+use App\Models\UserType;
+use App\UploadHelperClass;
 use Illuminate\Http\Request;
 
 class MembersController extends AdminBaseController
 {
+    private $upload;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->upload = new UploadHelperClass;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,12 +54,13 @@ class MembersController extends AdminBaseController
             'user_type_id' => 'required|integer|exists:user_types,id',
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'password' => 'required',
             'file' => 'image'
         ]);
 
-        $image = HelperClass::imageUpload($request, 'users', 'name');
+        $image = $this->upload->uploadImage($request, 'users');
         $request->merge(['image' => $image]);
-        dd($request->all());
+
         User::create($request->all());
 
         Session::flash('flash_message', 'Member added!');
@@ -84,8 +92,9 @@ class MembersController extends AdminBaseController
     public function edit($id)
     {
         $member = User::findOrFail($id);
+        $types = UserType::pluck('name', 'id');
 
-        return view('admin.members.edit', compact('member'));
+        return view('admin.members.edit', compact('member', 'types'));
     }
 
     /**
@@ -105,6 +114,11 @@ class MembersController extends AdminBaseController
             'email' => 'required|email|unique:users,email,' . $member->email . ',email',
             'file' => 'image'
         ]);
+        if($request->hasFile('file')){
+            $image = $this->upload->uploadImage($request, 'users', $member->image);
+            $request->merge(['image' => $image]);
+        }
+        
 
         $member->update($request->all());
 
@@ -122,15 +136,16 @@ class MembersController extends AdminBaseController
      */
     public function destroy($id)
     {
-        $user = User::withTrashed()->findOrFail($id);
+        $member = User::withTrashed()->findOrFail($id);
         if (request()->has('block')) {
-            $user->delete();
+            $member->delete();
             $massage = 'Member blocked!';
         } elseif(request()->has('restore')) {
-            $user->restore();
+            $member->restore();
             $massage = 'Member restored!';
         }else{
-            $user->forceDelete();
+            $member->forceDelete();
+            $this->upload->deleteImage($member->image);
             $massage = 'Member deleted!';
         }
 

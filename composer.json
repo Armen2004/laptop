@@ -32,7 +32,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/HelperClass.php"
+            "app/UploadHelperClass.php",
+            "app/FormHelperClass.php"
         ]
     },
     "autoload-dev": {

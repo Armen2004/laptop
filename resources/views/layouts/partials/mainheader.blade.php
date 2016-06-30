@@ -38,7 +38,7 @@
                                 <img src="{{ $admin->image ? asset($admin->image) : '/img/user2-160x160.jpg'}}" class="img-circle" alt="{{ $admin->name }}" />
                                 <p>
                                     {{ $admin->name }}
-                                    <small>Member since {{ $admin->created_at }}</small>
+                                    <small>Member since {{ $admin->created_at->diffForHumans(\Carbon\Carbon::now()) }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->

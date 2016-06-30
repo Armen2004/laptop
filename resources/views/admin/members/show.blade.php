@@ -5,18 +5,10 @@
         <a href="{{ url('admin/members/' . $member->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Member">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
-        {!! Form::open([
-            'method'=>'DELETE',
-            'url' => ['admin/members', $member->id],
-            'style' => 'display:inline'
-        ]) !!}
-        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Member',
-                'onclick'=>'return confirm("Confirm delete?")'
-        ))!!}
-        {!! Form::close() !!}
+
+        {!! App\FormHelperClass::delete_form("DELETE", 'admin/members/' . $member->id) !!}
+        {!! App\FormHelperClass::block_form("DELETE", 'admin/members/' . $member->id) !!}
+
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -36,7 +28,7 @@
             <tr>
                 <th> Picture</th>
                 <td>
-                    <img src="{{ $member->image ? asset($member->image) : '/img/user2-160x160.jpg'}}" class="user-image" alt="{{ $member->name }}">
+                    <img src="{{ $member->image ? env('S3_PATH') . $member->image : '/img/user2-160x160.jpg'}}" class="user-image" alt="{{ $member->name }}">
                 </td>
             </tr>
             </tbody>

@@ -32,32 +32,10 @@
                         <a href="{{ url('/admin/members/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Member">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/members', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Member" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete Member',
-                                'onclick'=>'return confirm("Confirm delete?")'
-                        ))!!}
-                        {!! Form::close() !!}
 
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/members', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::text('block', 1, ['class' => 'hidden']) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-ban-circle" aria-hidden="true" title="Block Member" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-warning btn-xs',
-                                'title' => 'Block Member',
-                                'onclick'=>'return confirm("Confirm block?")'
-                        ))!!}
-                        {!! Form::close() !!}
+                        {!! App\FormHelperClass::delete_form("DELETE", 'admin/members/' . $item->id) !!}
+                        {!! App\FormHelperClass::block_form("DELETE", 'admin/members/' . $item->id) !!}
+
                     </td>
                 </tr>
             @endforeach
@@ -85,32 +63,10 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
                     <td class="text-center" style="width: 155px;">
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/members', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Member" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete Member',
-                                'onclick'=>'return confirm("Confirm delete?")'
-                        ))!!}
-                        {!! Form::close() !!}
 
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/admin/members', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::text('restore', 1, ['class' => 'hidden']) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-ok-circle" aria-hidden="true" title="Restore Member" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-info btn-xs',
-                                'title' => 'Restore Member',
-                                'onclick'=>'return confirm("Confirm restore?")'
-                        ))!!}
-                        {!! Form::close() !!}
+                        {!! App\FormHelperClass::delete_form("DELETE", 'admin/members/' . $item->id) !!}
+                        {!! App\FormHelperClass::un_block_form("DELETE", 'admin/members/' . $item->id) !!}
+
                     </td>
                 </tr>
             @endforeach
