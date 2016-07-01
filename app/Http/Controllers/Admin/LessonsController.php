@@ -6,8 +6,8 @@ use Session;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Http\Requests;
+use App\Models\UserType;
 use App\UploadHelperClass;
-use App\Models\LessonType;
 use Illuminate\Http\Request;
 
 class LessonsController extends AdminBaseController
@@ -30,7 +30,7 @@ class LessonsController extends AdminBaseController
      */
     public function index()
     {
-        $lessons = Lesson::paginate(15);
+        $lessons = Lesson::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.lessons.index', compact('lessons'));
     }
@@ -43,7 +43,7 @@ class LessonsController extends AdminBaseController
     public function create()
     {
         $courses = Course::pluck('name', 'id');
-        $types = LessonType::pluck('name', 'id');
+        $types = UserType::pluck('name', 'id');
         return view('admin.lessons.create', compact('courses', 'types'));
     }
 
@@ -54,25 +54,39 @@ class LessonsController extends AdminBaseController
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
+            'user_type_id' => 'required|integer|exists:user_types,id',
+            'course_id' => 'required|integer|exists:courses,id',
             'title' => 'required|unique:lessons,title',
             'slug' => 'required|unique:lessons,slug',
-            'video_length' => [['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/']],
-            'file' => 'required|mime-types:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-flv,video/x-msvideo,video/x-ms-wmv',
+            'status' => 'boolean',
+            'video_file' => 'mimes:avi,mpeg,mpg,mov,mp4,mpg4,flv,mkv,wmv',
+            'video_link' => 'required_without:video_file',
+//            'video_length' => [['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/']],
+            'video_length' => 'required|integer',
+            'image_file' => 'image',
+            'pdf_file' => 'required|mimes:pdf',
             'description' => 'required',
-            'course_id' => 'required|integer|exists:courses,id',
-            'lesson_type_id' => 'required|integer|exists:lesson_types,id',
-            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/'],
-            'status' => 'boolean'
+//            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/'],
         ]);
-
 
         $course = Course::findOrFail($request->input('course_id'));
 
-        $video = $this->upload->videoUpload($request, 'lessons');
+        $pdf = $this->upload->pdfUpload($request, 'lessons/' . $course->slug);
+
+        if($request->hasFile('video_file')){
+            $video = $this->upload->videoUpload($request, 'lessons/' . $course->slug);
+            $request->merge(['video' => $video]);
+        }else{
+            $request->merge(['video' => $request->input('video_link')]);
+        }
+
+        if($request->hasFile('image_file')){
+            $image = $this->upload->uploadImage($request, 'lessons/' . $course->slug);
+            $request->merge(['image' => $image]);
+        }
         
-        $request->merge(['video' => $video]);
+        $request->merge(['pdf' => $pdf]);
 
         $this->user->user()->lessons()->save(new Lesson($request->all()));
 
@@ -111,7 +125,7 @@ class LessonsController extends AdminBaseController
     {
         $lesson = Lesson::findOrFail($id);
         $courses = Course::pluck('name', 'id');
-        $types = LessonType::pluck('name', 'id');
+        $types = UserType::pluck('name', 'id');
 
         return view('admin.lessons.edit', compact('lesson', 'courses', 'types'));
     }
@@ -128,21 +142,47 @@ class LessonsController extends AdminBaseController
         $lesson = Lesson::findOrFail($id);
 
         $this->validate($request, [
+            'user_type_id' => 'required|integer|exists:user_types,id',
+            'course_id' => 'required|integer|exists:courses,id',
             'title' => 'required|unique:lessons,title,' . $lesson->title . ',title',
             'slug' => 'required|unique:lessons,slug,' . $lesson->slug . ',slug',
-//            'video_length' => 'required|integer',
-            'video_length' => ['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/'],
-            'file' => 'required|mime-types:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-flv,video/x-msvideo,video/x-ms-wmv',
+            'status' => 'boolean',
+            'video_file' => 'mimes:avi,mpeg,mpg,mov,mp4,mpg4,flv,mkv,wmv',
+            'video_link' => 'required_without:video_file',
+//            'video_length' => [['required', 'regex:/([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?/']],
+            'video_length' => 'required|integer',
+            'image_file' => 'image',
+            'pdf_file' => 'mimes:pdf',
             'description' => 'required',
-            'course_id' => 'required|integer',
-            'lesson_type_id' => 'required|integer',
-            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/'],
-            'status' => 'boolean'
+//            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/'],
+
         ]);
 
-        dd($request->all());
+        if(!$request->has('status')){
+            $request->merge(['status' => 0]);
+        }
 
-        if($request->hasFile('file')){
+        $course = Course::findOrFail($request->input('course_id'));
+
+        if($request->hasFile('pdf_file')) {
+            $pdf = $this->upload->pdfUpload($request, 'lessons/' . $course->slug, $lesson->pdf);
+            $request->merge(['pdf' => $pdf]);
+        }
+
+        if($request->hasFile('video_file')){
+            $video = $this->upload->videoUpload($request, 'lessons/' . $course->slug, $lesson->video);
+            $request->merge(['video' => $video]);
+        }else{
+            $request->merge(['video' => $request->input('video_link')]);
+        }
+
+        if($request->hasFile('image_file')){
+            $image = $this->upload->uploadImage($request, 'lessons/' . $course->slug, $lesson->image);
+            $request->merge(['image' => $image]);
+        }
+
+
+        if($request->hasFile('video_file')){
             $video = $this->upload->videoUpload($request, 'videos');
             $request->merge(['video' => $video]);
         }
@@ -163,7 +203,13 @@ class LessonsController extends AdminBaseController
      */
     public function destroy($id)
     {
-        Lesson::destroy($id);
+        $lesson = Lesson::findOrFail($id);
+
+        $lesson->delete();
+
+        $this->upload->deleteFile($lesson->image);
+        $this->upload->deleteFile($lesson->video);
+        $this->upload->deleteFile($lesson->pdf);
 
         Session::flash('flash_message', 'Lesson deleted!');
 

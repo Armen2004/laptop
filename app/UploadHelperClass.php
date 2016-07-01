@@ -7,18 +7,36 @@ use Illuminate\Http\Request;
 
 class UploadHelperClass
 {
+    /**
+     * @var \Illuminate\Filesystem\FilesystemAdapter
+     */
     private $s3;
 
+    /**
+     * UploadHelperClass constructor.
+     */
     public function __construct()
     {
         $this->s3 = Storage::disk('s3');
     }
 
-    public function uploadImage(Request $request, $path, $image = false, $quality = 90, $resize = false, $width = 160, $height = 160)
+    /**
+     * Image Upload functionality
+     * 
+     * @param Request $request
+     * @param $path
+     * @param bool $oldFile
+     * @param int $quality
+     * @param bool $resize
+     * @param int $width
+     * @param int $height
+     * @return string
+     */
+    public function uploadImage(Request $request, $path, $oldFile = false, $quality = 90, $resize = false, $width = 160, $height = 160)
     {
 
-        if ($image && $this->s3->exists($image)) {
-            $this->deleteFile($image);
+        if ($oldFile && $this->s3->exists($oldFile)) {
+            $this->deleteFile($oldFile);
         }
 
         $image = Image::make($request->file('image_file'))->encode('jpg', $quality);
@@ -38,16 +56,21 @@ class UploadHelperClass
         return $path . '/' . $file;
     }
 
-    public function deleteFile($file)
+    /**
+     * Video upload functionality
+     * 
+     * @param Request $request
+     * @param $path
+     * @param bool $oldFile
+     * @return string
+     */
+    public function videoUpload(Request $request, $path, $oldFile = false)
     {
-        if (!is_null($file) && $this->s3->exists($file)) {
-            return $this->s3->delete($file);
-        }
-        return false;
-    }
 
-    public function videoUpload(Request $request, $path)
-    {
+        if ($oldFile && $this->s3->exists($oldFile)) {
+            $this->deleteFile($oldFile);
+        }
+        
         $video = $request->file('video_file');
 
         $file = sha1(time()) . '.' . $video->getClientOriginalExtension();
@@ -61,8 +84,21 @@ class UploadHelperClass
         return $path . '/' . $file;
     }
 
-    public function pdfUpload(Request $request, $path)
+    /**
+     * PDF upload functionality
+     * 
+     * @param Request $request
+     * @param $path
+     * @param bool $oldFile
+     * @return string
+     */
+    public function pdfUpload(Request $request, $path, $oldFile = false)
     {
+
+        if ($oldFile && $this->s3->exists($oldFile)) {
+            $this->deleteFile($oldFile);
+        }
+        
         $pdf = $request->file('pdf_file');
 
         $file = sha1(time()) . '.' . $pdf->getClientOriginalExtension();
@@ -74,6 +110,20 @@ class UploadHelperClass
         }
 
         return $path . '/' . $file;
+    }
+
+    /**
+     * File delete functionality
+     *
+     * @param $file
+     * @return bool
+     */
+    public function deleteFile($file)
+    {
+        if (!is_null($file) && $this->s3->exists($file)) {
+            return $this->s3->delete($file);
+        }
+        return false;
     }
 
 }

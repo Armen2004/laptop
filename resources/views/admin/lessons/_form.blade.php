@@ -40,7 +40,7 @@
             <div class="col-sm-12" style="margin-top: 25px">
                 <div class="form-control">
                     {!! Form::checkbox('status', 1, null) !!}
-                    {!! Form::label('Publish') !!}
+                    {!! Form::label('Archive') !!}
                 </div>
             </div>
         </div>
@@ -48,18 +48,22 @@
     </div>
     <div class="col-sm-6">
 
-        <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
+        <div class="form-group {{ $errors->has('video_file') ? 'has-error' : ''}}">
             <div class="col-sm-12">
-                {!! Form::label('file', 'Video') !!}
-                {!! Form::file('file', ['class' => 'form-control']) !!}
-                {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
+                {!! Form::label('video_file', 'Video') !!}
+                {!! Form::file('video_file', ['class' => 'form-control']) !!}
+                {!! $errors->first('video_file', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
 
         <div class="form-group {{ $errors->has('video_link') ? 'has-error' : ''}}">
             <div class="col-sm-12">
                 {!! Form::label('video_link', 'or Video link') !!}
-                {!! Form::text('video_link', null, ['class' => 'form-control', 'placeholder' => 'Enter lesson video or link']) !!}
+                @if(isset($lesson))
+                    {!! Form::text('video_link', $lesson->video, ['class' => 'form-control', 'placeholder' => 'Enter lesson video or link']) !!}
+                @else
+                    {!! Form::text('video_link', null, ['class' => 'form-control', 'placeholder' => 'Enter lesson video or link']) !!}
+                @endif
                 {!! $errors->first('video_link', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
