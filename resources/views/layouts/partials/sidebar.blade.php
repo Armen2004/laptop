@@ -40,7 +40,6 @@
                     <a href="#"><i class='fa fa-cogs'></i><span>Settings</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li class="@if(request()->is('admin/user-types')) active @endif"><a href="{{ url('admin/user-types') }}"><i class='fa fa-user'></i><span>User Types</span></a></li>
-                        <li class="@if(request()->is('admin/lesson-types')) active @endif"><a href="{{ url('admin/lesson-types') }}"><i class='fa fa-tags'></i><span>Lesson Types</span></a></li>
                     </ul>
                 </li>
 

@@ -13,7 +13,7 @@ class UsersTypeTableSeeder extends Seeder
     public function run()
     {
         DB::table('user_types')->truncate();
-        $types = ['Trial', 'Premium'];
+        $types = ['Free membership', 'Premium membership', '60 day fast start membership'];
         foreach ($types as $type) {
             DB::table('user_types')->insert([
                 'name' => $type,

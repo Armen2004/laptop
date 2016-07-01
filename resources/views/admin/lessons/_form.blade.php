@@ -1,6 +1,14 @@
 <div class="row">
     <div class="col-sm-6">
 
+        <div class="form-group {{ $errors->has('user_type_id') ? 'has-error' : ''}}">
+            <div class="col-sm-12">
+                {!! Form::label('user_type_id', 'User type') !!}
+                {!! Form::select('user_type_id', $types, null, ['class' => 'form-control type', 'required' => 'required', 'placeholder' => 'Select course type']) !!}
+                {!! $errors->first('user_type_id', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
         <div class="form-group {{ $errors->has('course_id') ? 'has-error' : ''}}">
             <div class="col-sm-12">
                 {!! Form::label('course_id', 'Course') !!}
@@ -25,14 +33,6 @@
                     {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using title', 'aria-describedby' => 'url']) !!}
                 </div>
                 {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
-            </div>
-        </div>
-
-        <div class="form-group {{ $errors->has('lesson_type_id') ? 'has-error' : ''}}">
-            <div class="col-sm-12">
-                {!! Form::label('lesson_type_id', 'Course type') !!}
-                {!! Form::select('lesson_type_id', $types, null, ['class' => 'form-control type', 'required' => 'required', 'placeholder' => 'Select course type']) !!}
-                {!! $errors->first('lesson_type_id', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
 
@@ -72,6 +72,14 @@
             </div>
         </div>
 
+        <div class="form-group {{ $errors->has('image_file') ? 'has-error' : ''}}">
+            <div class="col-sm-12">
+                {!! Form::label('image_file', 'Lesson Image') !!}
+                {!! Form::file('image_file', ['class' => 'form-control']) !!}
+                {!! $errors->first('image_file', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
         <div class="form-group {{ $errors->has('pdf_file') ? 'has-error' : ''}}">
             <div class="col-sm-12">
                 {!! Form::label('pdf_file', 'PDF file') !!}
@@ -81,13 +89,6 @@
                     {!! Form::file('pdf_file', ['class' => 'form-control', 'required' => 'required']) !!}
                 @endif
                 {!! $errors->first('pdf_file', '<p class="help-block">:message</p>') !!}
-            </div>
-        </div>
-
-        <div class="form-group hidden price {{ $errors->has('price') ? 'has-error' : ''}}">
-            <div class="col-sm-12">
-                {!! Form::label('price', 'Price') !!}
-                {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Enter course price']) !!}
             </div>
         </div>
 
@@ -125,12 +126,6 @@
                 }
             });
 
-            showPrice($('.type'));
-
-            $('#lesson_type_id').change(function () {
-                showPrice($(this))
-            });
-
             var config = {
                 filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
             };
@@ -158,15 +153,6 @@
                     console.log(jqXHR);
                 }
             });
-        }
-
-        function showPrice(selector){
-            if (selector.val() > 1) {
-                $('.price').removeClass('hidden');
-            } else {
-                $('#price').val('');
-                $('.price').addClass('hidden');
-            }
         }
 
         function convert(x) {

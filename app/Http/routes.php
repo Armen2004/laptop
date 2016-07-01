@@ -69,8 +69,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('members', 'MembersController');
 
-        Route::resource('lesson-types', 'LessonTypesController');
-
         Route::resource('courses', 'CoursesController', [ 'except' => ['show'] ]);
         Route::get('courses/{slug}', 'CoursesController@show')->where('slug', '[A-Za-z0-9-_]+');
 
