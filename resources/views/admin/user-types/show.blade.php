@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>User Type {{ $usertype->name }}
-        <a href="{{ url('admin/user-types/' . $usertype->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit UserType">
+        <a href="{{ url('admin/user-types/' . $usertype->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit User Type">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
         {!! Form::open([
@@ -13,7 +13,7 @@
         {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
                 'type' => 'submit',
                 'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete UserType',
+                'title' => 'Delete User Type',
                 'onclick'=>'return confirm("Confirm delete?")'
         ))!!}
         {!! Form::close() !!}
@@ -28,6 +28,10 @@
             <tr>
                 <th> Name</th>
                 <td> {{ $usertype->name }} </td>
+            </tr>
+            <tr>
+                <th> Price</th>
+                <td> {{ $usertype->price }}$</td>
             </tr>
             </tbody>
         </table>

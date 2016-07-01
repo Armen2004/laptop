@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>User Types
-        <a href="{{ url('/admin/user-types/create') }}" class="btn btn-primary btn-xs" title="Add New UserType">
+        <a href="{{ url('/admin/user-types/create') }}" class="btn btn-primary btn-xs" title="Add New User Type">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
     </h1>
@@ -12,6 +12,7 @@
             <tr>
                 <th>S.No</th>
                 <th> Name</th>
+                <th> Price</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -22,11 +23,12 @@
                 <tr>
                     <td>{{ $x }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->price }}$</td>
                     <td>
-                        <a href="{{ url('/admin/user-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View UserType">
+                        <a href="{{ url('/admin/user-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View User Type">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ url('/admin/user-types/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit UserType">
+                        <a href="{{ url('/admin/user-types/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit User Type">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                         {!! Form::open([
@@ -34,10 +36,10 @@
                             'url' => ['/admin/user-types', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete UserType" />', array(
+                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete User Type" />', array(
                                 'type' => 'submit',
                                 'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete UserType',
+                                'title' => 'Delete User Type',
                                 'onclick'=>'return confirm("Confirm delete?")'
                         ))!!}
                         {!! Form::close() !!}

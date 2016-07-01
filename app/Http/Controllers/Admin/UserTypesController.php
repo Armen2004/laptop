@@ -38,7 +38,8 @@ class UserTypesController extends AdminBaseController
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:user_types,name'
+            'name' => 'required|unique:user_types,name',
+            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/']
         ]);
 
         UserType::create($request->all());
@@ -85,11 +86,13 @@ class UserTypesController extends AdminBaseController
      */
     public function update($id, Request $request)
     {
+        $usertype = UserType::findOrFail($id);
+
         $this->validate($request, [
-            'name' => 'required|unique:user_types,name'
+            'name' => 'required|unique:user_types,name,' . $usertype->name . ',name',
+            'price' => ['regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/']
         ]);
 
-        $usertype = UserType::findOrFail($id);
         $usertype->update($request->all());
 
         Session::flash('flash_message', 'UserType updated!');

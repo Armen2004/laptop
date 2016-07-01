@@ -13,10 +13,15 @@ class UsersTypeTableSeeder extends Seeder
     public function run()
     {
         DB::table('user_types')->truncate();
-        $types = ['Free membership', 'Premium membership', '60 day fast start membership'];
+        $types = [
+            ['name' => 'Free membership', 'price' => 0], 
+            ['name' => 'Premium membership', 'price' => 100], 
+            ['name' => '60 day fast start membership', 'price' => 50]
+        ];
         foreach ($types as $type) {
             DB::table('user_types')->insert([
-                'name' => $type,
+                'name' => $type['name'],
+                'price' => $type['price'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
