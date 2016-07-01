@@ -28,10 +28,9 @@ class PostsController extends AdminBaseController
      */
     public function index()
     {
-        $activePosts = Post::orderBy('created_at','desc')->paginate(15);
-        $blockedPosts = Post::onlyTrashed()->orderBy('created_at', 'desc')->paginate(15);
+        $posts = Post::orderBy('created_at','desc')->paginate(15);
 
-        return view('admin.posts.index', compact('activePosts', 'blockedPosts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -55,7 +54,7 @@ class PostsController extends AdminBaseController
             'title' => 'required|unique:posts,title',
             'slug' => 'required|unique:posts,slug',
             'description' => 'required',
-            'file' => 'required|image',
+            'image_file' => 'required|image',
             'status' => 'boolean'
         ]);
 
@@ -115,11 +114,15 @@ class PostsController extends AdminBaseController
             'title' => 'required|unique:posts,title,' . $post->title . ',title',
             'slug' => 'required|unique:posts,slug,' . $post->slug . ',slug',
             'description' => 'required',
-            'file' => 'image',
+            'image_file' => 'image',
             'status' => 'boolean'
         ]);
 
-        if($request->hasFile('file')){
+        if(!$request->has('status')){
+            $request->merge(['status' => 0]);
+        }
+
+        if($request->hasFile('image_file')){
             $image = $this->upload->uploadImage($request, 'posts', $post->image);
             $request->merge(['image' => $image]);
         }
@@ -140,21 +143,13 @@ class PostsController extends AdminBaseController
      */
     public function destroy($id)
     {
+        $post = Post::findOrFail($id);
+        
+        $post->delete();
 
-        $post = Post::withTrashed()->findOrFail($id);
-        if (request()->has('block')) {
-            $post->delete();
-            $massage = 'Post blocked!';
-        } elseif(request()->has('restore')) {
-            $post->restore();
-            $massage = 'Post restored!';
-        }else{
-            $post->forceDelete();
-            $this->upload->deleteFile($post->image);
-            $massage = 'Post deleted!';
-        }
+        $this->upload->deleteFile($post->image);
 
-        Session::flash('flash_message', $massage);
+        Session::flash('flash_message', 'Post deleted!');
 
         return redirect('admin/posts');
     }

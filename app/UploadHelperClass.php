@@ -18,10 +18,10 @@ class UploadHelperClass
     {
 
         if ($image && $this->s3->exists($image)) {
-            $this->deleteImage($image);
+            $this->deleteFile($image);
         }
 
-        $image = Image::make($request->file('file'))->encode('jpg', $quality);
+        $image = Image::make($request->file('image_file'))->encode('jpg', $quality);
 
         if ($resize) {
             $image->resize($width, $height);
@@ -48,11 +48,26 @@ class UploadHelperClass
 
     public function videoUpload(Request $request, $path)
     {
-        $video = $request->file('file');
+        $video = $request->file('video_file');
 
         $file = sha1(time()) . '.' . $video->getClientOriginalExtension();
 
-        $upload = $this->s3->put($path . '/' . $file, file_get_contents($request->file('file')->getRealPath()), 'public');
+        $upload = $this->s3->put($path . '/' . $file, file_get_contents($video->getRealPath()), 'public');
+
+        if (!$upload) {
+            abort(404);
+        }
+
+        return $path . '/' . $file;
+    }
+
+    public function pdfUpload(Request $request, $path)
+    {
+        $pdf = $request->file('pdf_file');
+
+        $file = sha1(time()) . '.' . $pdf->getClientOriginalExtension();
+
+        $upload = $this->s3->put($path . '/' . $file, file_get_contents($pdf->getRealPath()), 'public');
 
         if (!$upload) {
             abort(404);

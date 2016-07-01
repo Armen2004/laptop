@@ -21,15 +21,15 @@
 </div>
 <div class="col-sm-6">
 
-    <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
+    <div class="form-group {{ $errors->has('image_file') ? 'has-error' : ''}}">
         <div class="col-sm-12">
-            {!! Form::label('file', 'Image') !!}
+            {!! Form::label('image_file', 'Image') !!}
             @if(isset($course))
-                {!! Form::file('file', ['class' => 'form-control']) !!}
+                {!! Form::file('image_file', ['class' => 'form-control']) !!}
             @else
-                {!! Form::file('file', ['class' => 'form-control', 'required' => 'required']) !!}
+                {!! Form::file('image_file', ['class' => 'form-control', 'required' => 'required']) !!}
             @endif
-            {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
+            {!! $errors->first('image_file', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 
@@ -37,7 +37,7 @@
         <div class="col-sm-12" style="margin-top: 25px">
             <div class="form-control">
                 {!! Form::checkbox('status', 1, null) !!}
-                {!! Form::label('Publish') !!}
+                {!! Form::label('Archive') !!}
             </div>
         </div>
     </div>

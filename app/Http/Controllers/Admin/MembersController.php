@@ -58,7 +58,7 @@ class MembersController extends AdminBaseController
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'file' => 'image'
+            'image_file' => 'image'
         ]);
 
         $image = $this->upload->uploadImage($request, 'users');
@@ -115,10 +115,10 @@ class MembersController extends AdminBaseController
             'user_type_id' => 'required|integer|exists:user_types,id',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $member->email . ',email',
-            'file' => 'image'
+            'image_file' => 'image'
         ]);
         
-        if($request->hasFile('file')){
+        if($request->hasFile('image_file')){
             $image = $this->upload->uploadImage($request, 'users', $member->image);
             $request->merge(['image' => $image]);
         }

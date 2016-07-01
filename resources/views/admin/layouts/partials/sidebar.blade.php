@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="treeview @if(request()->is('admin/members') || request()->is('admin/members/create')) active @endif">
-                    <a href="#"><i class='fa fa-users'></i><span>Users</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="#"><i class='fa fa-users'></i><span>Members</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li class="@if(request()->is('admin/members')) active @endif"><a href="{{ url('admin/members') }}"><i class='fa fa-user'></i><span>Members</span></a></li>
                         <li class="@if(request()->is('admin/members/create')) active @endif"><a href="{{ url('admin/members/create') }}"><i class='fa fa-plus'></i><span>Create Member</span></a></li>

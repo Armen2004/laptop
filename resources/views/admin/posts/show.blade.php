@@ -5,8 +5,9 @@
         <a href="{{ url('admin/posts/' . $post->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Post">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
+
         {!! App\FormHelperClass::delete_form("DELETE", 'admin/posts/' . $post->id, 'Post') !!}
-        {!! App\FormHelperClass::block_form("DELETE", 'admin/posts/' . $post->id, 'Post') !!}
+
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -25,7 +26,7 @@
             </tr>
             <tr>
                 <th> Status</th>
-                <td> <span class="label label-{{ $post->status ? "success" : "warning"}}">{{ $post->status ? "Published" : "Not Published"}}</span> </td>
+                <td><span class="label label-{{ $post->status ? "warning" : "success"}}">{{ $post->status ? "Archived" : "Not Archived"}}</span></td>
             </tr>
             <tr>
                 <th> Description</th>

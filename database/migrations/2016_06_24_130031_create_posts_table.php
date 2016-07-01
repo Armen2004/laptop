@@ -20,7 +20,6 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->boolean('status')->default(0);
             $table->string('image');
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');

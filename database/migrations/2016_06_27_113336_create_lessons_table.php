@@ -15,14 +15,15 @@ class CreateLessonsTable extends Migration
         Schema::create('lessons', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('admin_id');
-            $table->unsignedInteger('course_id');
             $table->unsignedInteger('user_type_id');
+            $table->unsignedInteger('course_id');
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->integer('video_length');
-            $table->string('video');
-            $table->float('price')->nullable();
             $table->boolean('status')->default(0);
+            $table->string('video');
+            $table->integer('video_length');
+            $table->string('image')->nullable();
+            $table->string('pdf')->nullable();
             $table->text('description');
             $table->timestamps();
 

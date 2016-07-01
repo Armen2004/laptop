@@ -20,7 +20,6 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->boolean('status')->default(0);
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');

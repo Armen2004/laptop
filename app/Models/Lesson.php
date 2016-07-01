@@ -26,23 +26,18 @@ class Lesson extends Model
      * @var array
      */
     protected $fillable = [
+        'admin_id',
+        'user_type_id',
+        'course_id',
         'title',
         'slug',
-        'video_length',
-        'video',
-        'admin_id',
-        'course_id',
-        'lesson_type_id',
-        'price',
         'status',
+        'video',
+        'video_length',
+        'image',
+        'pdf',
         'description'
     ];
-
-    public function delete()
-    {
-        \File::delete($this->video);
-        parent::delete();
-    }
 
     public function admin()
     {
@@ -54,8 +49,8 @@ class Lesson extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function lessonType()
+    public function userType()
     {
-        return $this->belongsTo(LessonType::class);
+        return $this->belongsTo(UserType::class);
     }
 }

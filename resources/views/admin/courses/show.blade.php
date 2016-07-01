@@ -7,7 +7,6 @@
         </a>
 
         {!! App\FormHelperClass::delete_form("DELETE", 'admin/courses/' . $course->id, 'Course') !!}
-        {!! App\FormHelperClass::block_form("DELETE", 'admin/courses/' . $course->id, 'Course') !!}
 
     </h1>
     <div class="table-responsive">
@@ -31,7 +30,7 @@
             </tr>
             <tr>
                 <th> Status</th>
-                <td> <span class="label label-{{ $course->status ? "success" : "warning"}}">{{ $course->status ? "Published" : "Not Published"}}</span> </td>
+                <td><span class="label label-{{ $course->status ? "warning" : "success"}}">{{ $course->status ? "Archived" : "Not Archived"}}</span></td>
             </tr>
             <tr>
                 <th> Image</th>
@@ -46,7 +45,6 @@
                 <div class="col-lg-4">
                     <div class="thumbnail">
                         <a href="{{url('admin/lessons/' . $course->slug . '/' . $lesson->slug)}}"> {{ $lesson->title }}&nbsp;&nbsp;
-                        <span class="label label-success">{{ $lesson->courseType->name }}</span>
                         <span class="pull-right">{{ $lesson->video_length }}:00</span></a>
                     </div>
                 </div>

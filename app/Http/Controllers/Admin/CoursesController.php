@@ -28,10 +28,9 @@ class CoursesController extends AdminBaseController
      */
     public function index()
     {
-        $activeCourses = Course::orderBy('created_at', 'desc')->paginate(15);
-        $blockedCourses = Course::onlyTrashed()->orderBy('created_at', 'desc')->paginate(15);
+        $courses = Course::orderBy('created_at', 'desc')->paginate(15);
 
-        return view('admin.courses.index', compact('activeCourses', 'blockedCourses'));
+        return view('admin.courses.index', compact('courses'));
     }
 
     /**
@@ -54,7 +53,7 @@ class CoursesController extends AdminBaseController
         $this->validate($request, [
             'name' => 'required|unique:courses,name',
             'slug' => 'required|unique:courses,slug',
-            'file' => 'required|image',
+            'image_file' => 'required|image',
             'status' => 'boolean',
             'description' => 'required'
         ]);
@@ -114,12 +113,16 @@ class CoursesController extends AdminBaseController
         $this->validate($request, [
             'name' => 'required|unique:courses,name,' . $course->name . ',name',
             'slug' => 'required|unique:courses,slug,' . $course->slug . ',slug',
-            'file' => 'image',
+            'image_file' => 'image',
             'status' => 'boolean',
             'description' => 'required'
         ]);
 
-        if($request->hasFile('file')){
+        if(!$request->has('status')){
+            $request->merge(['status' => 0]);
+        }
+
+        if($request->hasFile('image_file')){
             $image = $this->upload->uploadImage($request, 'courses', $course->image);
             $request->merge(['image' => $image]);
         }
@@ -140,21 +143,11 @@ class CoursesController extends AdminBaseController
      */
     public function destroy($id)
     {
+        $course = Course::findOrFail($id);
+        $course->delete();
+        $this->upload->deleteFile($course->image);
 
-        $course = Course::withTrashed()->findOrFail($id);
-        if (request()->has('block')) {
-            $course->delete();
-            $massage = 'Course blocked!';
-        } elseif (request()->has('restore')) {
-            $course->restore();
-            $massage = 'Course restored!';
-        } else {
-            $course->forceDelete();
-            $this->upload->deleteFile($course->image);
-            $massage = 'Course deleted!';
-        }
-
-        Session::flash('flash_message', $massage);
+        Session::flash('flash_message', 'Course deleted!');
 
         return redirect('admin/courses');
     }
