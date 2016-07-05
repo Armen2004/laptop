@@ -161,7 +161,6 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
     ],
 
@@ -214,7 +213,6 @@ return [
         'HTML'      => Collective\Html\HtmlFacade::class,
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
 ];

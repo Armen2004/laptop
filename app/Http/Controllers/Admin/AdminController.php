@@ -3,15 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
-use Intervention\Image\Facades\Image;
+use App\UploadHelperClass;
 
 class AdminController extends AdminBaseController
 {
+    /**
+     * @var UploadHelperClass
+     */
+    private $upload;
 
     public function __construct()
     {
         parent::__construct();
         $this->middleware('admin');
+        $this->upload = new UploadHelperClass;
     }
 
     /**
@@ -45,80 +50,23 @@ class AdminController extends AdminBaseController
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
-            'file' => 'image'
+            'change_password' => 'integer',
+            'new_password' => 'required_with:change_password',
+            'image_file' => 'image'
         ]);
-        if (request()->file('file')) {
-            $photo = request()->file('file');
-            $destinationPath = public_path('img/profile/admin-logo/');
-            $image = strtolower($this->user->user()->name) . '-logo.' . $photo->getClientOriginalExtension();
-            if (!\File::isFile($destinationPath)) {
-                \File::makeDirectory($destinationPath, $mode = 0777, true, true);
-            }
-            Image::make($photo->getRealPath())->resize(160, 160)->save($destinationPath . $image);
-            request()->merge(['image' => 'img/profile/admin-logo/' . $image]);
+
+        if(request()->hasFile('image_file')){
+            $image = $this->upload->uploadImage(request(), 'admins', $this->user->user()->image);
+            request()->merge(['image' => $image]);
         }
-        $this->user->user()->update(request()->except(['file']));
+
+        if (request()->has('new_password')){
+            request()->merge(['password' => request()->input('new_password')]);
+        }
+
+        $this->user->user()->update(request()->all());
         session()->flash('flash_message', 'Profile updated successfully!');
         return redirect('admin/profile');
     }
-
-//    public function login()
-//    {
-//        if ($this->user->user()) {
-//            return redirect('admin/dashboard');
-//        }
-//
-//        if (request()->isMethod('get')) {
-//            return view('admin.auth.login');
-//        }
-//
-//        $this->validate(request(), [
-//            'email' => 'required|email',
-//            'password' => 'required'
-//        ]);
-//
-//        $remember = request()->input('remember') ? true : false;
-//
-//        if ($this->user->attempt(['email' => request()->input('email'), 'password' => request()->input('password')], $remember)) {
-//            return redirect()->intended('admin/dashboard');
-//        }
-//
-//        return redirect()->back()->withErrors(['error' => 'Incorrect admin login or password']);
-//    }
-//
-//    public function register()
-//    {
-//        if ($this->user->user()) {
-//            return redirect('admin/dashboard');
-//        }
-//
-//        if (request()->isMethod('get')) {
-//            return view('admin.auth.register');
-//        }
-//
-//        $this->validate(request(), [
-//            'name' => 'required',
-//            'email' => 'required|email|unique:admins,email',
-//            'password' => 'required|confirmed'
-//        ]);
-//
-//        $remember = request()->input('remember') ? true : false;
-//
-//        if ($this->user->login(Admin::create(request()->all()), $remember)) {
-//            return redirect()->intended('admin/dashboard');
-//        }
-//
-//        return redirect()->back()->withErrors(['error' => 'Incorrect admin login or password']);
-//    }
-//
-//    public function logout()
-//    {
-//        if ($this->user->user()) {
-//            $this->user->logout();
-//            return redirect('admin/login');
-//        }
-//        return redirect('admin/dashboard');
-//    }
 
 }

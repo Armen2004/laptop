@@ -115,12 +115,18 @@ class MembersController extends AdminBaseController
             'user_type_id' => 'required|integer|exists:user_types,id',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $member->email . ',email',
+            'change_password' => 'integer',
+            'new_password' => 'required_with:change_password',
             'image_file' => 'image'
         ]);
-        
+
         if($request->hasFile('image_file')){
             $image = $this->upload->uploadImage($request, 'users', $member->image);
             $request->merge(['image' => $image]);
+        }
+
+        if (request()->has('new_password')){
+            request()->merge(['password' => request()->input('new_password')]);
         }
         
         $member->update($request->all());

@@ -26,27 +26,70 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
+    <div class="form-group">
         <div class="col-sm-12">
-            {!! Form::label('password', 'Password') !!}
-            {!! Form::text('password', null, ['class' => 'form-control', 'placeholder' => 'Enter new password']) !!}
-            {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
+            <div class="form-control">
+                {!! Form::checkbox('change_password', 1, null, ['id' => 'change_password']) !!}
+                {!! Form::label('Change Password') !!}
+            </div>
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
+    <div class="form-group password hidden {{ $errors->has('new_password') ? 'has-error' : ''}}">
         <div class="col-sm-12">
-            {!! Form::label('file', 'Image') !!}
-            {!! Form::file('file', ['class' => 'form-control']) !!}
-            {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
+            {!! Form::label('new_password', 'Password') !!}
+            <div class="input-group">
+                {!! Form::password('new_password', ['class' => 'form-control', 'placeholder' => 'Enter new password']) !!}
+                <span class="input-group-addon" id="show_password"><i class="glyphicon glyphicon-eye-open"></i></span>
+            </div>
+            {!! $errors->first('new_password', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('image_file') ? 'has-error' : ''}}">
+        <div class="col-sm-12">
+            {!! Form::label('image_file', 'Image') !!}
+            {!! Form::file('image_file', ['class' => 'form-control']) !!}
+            {!! $errors->first('image_file', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-12">
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>
     {!! Form::close() !!}
 
+@endsection
+
+@section('main-scripts')
+    <script>
+        $(document).ready(function () {
+
+            showPassword($('#change_password'));
+
+            $('#change_password').on('change', function () {
+                showPassword($(this));
+            });
+
+        });
+
+        function showPassword(input) {
+            if (input.is(':checked')) {
+                $('.password').removeClass('hidden');
+                $('.password input').val('');
+            } else {
+                $('.password').addClass('hidden');
+                $('.password input').val('');
+            }
+
+            $('#show_password').mousedown(function () {
+                $('#new_password').prop('type', 'text');
+            }).mouseup(function () {
+                $('#new_password').prop('type', 'password');
+            })
+        }
+
+    </script>
 @endsection

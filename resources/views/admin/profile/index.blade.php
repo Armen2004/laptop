@@ -26,7 +26,7 @@
             <tr>
                 <th> Picture</th>
                 <td>
-                    <img src="{{ $admin->image ? asset($admin->image) : '/img/user2-160x160.jpg'}}" class="user-image" alt="{{ $admin->name }}">
+                    <img src="{{ $admin->image ? env('S3_PATH') . $admin->image : '/img/user2-160x160.jpg'}}" class="user-image" alt="{{ $admin->name }}">
                 </td>
             </tr>
             </tbody>

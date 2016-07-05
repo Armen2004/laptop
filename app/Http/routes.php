@@ -33,12 +33,6 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-//    Route::get('login', 'AdminController@login');
-//    Route::post('login', 'AdminController@login');
-//    Route::get('register', 'AdminController@register');
-//    Route::post('register', 'AdminController@register');
-//    Route::get('logout', 'AdminController@logout');
-
         //Login Routes...
         Route::get('login','Auth\AuthController@showLoginForm');
         Route::post('login','Auth\AuthController@login');

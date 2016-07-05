@@ -8,7 +8,7 @@
         @if (! auth()->guard('admin')->guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{ $admin->image ? asset($admin->image) : '/img/user2-160x160.jpg'}}" class="img-circle" alt="{{ $admin->name }}" />
+                    <img src="{{ $admin->image ? env('S3_PATH') . $admin->image : '/img/user2-160x160.jpg'}}" class="img-circle" alt="{{ $admin->name }}" />
                 </div>
                 <div class="pull-left info">
                     <p>{{ $admin->name }}</p>
