@@ -8,7 +8,7 @@
             <a href="#"><b>Admin</b>LTE</a>
         </div>
 
-        @include('layouts.partials.messages')
+        @include('admin.layouts.partials.messages')
 
         <div class="register-box-body">
             <p class="login-box-msg">Register a new membership</p>
@@ -50,7 +50,7 @@
         </div><!-- /.form-box -->
     </div><!-- /.register-box -->
 
-    @include('layouts.partials.scripts_auth')
+    @include('admin.layouts.partials.scripts_auth')
     <script>
         $(function () {
             $('input').iCheck({

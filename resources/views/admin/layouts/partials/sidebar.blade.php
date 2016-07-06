@@ -36,10 +36,11 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li class="@if(request()->is('admin/dashboard')) active @endif"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>
 
-                <li class="treeview @if(request()->is('admin/user-types') || request()->is('admin/lesson-types')) active @endif">
-                    <a href="#"><i class='fa fa-cogs'></i><span>Settings</span><i class="fa fa-angle-left pull-right"></i></a>
+                <li class="treeview @if(request()->is('admin/user-types') || request()->is('admin/user-types/create')) active @endif">
+                    <a href="#"><i class='fa fa-user'></i><span>User Types</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li class="@if(request()->is('admin/user-types')) active @endif"><a href="{{ url('admin/user-types') }}"><i class='fa fa-user'></i><span>User Types</span></a></li>
+                        <li class="@if(request()->is('admin/user-types')) active @endif"><a href="{{ url('admin/user-types/create') }}"><i class='fa fa-plus'></i><span>Create User Types</span></a></li>
                     </ul>
                 </li>
 
@@ -50,9 +51,6 @@
                         <li class="@if(request()->is('admin/members/create')) active @endif"><a href="{{ url('admin/members/create') }}"><i class='fa fa-plus'></i><span>Create Member</span></a></li>
                     </ul>
                 </li>
-
-                <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-file-text-o'></i><span>Pages</span></a></li>
-                <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-file-text'></i><span>Page Contents</span></a></li>
 
                 <li class="treeview @if(request()->is('admin/posts') || request()->is('admin/posts/create')) active @endif">
                     <a href="#"><i class='fa fa-tags'></i><span>Posts</span><i class="fa fa-angle-left pull-right"></i></a>
@@ -78,15 +76,24 @@
                     </ul>
                 </li>
 
-
-                <li class="treeview">
-                    <a href="#"><i class='fa fa-link'></i><span>Multi level</span><i class="fa fa-angle-left pull-right"></i></a>
+                <li class="treeview @if(request()->is('admin/pages') || request()->is('admin/pages/create')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Pages</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a href="#">link level 2</a></li>
-                        <li><a href="#">link level 2</a></li>
+                        <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-tags'></i><span>Pages</span></a></li>
+                        <li class="@if(request()->is('admin/pages/create')) active @endif"><a href="{{ url('admin/pages/create') }}"><i class='fa fa-plus'></i><span>Create Page</span></a></li>
                     </ul>
                 </li>
-            @endif
+
+                <li class="treeview @if(request()->is('admin/contents') || request()->is('admin/contents/create')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Page Contents</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-tags'></i><span>Page Contents</span></a></li>
+                        <li class="@if(request()->is('admin/contents/create')) active @endif"><a href="{{ url('admin/contents/create') }}"><i class='fa fa-plus'></i><span>Create Page Contents</span></a></li>
+                    </ul>
+                </li>
+
+
+                @endif
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

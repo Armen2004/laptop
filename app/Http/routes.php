@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('layouts.landing');
 });
 
+
+
+Route::group(['prefix' => 'api/v1'], function () {
 Route::auth();
-
 Route::get('/home', 'HomeController@index');
-
-Route::group(['prefix' => 'user'], function () {
 
 
     Route::group(['middleware' => 'auth:user'], function () {

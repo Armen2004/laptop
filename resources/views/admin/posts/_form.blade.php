@@ -68,7 +68,6 @@
     <script src="{{asset('ckfinder/ckfinder.js')}}" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-            $("select").select2();
             var config = {
                 filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
             };

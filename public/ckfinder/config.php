@@ -80,7 +80,7 @@ $config['defaultResourceTypes'] = '';
 
 $config['resourceTypes'][] = array(
     'name'              => 'Files', // Single quotes not allowed.
-    'directory'         => 'img',
+    'directory'         => 'images',
     'maxSize'           => 0,
     'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
     'deniedExtensions'  => '',

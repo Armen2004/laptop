@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-@include('layouts.partials.htmlheader')
+@include('admin.layouts.partials.htmlheader')
 
 @yield('content')
 

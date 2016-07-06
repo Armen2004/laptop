@@ -2,7 +2,7 @@
 <html lang="en">
 
 @section('htmlheader')
-    @include('layouts.partials.htmlheader')
+    @include('admin.layouts.partials.htmlheader')
 @show
 <body class="skin-blue sidebar-mini">
 <div class="wrapper">

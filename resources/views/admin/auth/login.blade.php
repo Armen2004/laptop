@@ -7,7 +7,7 @@
             <a href="#"><b>Admin</b>LTE</a>
         </div><!-- /.login-logo -->
 
-    @include('layouts.partials.messages')
+    @include('admin.layouts.partials.messages')
 
     <div class="login-box-body">
     <p class="login-box-msg"> Sign in to start your session </p>
@@ -41,7 +41,7 @@
 
 </div><!-- /.login-box -->
 
-    @include('layouts.partials.scripts_auth')
+    @include('admin.layouts.partials.scripts_auth')
 
     <script>
         $(function () {

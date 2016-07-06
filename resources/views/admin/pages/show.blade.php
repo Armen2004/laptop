@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h1>Page {{ $page->id }}
+    <h1>Page {{ $page->name }}
         <a href="{{ url('admin/pages/' . $page->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Page">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>

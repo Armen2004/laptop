@@ -1,43 +1,45 @@
-<div class="col-sm-6">
-    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-        <div class="col-sm-12">
-            {!! Form::label('name', 'Name') !!}
-            {!! Form::text('name', null, ['class' => 'form-control name', 'required' => 'required', 'placeholder' => 'Enter course name']) !!}
-            {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-
-    <div class="form-group {{ $errors->has('slug') ? 'has-error' : ''}}">
-        <div class="col-sm-12">
-            {!! Form::label('slug', 'Slug') !!}
-            <div class="input-group">
-                <span class="input-group-addon" id="slug">{{ url('courses') }}/</span>
-                {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using name', 'aria-describedby' => 'slug']) !!}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+            <div class="col-sm-12">
+                {!! Form::label('name', 'Name') !!}
+                {!! Form::text('name', null, ['class' => 'form-control name', 'required' => 'required', 'placeholder' => 'Enter course name']) !!}
+                {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
             </div>
-            {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
         </div>
-    </div>
 
-</div>
-<div class="col-sm-6">
-
-    <div class="form-group {{ $errors->has('image_file') ? 'has-error' : ''}}">
-        <div class="col-sm-12">
-            {!! Form::label('image_file', 'Image') !!}
-            @if(isset($course))
-                {!! Form::file('image_file', ['class' => 'form-control']) !!}
-            @else
-                {!! Form::file('image_file', ['class' => 'form-control', 'required' => 'required']) !!}
-            @endif
-            {!! $errors->first('image_file', '<p class="help-block">:message</p>') !!}
+        <div class="form-group {{ $errors->has('slug') ? 'has-error' : ''}}">
+            <div class="col-sm-12">
+                {!! Form::label('slug', 'Slug') !!}
+                <div class="input-group">
+                    <span class="input-group-addon" id="slug">{{ url('courses') }}/</span>
+                    {!! Form::text('slug', null, ['class' => 'form-control slug', 'required' => 'required', 'readonly', 'placeholder' => 'Slug auto generates using name', 'aria-describedby' => 'slug']) !!}
+                </div>
+                {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-sm-12" style="margin-top: 25px">
-            <div class="form-control">
-                {!! Form::checkbox('status', 1, null) !!}
-                {!! Form::label('Archive') !!}
+    </div>
+    <div class="col-sm-6">
+
+        <div class="form-group {{ $errors->has('image_file') ? 'has-error' : ''}}">
+            <div class="col-sm-12">
+                {!! Form::label('image_file', 'Image') !!}
+                @if(isset($course))
+                    {!! Form::file('image_file', ['class' => 'form-control']) !!}
+                @else
+                    {!! Form::file('image_file', ['class' => 'form-control', 'required' => 'required']) !!}
+                @endif
+                {!! $errors->first('image_file', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12" style="margin-top: 25px">
+                <div class="form-control">
+                    {!! Form::checkbox('status', 1, null) !!}
+                    {!! Form::label('Archive') !!}
+                </div>
             </div>
         </div>
     </div>
