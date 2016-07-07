@@ -2,7 +2,7 @@
     <!-----Content--------->
 
     <div class="container get-started">
-        <div class="">
+        <div class="col-md-6 col-md-offset-3 ">
             <div class="get-started-content text-center">
                 <span class="close-icon" ng-click="close()" style="cursor: pointer">
                     <img src="/images/icons/close.png" alt="">

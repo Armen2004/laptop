@@ -1,12 +1,12 @@
 var app = angular.module('app', [
-    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'angularModalService'
+    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap'
 ]);
 app.constant('BASE_URL', 'http://laptop.dev/');
 
-// app.config(function ($interpolateProvider) {
-//     $interpolateProvider.startSymbol('<%');
-//     $interpolateProvider.endSymbol('%>');
-// });
+app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+});
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

@@ -13,9 +13,8 @@
 <script src="{{ asset('js/angular-sanitize.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular-touch.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/ui-bootstrap-tpls-1.3.3.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/angular-modal-service.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 
+<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/HomeController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/AuthController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/AccountController.js') }}" type="text/javascript"></script>
@@ -24,6 +23,7 @@
 <script src="{{ asset('js/controllers/SalesController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/LessonsController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/ModalController.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/controllers/MenuController.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/services/AuthService.js') }}" type="text/javascript"></script>
 

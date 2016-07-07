@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </div>
-            @include('templates.partisals.menu')
+            @include('templates.partials.paid-menu')
         </div>
     </div>
 </div>

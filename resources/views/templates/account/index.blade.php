@@ -8,7 +8,7 @@
                     <div class="col-md-12 no-padd">
                         <div class="col-md-4 header-part-1 clearfix">
                             <div class="block-container text-center">
-                                <img src="images/logo-s.png" alt="" class="img-responsive">
+                                <img src="/images/logo-s.png" alt="" class="img-responsive">
                                 <span class="search-block">
                                     <input type="text" placeholder="Search">
                                 </span>
@@ -44,10 +44,10 @@
                         </div>
                         <div class="col-md-3 header-part-3 user-account-details user-area text-center">
                             <span class="user-name">Sam Baker </span>
-                            <img src="images/profile-img.png" alt="">
+                            <img src="/images/profile-img.png" alt="">
                             <i class="fa fa-power-off" aria-hidden="true"></i>
                             <span class="open-menu">
-                                <img src="icons/open-menu.png" alt="">
+                                <img src="/images/icons/open-menu.png" alt="">
                             </span>
                         </div>
                     </div>
@@ -79,37 +79,37 @@
                     <div class="col-md-12 demo acc-page-content" id="sliphover">
                         <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
                             <a ng-href="#/">
-                                <img src="images/Vector-Smart-Object11.png" alt="" class="img-responsive" title="">
+                                <img src="/images/Vector-Smart-Object11.png" alt="" class="img-responsive" title="">
                             </a>
                         </div>
                         <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
                             <a ng-href="#/">
-                                <img src="images/Easy-Drag-&-Drop--Online-Pages-builder.png" alt="" class="img-responsive">
+                                <img src="/images/Easy-Drag-&-Drop--Online-Pages-builder.png" alt="" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
                             <a ng-href="#/">
-                                <img src="images/Layer-13.png" alt="" class="img-responsive">
+                                <img src="/images/Layer-13.png" alt="" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
                             <a ng-href="#/">
-                                <img src="images/Buy-and-Sell-products-here.png" alt="" class="img-responsive">
+                                <img src="/images/Buy-and-Sell-products-here.png" alt="" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-md-6 no-padd big-same-height">
                             <a ng-href="#/">
-                                <img src="images/For-anyone-who-wants-to-set-up-a-website--to-make-extra-income.png" alt="" class="img-responsive">
+                                <img src="/images/For-anyone-who-wants-to-set-up-a-website--to-make-extra-income.png" alt="" class="img-responsive">
                             </a>
                         </div>
                         <div class="col-md-6 no-padd big-same-height">
                             <a ng-href="#/">
-                                <img src="images/Sam-Baker-copy-2.png" alt="" class="img-responsive">
+                                <img src="/images/Sam-Baker-copy-2.png" alt="" class="img-responsive">
                             </a>
                         </div>
                     </div>
                 </div>
-                <div ng-include="'templates/menu.html'"></div>
+                @include('templates.partials.free-menu')
             </div>
         </div>
     </header>

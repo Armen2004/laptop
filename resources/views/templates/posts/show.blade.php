@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper clearfix">
     <!---Header start--->
     <header>
         <div class="container">

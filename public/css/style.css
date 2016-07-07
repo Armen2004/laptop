@@ -1,5 +1,5 @@
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h5, h6,  blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -27,7 +27,7 @@ footer, header,  menu, nav, section {
 }
 
 body {
-    line-height: 1;
+    /*line-height: 1;*/
 }
 ol, ul {
     list-style: none;
@@ -120,7 +120,8 @@ table {
     background-color:#e4e5e6;
 }
 .header-part-1{
-    padding: 30px 0 0 0;
+    padding-top: 30px;
+
 }
 .search-block{
     display: inline-block;
@@ -140,7 +141,8 @@ table {
 .text-block{
     font-weight:600;
     text-transform:uppercase;
-    padding: 15px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 .text-block p{
     margin: 0;
@@ -222,7 +224,8 @@ background:#4aa01e;
     margin: 0 5px;
 }
 .header-part-3{
-    padding: 15px 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 .header-part-3 span{
     margin: 0 5px;
@@ -253,6 +256,11 @@ background:#4aa01e;
     font-family:'aven-reg';
     color:#fff;
 }
+
+.content-left a:hover{
+    text-decoration: none;
+}
+
 .small-size{
     color: #388cad !important;
     font-size: 16px;
@@ -611,7 +619,6 @@ background:#4aa01e;
 
 .panel-title a {
     display: block;
-    color: #fff;
     padding: 15px;
     position: relative;
     font-size: 16px;
@@ -725,7 +732,7 @@ background:#4aa01e;
 }
 .user-account-details {
     padding: 30px 0;
-    text-align:right;
+    /*text-align:right;*/
 }
 .lessons-parent li.active{
     background: #202227;
@@ -1082,7 +1089,7 @@ background:#4aa01e;
     width: 300px;
     outline: 0;
     padding: 5px 15px;
-
+    line-height: 20px;
 }
 .get-started-content button{
     width: 300px;
@@ -1099,6 +1106,7 @@ background:#4aa01e;
     -ms-transition: all 0.5s ;
     -o-transition: all 0.5s ;
     transition: all 0.5s ;
+    line-height: 28px;
 }
 .get-started-content button:hover{
     background: #4b8196;
@@ -1118,7 +1126,7 @@ background:#4aa01e;
 .close-icon{
     display: inline-block;
     position: absolute;
-    right: 260px;
+    right: 90px;
 }
 .close-icon img {
     width: 20px;
@@ -1154,7 +1162,8 @@ background:#4aa01e;
     color:#ccc;
 }
 .sales-p-right {
-    padding:25px 0;
+    padding-top:25px;
+    padding-bottom:25px;
 }
 
 .sales-p-right i{
@@ -1182,7 +1191,7 @@ background:#4aa01e;
     padding: 10px 0;
     background: rgba(0,0,0, 0.5 );
     border-radius: 10px 10px 0 0;
-    margin: 15px 0 0;
+    margin-top: 15px ;
 }
 .inform-form h4{
     /*display:inline-block;*/
@@ -2459,7 +2468,7 @@ h2.check-out {
 
 .afterReg-money-back .guarantee-title {
     background: rgba(0, 0, 0, 0.6);
-    margin: 120px 0 0 0;
+    margin: 110px 0 0 0;
     padding: 0 0 70px 0;
     border-bottom: 10px solid #0c0d0f;
 }
