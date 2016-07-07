@@ -19,7 +19,7 @@
 </div>
 <!-------------- Header block end -------------->
 <!-------------- Login block start -------------->
-<div class="container">
+<div class="container" ng-hide="loggedIn">
     <div class="home-login-block" ng-class="{ 'home-login-block-error': loginForm.user_email.$touched && loginForm.user_email.$invalid || loginForm.user_password.$touched && loginForm.user_password.$invalid}">
         <form class="form-inline" name="loginForm" ng-submit="user_login(credentials)">
             <div class="form-group">
@@ -114,7 +114,7 @@
             </h2>
             <div class="home-ready-to-make-block">
 
-                <div class="sign-up-btn">
+                <div class="sign-up-btn" ng-hide="loggedIn">
                     <a class="hvr-sweep-to-left" ng-href="#/" ng-click="signup()">Signup For Your Free Account Now</a>
                 </div>
             </div>

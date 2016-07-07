@@ -14,11 +14,11 @@ app.factory('AuthFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($h
                 data: params
             })
                 .success(function (data, status, headers) {
-                    console.log(data, status, headers);
-                    deferred.resolve(data);
+                    // console.log(data, status, headers);
+                    deferred.resolve({data: data, status: status});
                 })
                 .error(function (data, status, headers, config, statusText) {
-                    console.log('Request Failed!', data, status, headers, config, statusText);
+                    // console.log('Request Failed!', data, status, headers, config, statusText);
                     deferred.reject({data: data, status: status});
                 });
             return deferred.promise;
@@ -34,9 +34,17 @@ app.factory('AuthFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($h
         },
 
         doRegister: function (user) {
-            console.log(user);
+            var userData = {
+                name: $sanitize(user.name),
+                email: $sanitize(user.email),
+                password: $sanitize(user.password),
+                _token: $sanitize(user._token)
+            };
+            return this.sendRequest('POST', BASE_URL + 'register', userData);
+        },
+        
+        checkUser: function () {
+            return this.sendRequest('POST', BASE_URL + 'check');
         }
     };
 }]);
-
-//HAYPOST - SARYAN 22 16:30 6 - 605

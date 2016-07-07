@@ -1,11 +1,17 @@
 var app = angular.module('app', [
-    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap'
+    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'toastr'
 ]);
-app.constant('BASE_URL', 'http://laptop.dev/');
+app.constant('BASE_URL', 'http://laptop.dev/api/');
 
 app.config(function ($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
+});
+
+app.config(function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        closeButton: true
+    });
 });
 
 app.config(['$routeProvider', function ($routeProvider) {

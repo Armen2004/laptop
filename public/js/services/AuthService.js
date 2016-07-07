@@ -1,12 +1,12 @@
-app.service('AuthService', ['$scope', function ($scope) {
-    this.user = {};
+app.service('AuthService', ['$http', '$location', function ($http, $location) {
 
-    this.getUserCredentials = function () {
-        return this.user;
-    };
-
-    this.setUserCredentials = function (user) {
-        return angular.copy(user, this.user);
+    this.auth = function () {
+        $http({method: "GET", url: "auth/check/" + role})
+            .success(function (response) {
+                if (response.success == 0) {
+                    $location.path('login');
+                }
+            });
     }
-    
+
 }]);

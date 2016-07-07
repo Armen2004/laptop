@@ -3,65 +3,52 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests;
-use Stripe\Error\Api;
-use Stripe\Error\Card;
-use Stripe\Error\Authentication;
-use Stripe\Error\InvalidRequest;
+use App\User;
+use Illuminate\Http\Request;
 
 class UsersController extends ApiBaseController
 {
-    protected function getCurrentUserPlan($user)
+
+    public function login(Request $request)
     {
-        foreach (config('payment') as $payment_plan => $payment_details) {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-            if ($user->subscribed($payment_plan)) {
-                return $payment_plan;
-            }
-        }
+        $credentials = $request->only('email', 'password');
 
-        return null;
+        $user = $this->user->attempt($credentials);
+
+        return response(['status' => true]);
     }
 
-    public function subscription(Request $request)
+    public function logout()
     {
-        $data = $request->all();
-        $user = $this->user->user();
-
-        //write a function to see if user already subscriber to a plan or not.
-
-        $userSubscribedPlan = $this->getCurrentUserPlan($user);
-
-        if ($userSubscribedPlan && $userSubscribedPlan == $data['payment_plan']) {
-            return $this->apiResponse->responseAlreadySubscription();
-        }
-
-        $message = null;
-        try {
-            if ($userSubscribedPlan) {
-                $user->subscription($data['payment_plan'])
-                    ->swap();
-            } else {
-                $user->subscription($data['payment_plan'])
-                    ->create($data['token_id'], ['email' => $email]);
-            }
-        } catch (InvalidRequest $e) {
-            $message = $e->getMessage();
-        } catch (Authentication $e) {
-            $message = $e->getMessage();
-        } catch (Card $e) {
-            $message = $e->getMessage();
-        } catch (Api $e) {
-            $message = $e->getMessage();
-        }
-
-        if ($message) {
-            return $this->apiResponse->responseFailedSubscription($message);
-        }
-
-        PaymentHistory::create(array(
-            'user_id' => $user->id,
-            'plan' => $data['payment_plan'],
-            'payment_method' => $data['brand']
-        ));
+        $user = $this->user->logout();
+        return response(['status' => $user]);
     }
+
+    public function register(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+        ]);
+        $request->merge(['user_type_id' => 1]);
+
+        $user = User::create($request->all());
+        $this->user->login($user);
+
+        return response(['status' => true]);
+    }
+
+    public function check()
+    {
+        if ($this->user->check())
+            return response(['loggedIn' => true]);
+        return response(['loggedIn' => false]);
+    }
+
 }

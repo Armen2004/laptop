@@ -2524,3 +2524,6 @@ h2.check-out {
 
 /* Index4 Css End */
 
+.toast-top-right{
+    z-index: 9999 !important;
+}

@@ -25,6 +25,7 @@
                     <span ng-show="regForm.password.$error.maxlength" class="text-danger">Password required Max 25 symbols.</span>
                     <span ng-show="regForm.password.$error.pattern" class="text-danger">Password required only a-zA-Z0-9_ symbols.</span>
                     <div class="clearfix"></div>
+                    <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
                     <button type="submit" ng-disabled="regForm.$invalid">JOIN</button>
                 </form>
             </div>

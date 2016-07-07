@@ -17,10 +17,15 @@ Route::get('/', function () {
 
 
 
-Route::group(['prefix' => 'api/v1'], function () {
-Route::auth();
-Route::get('/home', 'HomeController@index');
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
+    //Login Routes...
+    Route::post('login','UsersController@login');
+    Route::post('logout','UsersController@logout');
+
+    // Registration Routes...
+    Route::post('register', 'UsersController@register');
+    Route::post('check', 'UsersController@check');
 
     Route::group(['middleware' => 'auth:user'], function () {
 
