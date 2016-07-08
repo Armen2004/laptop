@@ -1,11 +1,22 @@
-app.controller('MenuController', ['$scope', function ($scope) {
+app.controller('MenuController', ['$scope', '$location', 'MenuFactory', function ($scope, $location, MenuFactory) {
 
     $scope.isCollapsed = true;
 
+    MenuFactory.getCourses().then(function (response) {
+        $scope.courses = response.data;
+        console.log(response)
+    }, function (error) {
+        console.log(error)
+    });
+
+    $scope.goTo = function (lessonId) {
+        $location.path('/lesson/' + lessonId);
+    };
+
     $scope.courses = [
         {
-            name: 'Free Laptop Startup Package', 
-            image: '/images/profile-img.png', 
+            name: 'Free Laptop Startup Package',
+            image: '/images/profile-img.png',
             author: 'By Sam Baker',
             lessons: [
                 {

@@ -18,6 +18,6 @@ class ApiBaseController extends Controller
     public function __construct()
     {
         $this->user = auth()->guard('user');
-        view()->share('user', $this->user->user());
+        //view()->share('user', $this->user->user());
     }
 }

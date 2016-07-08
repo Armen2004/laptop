@@ -43,6 +43,10 @@ app.factory('AuthFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($h
             return this.sendRequest('POST', BASE_URL + 'register', userData);
         },
         
+        doLogout: function () {
+            return this.sendRequest('GET', BASE_URL + 'logout');
+        },
+        
         checkUser: function () {
             return this.sendRequest('POST', BASE_URL + 'check');
         }

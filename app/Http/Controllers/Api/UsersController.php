@@ -18,15 +18,15 @@ class UsersController extends ApiBaseController
 
         $credentials = $request->only('email', 'password');
 
-        $user = $this->user->attempt($credentials);
+        $this->user->attempt($credentials);
 
         return response(['status' => true]);
     }
 
     public function logout()
     {
-        $user = $this->user->logout();
-        return response(['status' => $user]);
+        $this->user->logout();
+        return response(['status' => true]);
     }
 
     public function register(Request $request)
@@ -38,8 +38,7 @@ class UsersController extends ApiBaseController
         ]);
         $request->merge(['user_type_id' => 1]);
 
-        $user = User::create($request->all());
-        $this->user->login($user);
+        $this->user->login(User::create($request->all()));
 
         return response(['status' => true]);
     }
@@ -47,8 +46,14 @@ class UsersController extends ApiBaseController
     public function check()
     {
         if ($this->user->check())
-            return response(['loggedIn' => true]);
-        return response(['loggedIn' => false]);
+            return response([
+                'loggedIn' => true,
+                'userInfo' => $this->user->user()
+            ]);
+        return response([
+            'loggedIn' => false,
+            'userInfo' => ''
+        ]);
     }
 
 }

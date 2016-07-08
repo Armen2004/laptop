@@ -1,10 +1,12 @@
 <div class="col-md-3 content-left no-padd" ng-controller="MenuController">
     <div class="content-left-header">
-        <span class="clos-content"><img src="/images/icons/close.png" alt="close menu image"></span>
+        <span class="clos-content">
+            <img src="/images/icons/close.png" alt="close menu image">
+        </span>
         <div class="col-md-12 header-part-3 user-account-details text-center">
-            <span class="user-name">Sam Baker </span>
-            <img src="/images/profile-img.png" alt="">
-            <i class="fa fa-power-off" aria-hidden="true"></i>
+            <span class="user-name"><% userInfo.name %> </span>
+            <img ng-src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>" class="acc-user-image">
+            <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" style="cursor: pointer" ng-controller="AuthController"></i>
         </div>
         <h3>67%</h3>
         <p class="small-size">FREE LESSONS COMPLETED</p>

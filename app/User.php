@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Lesson;
+use Carbon\Carbon;
 use App\Models\UserType;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,9 +48,25 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    /**
+     * Get the user's last logged in.
+     *
+     * @param  string $value
+     * @return string
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
+
     public function userType()
     {
         return $this->belongsTo(UserType::class);
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class);
     }
 
 }

@@ -30,3 +30,7 @@
 
 
 <script src="{{ asset('js/factories/AuthFactory.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/factories/MenuFactory.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/factories/PostsFactory.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('js/filters/ellipsis.js') }}" type="text/javascript"></script>

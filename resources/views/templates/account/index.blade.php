@@ -109,7 +109,11 @@
                         </div>
                     </div>
                 </div>
-                @include('templates.partials.free-menu')
+                @if(auth()->guard('user')->user()->user_type_id > 1)
+                    @include('templates.partials.paid-menu')
+                @else
+                    @include('templates.partials.free-menu')
+                @endif
             </div>
         </div>
     </header>

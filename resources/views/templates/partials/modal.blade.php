@@ -10,7 +10,7 @@
                 <img src="/images/white-logo.png" alt="" class="img-responsive get-logo">
                 <h1 class="sales-subtitle text-center"> GET STARTED  </h1>
                 <p class="memeber-title text-center">with your free membership </p>
-                <form ng-submit="register(credentials)" name="regForm">
+                <form ng-submit="user_register(credentials)" name="regForm" ng-controller="AuthController">
                     <input type="text" placeholder="Your name" ng-model="credentials.name" name="name" required="required" ng-minlength="2">
                     <span ng-show="regForm.name.$error.required" class="text-danger"></span>
                     <span ng-show="regForm.name.$error.minlength" class="text-danger">Name required Min 2 symbols.</span>

@@ -1,12 +1,7 @@
-app.service('AuthService', ['$http', '$location', function ($http, $location) {
+app.service('AuthService', ['AuthFactory', function (AuthFactory) {
 
-    this.auth = function () {
-        $http({method: "GET", url: "auth/check/" + role})
-            .success(function (response) {
-                if (response.success == 0) {
-                    $location.path('login');
-                }
-            });
+    this.isLoggedIn = function () {
+        return AuthFactory.checkUser();
     }
 
 }]);

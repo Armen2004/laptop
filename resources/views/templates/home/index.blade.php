@@ -19,7 +19,7 @@
 </div>
 <!-------------- Header block end -------------->
 <!-------------- Login block start -------------->
-<div class="container" ng-hide="loggedIn">
+<div class="container" ng-hide="isLoggedIn" ng-controller="AuthController">
     <div class="home-login-block" ng-class="{ 'home-login-block-error': loginForm.user_email.$touched && loginForm.user_email.$invalid || loginForm.user_password.$touched && loginForm.user_password.$invalid}">
         <form class="form-inline" name="loginForm" ng-submit="user_login(credentials)">
             <div class="form-group">
@@ -46,8 +46,7 @@
             </div>
             <div class="col-md-7 col-md-offset-1 col-sm-12">
                 <div class="banner-video-img">
-                    <iframe width="100%" height="345" src="http://www.youtube.com/embed/XGSy3_Czz8k">
-                    </iframe>
+                    <iframe width="100%" height="345" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
                 </div>
             </div>
         </div>
@@ -114,7 +113,7 @@
             </h2>
             <div class="home-ready-to-make-block">
 
-                <div class="sign-up-btn" ng-hide="loggedIn">
+                <div class="sign-up-btn" ng-hide="isLoggedIn">
                     <a class="hvr-sweep-to-left" ng-href="#/" ng-click="signup()">Signup For Your Free Account Now</a>
                 </div>
             </div>
@@ -130,8 +129,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3>TESTIMONIALS</h3>
-
-
                 </div>
             </div>
             <div class="row">

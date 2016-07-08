@@ -21,7 +21,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     //Login Routes...
     Route::post('login','UsersController@login');
-    Route::post('logout','UsersController@logout');
+    Route::get('logout','UsersController@logout');
 
     // Registration Routes...
     Route::post('register', 'UsersController@register');
@@ -29,6 +29,12 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     Route::group(['middleware' => 'auth:user'], function () {
 
+        Route::post('getCourses', 'CoursesController@show');
+
+        Route::post('getAllPosts', 'PostsController@all');
+        Route::post('getPost', 'PostsController@show');
+
+        Route::get('getCourses', 'CoursesController@shows');
         Route::get('/', function () {
 
         });
