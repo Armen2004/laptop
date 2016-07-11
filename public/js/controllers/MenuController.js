@@ -1,80 +1,90 @@
-app.controller('MenuController', ['$scope', '$location', 'MenuFactory', function ($scope, $location, MenuFactory) {
+app.controller('MenuController', ['$scope', '$location', '$routeParams', 'LessonFactory',
+    function ($scope, $location, $routeParams, LessonFactory) {
 
-    $scope.isCollapsed = true;
+        $scope.isCollapsed = true;
 
-    MenuFactory.getCourses().then(function (response) {
-        $scope.courses = response.data;
-        console.log(response)
-    }, function (error) {
-        console.log(error)
-    });
+        LessonFactory.getCourses().then(function (response) {
+            $scope.courses = response.data;
+        }, function (error) {
+            console.log(error)
+        });
 
-    $scope.goTo = function (lessonId) {
-        $location.path('/lesson/' + lessonId);
-    };
+        $scope.goTo = function (lessonId) {
+            $location.path('/lesson/' + lessonId);
+        };
 
-    $scope.courses = [
-        {
-            name: 'Free Laptop Startup Package',
-            image: '/images/profile-img.png',
-            author: 'By Sam Baker',
-            lessons: [
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                }
-            ]
-        },
-        {
-            name: 'Free Laptop Startup Package',
-            author: 'By Sam Baker',
-            lessons: [
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                },
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                },
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                },
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                }
-            ]
-        },
-        {
-            name: 'Free Laptop Startup Package',
-            image: '/images/profile-img.png',
-            author: 'By Sam Baker',
-            lessons: [
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                }
-            ]
-        },
-        {
-            name: 'Free Laptop Startup Package',
-            author: 'By Sam Baker',
-            lessons: [
-                {
-                    duration: '25',
-                    title: 'Introduction',
-                    description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-                }
-            ]
-        }
-    ];
+        $scope.completedLesson = function (lessons) {
 
-}]);
+            var l_c = 0;
+            angular.forEach(lessons, function (value, index) {
+                if(value.users.length > 0)
+                    l_c += l_c;
+            })
+            console.log(l_c);
+        };
+
+        // $scope.courses = [
+        //     {
+        //         name: 'Free Laptop Startup Package',
+        //         image: '/images/profile-img.png',
+        //         author: 'By Sam Baker',
+        //         lessons: [
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         name: 'Free Laptop Startup Package',
+        //         author: 'By Sam Baker',
+        //         lessons: [
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             },
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             },
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             },
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         name: 'Free Laptop Startup Package',
+        //         image: '/images/profile-img.png',
+        //         author: 'By Sam Baker',
+        //         lessons: [
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         name: 'Free Laptop Startup Package',
+        //         author: 'By Sam Baker',
+        //         lessons: [
+        //             {
+        //                 duration: '25',
+        //                 title: 'Introduction',
+        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
+        //             }
+        //         ]
+        //     }
+        // ];
+
+    }]);

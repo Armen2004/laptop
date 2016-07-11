@@ -41,9 +41,9 @@
                         </div>
                     </div>
                     <div class="col-md-3 header-part-3 user-account-details user-area text-center">
-                        <span class="user-name">Sam Baker </span>
-                        <img src="/images/profile-img.png" alt="">
-                        <i class="fa fa-power-off" aria-hidden="true"></i>
+                        <span class="user-name"><% userInfo.name %> </span>
+                        <img src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>">
+                        <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" ng-controller="AuthController"></i>
                         <span class="open-menu">
                             <img src="/images/icons/open-menu.png" alt="">
                         </span>
@@ -55,21 +55,36 @@
                         <div class="col-md-12 video-content text-center">
                             <div class="package-time">
                                 <div class="time-dur text-center">
-                                    <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i> 25 min</p>
+                                    <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.video_length %> min</p>
                                 </div>
                             </div>
                             <div class="video-info col-md-8 col-md-offset-2">
                                 <div class="social-links">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    <i class="fa fa-twitter" aria-hidden="true" socialshare
+                                       socialshare-provider="twitter"
+                                       socialshare-text="<% lesson.title %>"
+                                       {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                       socialshare-url="<% SITE_URL + '#/lesson/' + lesson.slug %>">
+                                    </i>
+                                    <i class="fa fa-envelope" aria-hidden="true" socialshare
+                                       socialshare-provider="google"
+                                       socialshare-text="<% lesson.title %>"
+                                       {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                       socialshare-url="<% SITE_URL + '#/lesson/' + lesson.slug %>">
+                                    </i>
+                                    <i class="fa fa-facebook" aria-hidden="true" socialshare
+                                       socialshare-provider="facebook"
+                                       socialshare-text="<% lesson.title %>"
+                                       {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                       socialshare-url="<% SITE_URL + '#/lesson/' + lesson.slug %>">
+                                    </i>
                                 </div>
-                                <video width="100%" height="390" id="player1" src="media/video.mp4" type="video/mp4" controls="controls"></video>
+                                <video width="100%" height="390" src="<% S3_URL + lesson.video | trustUrl %>" controls="controls"></video>
                                 <div class="col-md-12 package-info">
                                     <p class="pack-lesson-title">
                                         <span class="lesson-count">Lesson 1:</span>
-                                        <span class="lesson-int">Introduction
-                                            <button class="complete-mark">
+                                        <span class="lesson-int"><% lesson.title %>
+                                            <button class="complete-mark" ng-show="lesson.users.length == 0" ng-click="complete_lesson(lesson.id)">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                                 mark as complete
                                             </button>
@@ -86,47 +101,20 @@
                 </div>
                 <div class="col-md-12 video-post-info">
                     <div class="col-md-3 video-post-left">
-                        <img src="/images/profile-sm.png" alt="" class="img-responsive">
-                        <h4>by Sam Baker</h4>
+                        <img ng-src="<% S3_URL + lesson.admin.image %>" alt="<% lesson.admin.name %>" class="img-responsive">
+                        <h4>by <% lesson.admin.name %></h4>
                         <span class="download-pdf">
-                            <a href="javascript:;">
-                               <img src="/images/pdf.png" alt="">
+                            <a target="_self" ng-href="<% S3_URL + lesson.pdf %>" download="<% S3_URL + lesson.pdf %>">
+                               <img ng-src="/images/pdf.png" alt="<% lesson.slug %>">
+                                <span>
+                                    download <br/>
+                                    training guide
+                                </span>
                             </a>
-                            <span>
-                                download <br/>
-                                training guide
-                            </span>
                         </span>
                     </div>
                     <div class="col-md-9">
-                        <p>
-                            Looking for a little creative inspiration for your promotions? In this section you'll
-                            find a bunch of suggestions for thinking "outside the box" in your affiliate campaigns.
-                            If you've whipped up a website and peppered it with affiliate links and you're not sure
-                            where to go next... take a look at some of these lessons.
-                        </p>
-
-                        <p>
-                            Looking for a little creative inspiration for your promotions? In this section you'll
-                            find a bunch of suggestions for thinking "outside the box" in your affiliate campaigns.
-                            If you've whipped up a website and peppered it with affiliate links and you're not sure
-                            where to go next... take a look at some of these lessons.
-                        </p>
-
-                        <p>
-                            Looking for a little creative inspiration for your promotions? In this section you'll
-                            find a bunch of suggestions for thinking "outside the box" in your affiliate campaigns.
-                            If you've whipped up a website and peppered it with affiliate links and you're not sure
-                            where to go next... take a look at some of these lessons.
-                        </p>
-
-                        <p>
-                            Looking for a little creative inspiration for your promotions? In this section you'll
-                            find a bunch of suggestions for thinking "outside the box" in your affiliate campaigns.
-                            If you've whipped up a website and peppered it with affiliate links and you're not sure
-                            where to go next... take a look at some of these lessons.
-                        </p>
-
+                        <p ng-bind-html="lesson.description"></p>
                     </div>
                 </div>
             </div>

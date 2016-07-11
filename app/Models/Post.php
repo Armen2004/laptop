@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -34,6 +35,17 @@ class Post extends Model
         'status',
         'image'
     ];
+
+    /**
+     * Get the post's created date.
+     *
+     * @param  string $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
 
     public function admin()
     {

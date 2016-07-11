@@ -1,8 +1,9 @@
 var app = angular.module('app', [
-    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'toastr'
+    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'toastr', '720kb.socialshare'
 ]);
 app
     .constant('BASE_URL', 'http://laptop.dev/api/')
+    .constant('SITE_URL', 'http://laptop.dev/')
     .constant('S3_URL', 'https://s3-us-west-2.amazonaws.com/laptopstartup/');
 
 app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function ($routeProvider, $interpolateProvider, toastrConfig) {
@@ -76,9 +77,10 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
         });
 }]);
 
-app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', function ($rootScope, $location, AuthFactory, S3_URL) {
+app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', function ($rootScope, $location, AuthFactory, S3_URL, SITE_URL) {
 
     $rootScope.S3_URL = S3_URL;
+    $rootScope.SITE_URL = SITE_URL;
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 

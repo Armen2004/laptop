@@ -30,9 +30,13 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
     Route::group(['middleware' => 'auth:user'], function () {
 
         Route::post('getCourses', 'CoursesController@show');
+        Route::post('getLesson', 'CoursesController@getLesson');
+        Route::post('completeLesson', 'CoursesController@completeLesson');
 
         Route::post('getAllPosts', 'PostsController@all');
         Route::post('getPost', 'PostsController@show');
+        Route::post('getNextPost', 'PostsController@getNextPost');
+        Route::post('getPreviousPost', 'PostsController@getPreviousPost');
 
         Route::get('getCourses', 'CoursesController@shows');
         Route::get('/', function () {

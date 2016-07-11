@@ -43,9 +43,9 @@
                             </div>
                         </div>
                         <div class="col-md-3 header-part-3 user-account-details user-area text-center">
-                            <span class="user-name">Sam Baker </span>
-                            <img src="/images/profile-img.png" alt="">
-                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span class="user-name"><% userInfo.name %> </span>
+                            <img src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>">
+                            <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" ng-controller="AuthController"></i>
                             <span class="open-menu">
                                 <img src="/images/icons/open-menu.png" alt="">
                             </span>

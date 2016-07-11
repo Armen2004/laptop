@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-4 header-part-1 clearfix">
                     <div class="block-container pull-right-block">
-                        <img src="images/logo-s.png" alt="" class="img-responsive">
+                        <img src="/images/logo-s.png" alt="" class="img-responsive">
                         <span class="search-block">
                          <input type="text" placeholder="Search">
                         </span>
@@ -36,9 +36,9 @@
                     </ul>
                 </div>
                 <div class="col-md-2 header-part-3">
-                    <span>Sam Baker </span>
-                    <img src="images/profile-img.png" alt="">
-                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span><% userInfo.name %> </span>
+                    <img src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>">
+                    <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" ng-controller="AuthController"></i>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="container">
             <div class="row">
                 <ul class="blog-posts-block">
-                    <li ng-repeat="post in posts">
+                    <li ng-repeat="post in posts | limitTo: paginationLimit()">
                         <div class="col-md-8 blog-post-left ">
                             <p class="post-date"><% post.created_at %></p>
                             {{--<p class="post-date">Saturday, January 16 2016</p>--}}
@@ -59,17 +59,28 @@
                                 <% post.admin.name %>
                             </p>
                             <p class="post-full">
-                                <div>
-                                    <span ng-bind-html="post.description | ellipsis:500:post.slug"></span>
-                                </div>
-                                <div>
-                                    <span class="read-more"><a ng-href="post/<% post.slug %>">Read More</a></span>
-                                </div>
+                                <span ng-bind-html="post.description | limitTo:500"></span>
+                                <span class="read-more"><a ng-href="#/post/<% post.slug %>">Read More</a></span>
                             </p>
                             <div class="social-links blog-posts-social-links">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <i class="fa fa-twitter" aria-hidden="true" socialshare
+                                   socialshare-provider="twitter"
+                                   socialshare-text="<% post.title %>"
+                                   {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                   socialshare-url="<% SITE_URL + '#/post/' + post.slug %>">
+                                </i>
+                                <i class="fa fa-envelope" aria-hidden="true" socialshare
+                                   socialshare-provider="google"
+                                   socialshare-text="<% post.title %>"
+                                   {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                   socialshare-url="<% SITE_URL + '#/post/' + post.slug %>">
+                                </i>
+                                <i class="fa fa-facebook" aria-hidden="true" socialshare
+                                   socialshare-provider="facebook"
+                                   socialshare-text="<% post.title %>"
+                                   {{--socialshare-hashtags="angularjs, angular-socialshare"--}}
+                                   socialshare-url="<% SITE_URL + '#/post/' + post.slug %>">
+                                </i>
                             </div>
                         </div>
                         <div class="col-md-4 no-padd  post-image">
@@ -81,7 +92,7 @@
             </div>
         </div>
         <div class="load-more">
-            <a href="javascript:;">
+            <a href="javascript:;" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">
                 Load more...
             </a>
         </div>

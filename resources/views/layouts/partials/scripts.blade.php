@@ -14,6 +14,7 @@
 <script src="{{ asset('js/angular-touch.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/ui-bootstrap-tpls-1.3.3.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular-toastr.tpls.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/angular-socialshare.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/HomeController.js') }}" type="text/javascript"></script>
@@ -30,7 +31,7 @@
 
 
 <script src="{{ asset('js/factories/AuthFactory.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/factories/MenuFactory.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/factories/LessonFactory.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/factories/PostsFactory.js') }}" type="text/javascript"></script>
 
-<script src="{{ asset('js/filters/ellipsis.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/filters/trustUrl.js') }}" type="text/javascript"></script>

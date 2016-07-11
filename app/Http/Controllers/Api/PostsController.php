@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PostsController extends Controller
+class PostsController extends ApiBaseController
 {
     public function all()
     {
@@ -20,7 +20,25 @@ class PostsController extends Controller
         $this->validate($request, [
             'slug' => 'required|exists:posts,slug',
         ]);
-        
+
         return response(Post::with('admin')->whereSlug($request->input('slug'))->first());
+    }
+
+    public function getNextPost(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|integer|exists:posts,id',
+        ]);
+
+        return response(Post::with('admin')->where('id', '>', $request->input('id'))->first());
+    }
+
+    public function getPreviousPost(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|integer|exists:posts,id',
+        ]);
+
+        return response(Post::with('admin')->where('id', '<', $request->input('id'))->first());
     }
 }

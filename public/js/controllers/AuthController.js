@@ -22,8 +22,8 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
 
         }, function (error) {
 
-            // console.log('error');
-            // console.log(error);
+            console.log('error');
+            console.log(error);
             var message;
             if (error.status == 422) {
                 message = error.data.email[0];
@@ -38,8 +38,8 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
     $scope.user_register = function (user) {
         AuthFactory.doRegister(user).then(function (response) {
 
-            console.log('success');
-            console.log(response);
+            // console.log('success');
+            // console.log(response);
             var message;
             if (response.status == 200 && !response.data.status) {
                 message = 'These credentials do not match our records.';

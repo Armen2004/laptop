@@ -222,6 +222,9 @@ background:#4aa01e;
 .header-part-3 img{
     width: 40px;
     margin: 0 5px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
 }
 .header-part-3{
     padding-top: 15px;
@@ -561,6 +564,9 @@ background:#4aa01e;
 }
 .video-post-left img{
     width: 60px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
 }
 .video-post-left h4{
     font-family: 'aven-obl';
@@ -569,6 +575,9 @@ background:#4aa01e;
 }
 .download-pdf img{
     width: 40px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 .download-pdf{
     display: inherit;
@@ -580,6 +589,9 @@ background:#4aa01e;
     vertical-align: middle;
     font-family: 'mon-reg';
     color: #000;
+}
+.download-pdf a{
+    text-decoration: none;
 }
 
 
@@ -914,6 +926,9 @@ background:#4aa01e;
 }
 .open-menu img{
     width:30px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }
 /*ADD clases for JS*/
 .short-content{
@@ -986,7 +1001,7 @@ background:#4aa01e;
 }
 .post-image img{
     width: 100%;
-    height: 353px;
+    height: 322px;
     overflow: hidden;
 }
 .blog-posts-block li:nth-child(2n) .blog-post-left{
@@ -1026,6 +1041,11 @@ background:#4aa01e;
 }
 .blog-inner-content{
     padding: 30px 30px 0 30px!important;
+}
+.blog-inner-content img{
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
 }
 .blog-inner-page .container{
     background:#fff;
@@ -1068,6 +1088,11 @@ background:#4aa01e;
     color:#454444;
     margin: 0 5px;
 
+}
+
+.post-pagination a{
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Blog css End */

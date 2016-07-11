@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CoursesController extends Controller
+class CoursesController extends ApiBaseController
 {
     public function show(Request $request)
     {
@@ -34,5 +34,23 @@ class CoursesController extends Controller
             $query->where('user_id', auth('user')->id());
         }])->get();
         dd($l);//Lesson::find(1)->first()->users);
+    }
+
+    public function getLesson(Request $request)
+    {
+        $this->validate($request, [
+            'slug' => 'required|exists:lessons,slug'
+        ]);
+
+        return response(Lesson::with('admin', 'users')->whereSlug($request->input('slug'))->first());
+    }
+
+    public function completeLesson(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|integer|exists:lessons,id'
+        ]);
+
+        $this->user->user()->lessons()->attach($request->input('id'));
     }
 }

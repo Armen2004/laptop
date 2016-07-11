@@ -29,7 +29,20 @@ app.factory('PostsFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($
                 slug: $sanitize(slug)
             };
             return this.sendRequest('POST', BASE_URL + 'getPost', postSlug);
-            
+        },
+
+        getNextPost: function (id) {
+            var postID = {
+                id: $sanitize(id)
+            };
+            return this.sendRequest('POST', BASE_URL + 'getNextPost', postID);
+        },
+
+        getPreviousPost: function (id) {
+            var postID = {
+                id: $sanitize(id)
+            };
+            return this.sendRequest('POST', BASE_URL + 'getPreviousPost', postID);
         }
     };
 }]);
