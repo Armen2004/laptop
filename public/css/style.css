@@ -756,6 +756,9 @@ background:#4aa01e;
 }
 .post-author-image img{
     width:35px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
 }
 .post-author-name{
     font-family: 'aven-obl';
@@ -1891,7 +1894,7 @@ h2.check-out {
     color: #98d2e5;
     font-size: 16px;
     background: #1e2026;
-    padding: 30px 0;
+    padding: 15px 0;
     z-index: 9999;
     position: relative;
     font-family:'aven-r';
@@ -2400,9 +2403,9 @@ h2.check-out {
 
 
 .afterReg-money-back {
-    background: url(../images/money-back%5D.jpg) no-repeat;
+    background: url(../images/money-back.jpg) no-repeat;
     min-height: 1286px;
-    padding: 120px 0 0 0;
+    padding: 113px 0 0 0;
     margin: 95px 0 0 0
 }
 

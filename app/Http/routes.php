@@ -32,6 +32,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
         Route::post('getCourses', 'CoursesController@show');
         Route::post('getLesson', 'CoursesController@getLesson');
         Route::post('completeLesson', 'CoursesController@completeLesson');
+        Route::post('getNextLesson', 'CoursesController@getNextLesson');
+        Route::post('getPreviousLesson', 'CoursesController@getPreviousLesson');
 
         Route::post('getAllPosts', 'PostsController@all');
         Route::post('getPost', 'PostsController@show');
@@ -90,11 +92,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 // Templates
 Route::group(['prefix' => 'templates'], function () {
-    
+
     Route::get('{folder}/{page}', array(function ($folder, $page) {
         $page = str_replace(".blade.php", "", $page);
 //        view()->addExtension('html', 'php');
         return view('templates.' . $folder . '.' . $page)->render();
     }));
-    
+
 });
+
+Route::any('{catchall}', function () {
+   return redirect('/');
+})->where('catchall', '(.*)');

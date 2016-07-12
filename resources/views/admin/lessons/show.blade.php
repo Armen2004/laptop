@@ -23,7 +23,7 @@
             <tbody>
             <tr>
                 <th> Video Length</th>
-                <td> {{ $lesson->video_length }} </td>
+                <td> {{ gmdate("i:s", $lesson->video_length) }} </td>
             </tr>
             <tr>
                 <th> Status</th>

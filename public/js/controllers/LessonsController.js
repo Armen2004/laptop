@@ -1,4 +1,5 @@
-app.controller('LessonsController', ['$scope', '$routeParams', '$route', 'LessonFactory', function ($scope, $routeParams, $route, LessonFactory) {
+app.controller('LessonsController', ['$scope', '$routeParams', '$location', '$route', 'LessonFactory',
+    function ($scope, $routeParams, $location, $route, LessonFactory) {
 
     if ($routeParams.lessonId) {
         LessonFactory.getLesson($routeParams.lessonId).then(function (response) {
@@ -14,7 +15,26 @@ app.controller('LessonsController', ['$scope', '$routeParams', '$route', 'Lesson
         }, function (error) {
             console.log(error)
         });
-    }
+    };
+
+    $scope.previousLesson = function (lessonID) {
+        LessonFactory.getPreviousLesson(lessonID).then(function (response) {
+            if (response.data.slug != undefined)
+                $location.path('/lesson/' + response.data.slug);
+        }, function (error) {
+            console.log(error)
+        });
+    };
+
+    $scope.nextLesson = function (lessonID) {
+        LessonFactory.getNextLesson(lessonID).then(function (response) {
+            if (response.data.slug != undefined)
+                $location.path('/lesson/' + response.data.slug);
+
+        }, function (error) {
+            console.log(error)
+        });
+    };
 
 
 }]);

@@ -74,13 +74,18 @@
 @endif
 
 @section('main-scripts')
-    <script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js" type="text/javascript"></script>
+    <script src="{{asset('ckeditor/ckeditor.js')}}" type="text/javascript"></script>
     <script src="{{asset('ckfinder/ckfinder.js')}}" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
 
             var config = {
-                filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}'
+                filebrowserBrowseUrl: '{{url('/ckfinder/samples/full-page-open.html')}}',
+                autoParagraph: false,
+                toolbar: 'Full',
+                enterMode : CKEDITOR.ENTER_BR,
+                shiftEnterMode: CKEDITOR.ENTER_P,
+                format_tags: 'p;h1;h2;h3;h4;h5;h6;address;div'
             };
 
             var editor = CKEDITOR.replace('content', config);

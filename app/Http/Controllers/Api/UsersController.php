@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
 use App\User;
+use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class UsersController extends ApiBaseController

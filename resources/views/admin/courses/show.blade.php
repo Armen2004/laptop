@@ -45,7 +45,7 @@
                 <div class="col-lg-4">
                     <div class="thumbnail">
                         <a href="{{url('admin/lessons/' . $course->slug . '/' . $lesson->slug)}}"> {{ $lesson->title }}&nbsp;&nbsp;
-                        <span class="pull-right">{{ $lesson->video_length }}:00</span></a>
+                        <span class="pull-right">{{ gmdate("i:s", $lesson->video_length) }}</span></a>
                     </div>
                 </div>
             @endforeach

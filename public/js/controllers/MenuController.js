@@ -1,10 +1,13 @@
-app.controller('MenuController', ['$scope', '$location', '$routeParams', 'LessonFactory',
-    function ($scope, $location, $routeParams, LessonFactory) {
+app.controller('MenuController', ['$scope', '$location', 'LessonFactory',
+    function ($scope, $location, LessonFactory) {
 
         $scope.isCollapsed = true;
 
         LessonFactory.getCourses().then(function (response) {
             $scope.courses = response.data;
+            $scope.completedLessons = completedLesson($scope.courses);
+
+
         }, function (error) {
             console.log(error)
         });
@@ -13,78 +16,28 @@ app.controller('MenuController', ['$scope', '$location', '$routeParams', 'Lesson
             $location.path('/lesson/' + lessonId);
         };
 
-        $scope.completedLesson = function (lessons) {
-
-            var l_c = 0;
-            angular.forEach(lessons, function (value, index) {
-                if(value.users.length > 0)
-                    l_c += l_c;
-            })
-            console.log(l_c);
-        };
-
-        // $scope.courses = [
-        //     {
-        //         name: 'Free Laptop Startup Package',
-        //         image: '/images/profile-img.png',
-        //         author: 'By Sam Baker',
-        //         lessons: [
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         name: 'Free Laptop Startup Package',
-        //         author: 'By Sam Baker',
-        //         lessons: [
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             },
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             },
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             },
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         name: 'Free Laptop Startup Package',
-        //         image: '/images/profile-img.png',
-        //         author: 'By Sam Baker',
-        //         lessons: [
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         name: 'Free Laptop Startup Package',
-        //         author: 'By Sam Baker',
-        //         lessons: [
-        //             {
-        //                 duration: '25',
-        //                 title: 'Introduction',
-        //                 description: 'For anyone who wants to set up a website to make extra incomebut doesn\'t'
-        //             }
-        //         ]
-        //     }
-        // ];
-
     }]);
+
+function completedLesson(data) {
+    var completedLessons = 0;
+    var countLessons = 0;
+    if (data != undefined) {
+        angular.forEach(data, function (value, index) {
+            if(value.lessons == undefined) {
+                if (value.users != undefined && value.users.length > 0) {
+                    completedLessons++;
+                }
+                countLessons = data.length;
+            }else{
+                angular.forEach(value.lessons, function (val, index) {
+                    if (val.users.length > 0) {
+                        completedLessons++;
+                    }
+                });
+
+                countLessons += value.lessons.length;
+            }
+        })
+    }
+    return (completedLessons*100)/countLessons;
+}

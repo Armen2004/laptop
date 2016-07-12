@@ -55,7 +55,7 @@
                         <div class="col-md-12 video-content text-center">
                             <div class="package-time">
                                 <div class="time-dur text-center">
-                                    <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.video_length %> min</p>
+                                    <p class="text-center"><i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.video_length | toMinSec %> min</p>
                                 </div>
                             </div>
                             <div class="video-info col-md-8 col-md-offset-2">
@@ -94,8 +94,8 @@
                             </div>
                         </div>
                         <div class="video-controls">
-                            <span class="prev-video"><i class="fa fa-caret-left" aria-hidden="true"></i>Previous</span>
-                            <span class="next-video">Next<i class="fa fa-caret-right" aria-hidden="true"></i></span>
+                            <span class="prev-video" ng-click="previousLesson(lesson.id)"><i class="fa fa-caret-left" aria-hidden="true"></i>Previous</span>
+                            <span class="next-video" ng-click="nextLesson(lesson.id)">Next<i class="fa fa-caret-right" aria-hidden="true"></i></span>
                         </div>
                     </div>
                 </div>

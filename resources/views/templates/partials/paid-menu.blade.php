@@ -8,11 +8,11 @@
             <img ng-src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>" class="acc-user-image">
             <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" style="cursor: pointer" ng-controller="AuthController"></i>
         </div>
-        <h3>67%</h3>
+        <h3><% completedLessons | number:1 %>%</h3>
         <p class="small-size">FREE LESSONS COMPLETED</p>
         <div class="progress lesson-progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                <span class="sr-only">60% Complete</span>
+            <div class="progress-bar" role="progressbar" aria-valuenow="<% completedLessons %>" aria-valuemin="0" aria-valuemax="100" style="width: <% completedLessons %>%;">
+                <span class="sr-only"><% completedLessons | number:1 %>% Complete</span>
             </div>
         </div>
     </div>
@@ -24,32 +24,30 @@
                         <h4 class="panel-title">
                             <a role="button" ng-click="isCollapsed = !isCollapsed" ng-class="{'collapsed': isCollapsed}">
                                 <p class="lesson-type">Course:</p>
-                                <p class="package-name">Free Laptop Startup Package</p>
+                                <p class="package-name"><% course.name %></p>
                                 <span class="post-author-image" ng-show="course.image">
-                                   <img ng-src="<% course.image %>" alt="" class="img-responsive">
+                                   <img ng-src="<% S3_URL + course.admin.image %>" alt="" class="img-responsive">
                                 </span>
-                                <span class="post-author-name" ng-show="course.image">By Sam Baker</span>
+                                <span class="post-author-name" ng-show="course.image">By <% course.admin.name %></span>
                             </a>
                         </h4>
                     </div>
                     <div uib-collapse="isCollapsed" class="panel-collapse collapse" role="tabpanel">
                         <div class="panel-body">
                             <ul class="lessons-parent">
-                                <li ng-class="{'active': $first==true}" ng-repeat="lesson in  course.lessons">
+                                <li ng-class="{'active': $first==true}" ng-repeat="lesson in  course.lessons" ng-click="goTo(lesson.slug)">
                                     <p class="lesson-info">
-                                        <span class="circle-status" ng-class="{'status-blue':$first==true}"></span>
-                                        <span class="lesson-number">lesson <% $index + 1 %>:</span>
+                                        <span class="circle-status" ng-class="{'status-blue':lesson.users.length>0}"></span>
+                                        <span class="lesson-number">lesson <% lesson.title %>:</span>
                                         <span class="lesson-duration pull-right-block">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.duration %>min
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.video_length | toMinSec %>min
                                         </span>
                                     </p>
                                     <div class="lesson-description">
                                         <p class="lesson-title">
                                             <% lesson.title %>
                                         </p>
-                                        <p class="lesson-info">
-                                            <% lesson.description %>
-                                        </p>
+                                        <p class="lesson-info" ng-bind-html="lesson.description"></p>
                                     </div>
                                 </li>
                             </ul>

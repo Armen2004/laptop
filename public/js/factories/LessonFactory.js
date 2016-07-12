@@ -47,6 +47,21 @@ app.factory('LessonFactory', ['$rootScope', '$http', '$q', '$sanitize', 'AuthFac
                     id: $sanitize(lessonID)
                 };
                 return this.sendRequest('POST', BASE_URL + 'completeLesson', lessonData);
+            },
+
+            getPreviousLesson: function (lessonID) {
+                var lessonData = {
+                    id: $sanitize(lessonID)
+                };
+                return this.sendRequest('POST', BASE_URL + 'getPreviousLesson', lessonData);
+            },
+
+            getNextLesson: function (lessonID) {
+                var lessonData = {
+                    id: $sanitize(lessonID)
+                };
+                return this.sendRequest('POST', BASE_URL + 'getNextLesson', lessonData);
             }
+            
         };
     }]);

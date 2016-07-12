@@ -35,3 +35,4 @@
 <script src="{{ asset('js/factories/PostsFactory.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/filters/trustUrl.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/filters/toMinSec.js') }}" type="text/javascript"></script>

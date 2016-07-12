@@ -14,7 +14,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
             if (response.status == 200 && response.data.status) {
                 message = 'Logged in';
                 toastr.success(message);
-                $location.path('/account');
+                $location.path('/home');
             } else {
                 message = 'These credentials do not match our records.';
                 toastr.error(message, 'Error');
@@ -48,7 +48,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 message = 'Logged in';
                 toastr.success(message);
                 $scope.$parent.close();
-                $location.path('/account');
+                $location.path('/home');
             }
 
         }, function (error) {
