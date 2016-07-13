@@ -38,7 +38,7 @@
                                 <li ng-class="{'active': $first==true}" ng-repeat="lesson in  course.lessons" ng-click="goTo(lesson.slug)">
                                     <p class="lesson-info">
                                         <span class="circle-status" ng-class="{'status-blue':lesson.users.length>0}"></span>
-                                        <span class="lesson-number">lesson <% lesson.title %>:</span>
+                                        <span class="lesson-number">lesson <% $index + 1 %>:</span>
                                         <span class="lesson-duration pull-right-block">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <% lesson.video_length | toMinSec %>min
                                         </span>

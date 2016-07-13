@@ -59,7 +59,7 @@ class CoursesController extends ApiBaseController
             'id' => 'required|integer|exists:lessons,id',
         ]);
 
-        return response(Lesson::with('admin')->where('id', '>', $request->input('id'))->first()); 
+        return response(Lesson::with('admin')->where('id', '>', $request->input('id'))->where('user_type_id', $this->user->user()->user_type_id)->first());
     }
 
     public function getPreviousLesson(Request $request)
@@ -68,6 +68,6 @@ class CoursesController extends ApiBaseController
             'id' => 'required|integer|exists:lessons,id',
         ]);
 
-        return response(Lesson::with('admin')->where('id', '<', $request->input('id'))->first());
+        return response(Lesson::with('admin')->where('id', '<', $request->input('id'))->where('user_type_id', $this->user->user()->user_type_id)->first());
     }
 }
