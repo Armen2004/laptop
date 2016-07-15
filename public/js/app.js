@@ -23,14 +23,14 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
                 restricted: false
             }
         })
-        .when('/home', {
+        .when('/continue-registration', {
             templateUrl: 'templates/home/congratulations.blade.php',
             controller: 'AuthController',
             access: {
                 restricted: true
             }
         })
-        .when('/account', {
+        .when('/dashboard', {
             templateUrl: 'templates/account/index.blade.php',
             controller: 'AccountController',
             access: {

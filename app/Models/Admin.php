@@ -49,4 +49,14 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public function forumTopics()
+    {
+        return $this->hasMany(ForumTopic::class, 'user_id');
+    }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class, 'user_id');
+    }
 }

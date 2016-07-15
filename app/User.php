@@ -2,9 +2,11 @@
 
 namespace App;
 
-use App\Models\Lesson;
 use Carbon\Carbon;
+use App\Models\Lesson;
 use App\Models\UserType;
+use App\Models\ForumPost;
+use App\Models\ForumTopic;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -67,6 +69,16 @@ class User extends Authenticatable
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class);
+    }
+
+    public function forumTopics()
+    {
+        return $this->hasMany(ForumTopic::class, 'user_id');
+    }
+
+    public function forumPosts()
+    {
+        return $this->hasMany(ForumPost::class, 'user_id');
     }
 
 }

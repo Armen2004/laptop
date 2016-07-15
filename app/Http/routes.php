@@ -87,6 +87,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('lessons/course', 'LessonsController@getCourse');
         Route::get('lessons/{course}/{lesson}', 'LessonsController@show');
 
+        Route::resource('forum-categories', 'ForumCategoriesController');
+        Route::resource('forum-topics', 'ForumTopicsController');
+        Route::resource('forum-posts', 'ForumPostsController');
+
     });
 });
 

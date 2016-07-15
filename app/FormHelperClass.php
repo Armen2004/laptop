@@ -64,4 +64,47 @@ FORM;
 FORM;
         return $form;
     }
+
+    public static function post_count($forum_posts)
+    {
+        $count = 0;
+
+        if ($forum_posts->count() == 0) {
+            return 0;
+        }
+
+        foreach ($forum_posts as $forum_post) {
+            $count += $forum_post->forumPosts->count();
+        }
+
+        return $count;
+    }
+
+    public static function last_post($forum_posts)
+    {
+        $last_post = null;
+
+        if ($forum_posts->count() == 0) {
+            return 0;
+        }
+
+        foreach ($forum_posts as $forum_post) {
+
+            if ($forum_post->forumPosts->count() == 0) {
+                return 0;
+            }
+
+
+            if (is_null($last_post)) {
+                $last_post = $forum_post->forumPosts()->orderBy('created_at', 'desc')->first();
+            } else {
+                $newDate = $forum_post->forumPosts()->orderBy('created_at', 'desc')->first();
+                if ($last_post->created_at->diffInMinutes($newDate->created_at) > 0) {
+                    $last_post = $newDate;
+                }
+            }
+        }
+
+        return $last_post;
+    }
 }

@@ -1106,7 +1106,7 @@ background:#4aa01e;
 
 
 .get-started-wrapper{
-    background:#2E2E2E;
+    background:rgba(0,0,0,.8);
 }
 .container.get-started{
     width: 100%;
@@ -1173,6 +1173,9 @@ background:#4aa01e;
 .modal-dialog{
     width: 100%;
     margin: 0;
+}
+.modal-content{
+    background-color: transparent;
 }
 .modal-dialog, .modal-content, .get-started-wrapper{
     height: 100%;
