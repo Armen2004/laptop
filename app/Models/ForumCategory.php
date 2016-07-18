@@ -25,7 +25,7 @@ class ForumCategory extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'description'];
+    protected $fillable = ['name', 'slug', 'description', 'sort'];
 
     public function forumTopics()
     {

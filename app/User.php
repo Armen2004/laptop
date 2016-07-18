@@ -9,6 +9,7 @@ use App\Models\ForumPost;
 use App\Models\ForumTopic;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'image', 'user_type_id'
+        'name', 'email', 'password', 'image', 'user_type_id', 'last_activity'
     ];
 
     /**
@@ -37,7 +38,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'last_activity'];
 
     /**
      * Set the user's password.
@@ -48,6 +49,13 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function scopeUpdateActivity($query)
+    {
+        return $query->findOrFail(Auth::guard('user')->id())->update([
+            'last_activity' => Carbon::now()
+        ]);
     }
 
     /**

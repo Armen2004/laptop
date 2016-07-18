@@ -1,5 +1,5 @@
+<div class="clearfix" style="padding-top: 10px;"></div>
 @if (isset($errors) && count($errors) > 0)
-    <div class="clearfix" style="padding-top: 10px;"></div>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -14,9 +14,7 @@
     </div>
 @endif
 
-
 @if(session()->has('flash_message'))
-    <div class="clearfix" style="padding-top: 10px;"></div>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -24,3 +22,17 @@
         <p>{{ session()->get('flash_message') }}</p>
     </div>
 @endif
+
+<div id="success" class="alert alert-success hidden" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <p class="message-body"></p>
+</div>
+
+<div id="error" class="alert alert-danger hidden" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <p class="message-body"></p>
+</div>

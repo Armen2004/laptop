@@ -35,4 +35,23 @@
             </tbody>
         </table>
     </div>
+
+    @if($category->forumPosts->count() > 0)
+        <h3>Forum Posts</h3>
+
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>Author</th>
+                <th>Post</th>
+                <th>Action</th>
+            </tr>
+            @foreach($topic->forumPosts as $forumPost)
+                <tr>
+                    <td><a href="{{ url('admin/forum-posts', $forumPost->id) }}">{{ $forumPost->user->name }}</a></td>
+                    <td>{{ $forumPost->comment }}</td>
+                    <td>{!! \App\FormHelperClass::delete_form('DELETE', 'admin/forum-posts/' . $forumPost->id, "Post") !!}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
 @endsection

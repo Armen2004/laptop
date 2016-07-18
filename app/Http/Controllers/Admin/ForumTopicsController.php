@@ -17,7 +17,7 @@ class ForumTopicsController extends AdminBaseController
      */
     public function index()
     {
-        $topics = ForumTopic::paginate(15);
+        $topics = ForumTopic::orderBy('created_at', 'desc')->paginate(15);
 
         return view('admin.forum-topics.index', compact('topics'));
     }
@@ -57,13 +57,15 @@ class ForumTopicsController extends AdminBaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      *
      * @return mixed
      */
-    public function show($id)
+    public function show($slug)
     {
-        $topic = ForumTopic::findOrFail($id);
+        $topic = ForumTopic::whereSlug($slug)->first();
+        if (!$topic)
+            abort(404);
 
         return view('admin.forum-topics.show', compact('topic'));
     }

@@ -17,7 +17,7 @@ class ForumPostsController extends AdminBaseController
      */
     public function index()
     {
-        $posts = ForumPost::paginate(15);
+        $posts = ForumPost::orderBy('created_at', 'desc')->paginate(15);
 
         return view('admin.forum-posts.index', compact('posts'));
     }

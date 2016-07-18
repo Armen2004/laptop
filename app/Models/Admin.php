@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class Admin extends Authenticatable
 {
@@ -12,7 +14,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'email', 'password'
+        'name', 'image', 'email', 'password', 'last_activity'
     ];
 
     /**
@@ -25,6 +27,13 @@ class Admin extends Authenticatable
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['last_activity'];
+
+    /**
      * Set the admins's password.
      *
      * @param  string $value
@@ -33,6 +42,13 @@ class Admin extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function scopeUpdateActivity($query)
+    {
+        return $query->findOrFail(Auth::guard('admin')->id())->update([
+            'last_activity' => Carbon::now()
+        ]);
     }
 
     public function posts()

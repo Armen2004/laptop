@@ -18,7 +18,7 @@ class CreateForumPostsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->integer('parent_id')->default(0);
             $table->text('comment');
-            $table->bigInteger('like')->default(0);
+            $table->bigInteger('likes')->default(0);
             $table->timestamps();
 
             $table->foreign('forum_topic_id')->references('id')->on('forum_topics')->onDelete('cascade');

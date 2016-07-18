@@ -5,18 +5,9 @@
         <a href="{{ url('admin/forum-categories/' . $category->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
-        {!! Form::open([
-            'method'=>'DELETE',
-            'url' => ['admin/forum-categories', $category->id],
-            'style' => 'display:inline'
-        ]) !!}
-        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete',
-                'onclick'=>'return confirm("Confirm delete?")'
-        ))!!}
-        {!! Form::close() !!}
+
+        {!! \App\FormHelperClass::delete_form('DELETE', 'admin/forum-categories/' . $category->id, "Category") !!}
+
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -40,4 +31,23 @@
             </tbody>
         </table>
     </div>
+
+    @if($category->forumTopics->count() > 0)
+        <h3>Forum Topics</h3>
+
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            @foreach($category->forumTopics as $forumTopic)
+                <tr>
+                    <td><a href="{{ url('admin/forum-topics', $forumTopic->slug) }}">{{ $forumTopic->title }}</a></td>
+                    <td>{{ $forumTopic->description }}</td>
+                    <td>{!! \App\FormHelperClass::delete_form('DELETE', 'admin/forum-topics/' . $forumTopic->id, "Topic") !!}</td>
+                </tr>
+            @endforeach
+        </table>
+    @endif
 @endsection

@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th> Author </th>
-                <td> {{ $post->admin->name or $post->user->name }} </td>
+                <td> {{ $post->user->name }} </td>
             </tr>
             <tr>
                 <th> Comment</th>

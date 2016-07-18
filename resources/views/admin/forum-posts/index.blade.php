@@ -25,7 +25,7 @@
                 <tr>
                     <td>{{ $x }}</td>
                     <td>{{ $item->forumTopic->title }}</td>
-                    <td>{{ $item->admin->name or $item->user->name }}</td>
+                    <td>{{ $item->user->name }}</td>
                     <td>{{ $item->comment }}</td>
                     <td>{{ $item->like }}</td>
                     <td>

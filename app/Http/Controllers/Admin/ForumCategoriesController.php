@@ -16,7 +16,7 @@ class ForumCategoriesController extends AdminBaseController
      */
     public function index()
     {
-        $categories = ForumCategory::all();
+        $categories = ForumCategory::orderBy('sort')->get();
 
         return view('admin.forum-categories.index', compact('categories'));
     }
@@ -39,8 +39,8 @@ class ForumCategoriesController extends AdminBaseController
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required|unique:forum_categories,name',
+            'slug' => 'required|unique:forum_categories,slug'
         ]);
 
         ForumCategory::create($request->all());
@@ -53,13 +53,15 @@ class ForumCategoriesController extends AdminBaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $slug
      *
      * @return mixed
      */
-    public function show($id)
+    public function show($slug)
     {
-        $category = ForumCategory::findOrFail($id);
+        $category = ForumCategory::whereSlug($slug)->first();
+        if (!$category)
+            abort(404);
 
         return view('admin.forum-categories.show', compact('category'));
     }
@@ -67,7 +69,7 @@ class ForumCategoriesController extends AdminBaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
@@ -81,18 +83,19 @@ class ForumCategoriesController extends AdminBaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
     public function update($id, Request $request)
     {
+        $category = ForumCategory::findOrFail($id);
+
         $this->validate($request, [
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required|unique:forum_categories,name,' . $category->name . ',name',
+            'slug' => 'required|unique:forum_categories,slug,' . $category->slug . ',slug'
         ]);
 
-        $category = ForumCategory::findOrFail($id);
         $category->update($request->all());
 
         Session::flash('flash_message', 'Forum category updated!');
@@ -103,7 +106,7 @@ class ForumCategoriesController extends AdminBaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return mixed
      */
@@ -114,5 +117,34 @@ class ForumCategoriesController extends AdminBaseController
         Session::flash('flash_message', 'Forum category deleted!');
 
         return redirect('admin/forum-categories');
+    }
+
+    /**
+     * Sort forum category with ajax request
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function sort(Request $request)
+    {
+        if (!request()->ajax()) {
+            abort(404);
+        }
+        $this->validate($request, [
+            'data.*.data-id' => 'required|integer|exists:forum_categories,id',
+            'data.*.data-sort' => 'required|integer',
+        ]);
+        $details = $request->input('data');
+        foreach ($details as $detail) {
+            $category_id = $detail['data-id'];
+            $sort = $detail['data-sort'];
+
+            $category = ForumCategory::findOrFail($category_id);
+            $category->update([
+                'sort' => $sort
+            ]);
+        }
+
+        return json_encode(['status' => 200, 'message' => 'Sorted Successfully']);
     }
 }

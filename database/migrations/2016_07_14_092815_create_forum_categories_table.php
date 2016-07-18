@@ -17,6 +17,8 @@ class CreateForumCategoriesTable extends Migration
             $table->string('name', 100);
             $table->string('slug', 150)->unique();
             $table->string('description')->nullable();
+            $table->string('sort')->default(99);
+            $table->string('likes')->default(0);
             $table->timestamps();
         });
     }

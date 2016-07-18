@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'user_type_id' => 2,
             'email' => 'user@gmail.com',
             'password' => bcrypt('user'),
+            'last_activity' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

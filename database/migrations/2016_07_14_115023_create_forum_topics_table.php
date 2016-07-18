@@ -35,6 +35,6 @@ class CreateForumTopicsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('forum_posts');
+        Schema::drop('forum_topics');
     }
 }

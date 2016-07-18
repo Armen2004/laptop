@@ -16,18 +16,17 @@ Route::get('/', function () {
 });
 
 
-
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     //Login Routes...
-    Route::post('login','UsersController@login');
-    Route::get('logout','UsersController@logout');
+    Route::post('login', 'UsersController@login');
+    Route::get('logout', 'UsersController@logout');
 
     // Registration Routes...
     Route::post('register', 'UsersController@register');
     Route::post('check', 'UsersController@check');
 
-    Route::group(['middleware' => 'auth:user'], function () {
+    Route::group(['middleware' => ['auth:user', 'online:user']], function () {
 
         Route::post('getCourses', 'CoursesController@show');
         Route::post('getLesson', 'CoursesController@getLesson');
@@ -42,7 +41,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
         Route::get('getCourses', 'CoursesController@shows');
         Route::get('/', function () {
-
+            return redirect('/');
         });
 
     });
@@ -50,23 +49,23 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-        //Login Routes...
-        Route::get('login','Auth\AuthController@showLoginForm');
-        Route::post('login','Auth\AuthController@login');
-        Route::get('logout','Auth\AuthController@logout');
+    //Login Routes...
+    Route::get('login', 'Auth\AuthController@showLoginForm');
+    Route::post('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
 
-        // Registration Routes...
-        Route::get('register', 'Auth\AuthController@showRegistrationForm');
-        Route::post('register', 'Auth\AuthController@register');
+    // Registration Routes...
+    Route::get('register', 'Auth\AuthController@showRegistrationForm');
+    Route::post('register', 'Auth\AuthController@register');
 
-        Route::get('/', function (){
-            return redirect('admin/dashboard');
-        });
+    Route::get('/', function () {
+        return redirect('admin/dashboard');
+    });
 
 
-    Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['middleware' => ['auth:admin', 'online:admin']], function () {
 
-        Route::resource('profile', 'AdminController', [ 'only' => ['index', 'edit', 'update'] ]);
+        Route::resource('profile', 'AdminController', ['only' => ['index', 'edit', 'update']]);
         Route::get('dashboard', 'DashboardController@index');
 
         Route::resource('pages', 'PagesController');
@@ -75,20 +74,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::resource('user-types', 'UserTypesController');
 
-        Route::resource('posts', 'PostsController', [ 'except' => ['show'] ]);
+        Route::resource('posts', 'PostsController', ['except' => ['show']]);
         Route::get('posts/{slug}', 'PostsController@show')->where('slug', '[A-Za-z0-9-_]+');
 
         Route::resource('members', 'MembersController');
 
-        Route::resource('courses', 'CoursesController', [ 'except' => ['show'] ]);
+        Route::resource('courses', 'CoursesController', ['except' => ['show']]);
         Route::get('courses/{slug}', 'CoursesController@show')->where('slug', '[A-Za-z0-9-_]+');
 
-        Route::resource('lessons', 'LessonsController', [ 'except' => ['show'] ]);
+        Route::resource('lessons', 'LessonsController', ['except' => ['show']]);
         Route::post('lessons/course', 'LessonsController@getCourse');
         Route::get('lessons/{course}/{lesson}', 'LessonsController@show');
 
-        Route::resource('forum-categories', 'ForumCategoriesController');
-        Route::resource('forum-topics', 'ForumTopicsController');
+        Route::resource('forum-categories', 'ForumCategoriesController', ['except' => ['show']]);
+        Route::get('forum-categories/{slug}', 'ForumCategoriesController@show')->where('slug', '[A-Za-z0-9-_]+');
+        Route::post('forum-categories/sort', ['as' => 'admin.forum-categories.sort', 'uses' => 'ForumCategoriesController@sort']);
+        Route::resource('forum-topics', 'ForumTopicsController', ['except' => ['show']]);
+        Route::get('forum-topics/{slug}', 'ForumTopicsController@show')->where('slug', '[A-Za-z0-9-_]+');
         Route::resource('forum-posts', 'ForumPostsController');
 
     });
@@ -106,5 +108,5 @@ Route::group(['prefix' => 'templates'], function () {
 });
 
 Route::any('{catchall}', function () {
-   return redirect('/');
+    return redirect('/');
 })->where('catchall', '(.*)');
