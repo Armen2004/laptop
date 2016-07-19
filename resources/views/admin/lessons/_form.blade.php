@@ -122,6 +122,10 @@
     <script>
         $(document).ready(function () {
 
+            if($('#course').val() > 0) {
+                getCourse($('#course').val())
+            }
+
             $('#course').change(function () {
                 if($(this).val()) {
                     getCourse($(this).val());
@@ -154,7 +158,6 @@
                 data: { _token: "{{csrf_token()}}", id:id},
                 dataType: "json",
                 success: function (data, textStatus, jqXHR) {
-                    console.log(data);
                     $('#url').text('{{ url('lessons') }}/' + data.slug + '/')
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

@@ -76,22 +76,6 @@
                     </ul>
                 </li>
 
-                <li class="treeview @if(request()->is('admin/pages') || request()->is('admin/pages/*')) active @endif">
-                    <a href="#"><i class='fa fa-tags'></i><span>Pages</span><i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-tags'></i><span>Pages</span></a></li>
-                        <li class="@if(request()->is('admin/pages/create')) active @endif"><a href="{{ url('admin/pages/create') }}"><i class='fa fa-plus'></i><span>Create Page</span></a></li>
-                    </ul>
-                </li>
-
-                <li class="treeview @if(request()->is('admin/contents') || request()->is('admin/contents/*')) active @endif">
-                    <a href="#"><i class='fa fa-tags'></i><span>Page Contents</span><i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-tags'></i><span>Page Contents</span></a></li>
-                        <li class="@if(request()->is('admin/contents/create')) active @endif"><a href="{{ url('admin/contents/create') }}"><i class='fa fa-plus'></i><span>Create Page Contents</span></a></li>
-                    </ul>
-                </li>
-
                 <li class="treeview @if(request()->is('admin/forum-categories') || request()->is('admin/forum-categories/*') || request()->is('admin/forum-posts') || request()->is('admin/forum-posts/*') || request()->is('admin/forum-topics') || request()->is('admin/forum-topics/*')) active @endif">
                     <a href="#"><i class='fa fa-tags'></i><span>Forum</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -123,6 +107,21 @@
                     </ul>
                 </li>
 
+                <li class="treeview @if(request()->is('admin/pages') || request()->is('admin/pages/*')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Pages</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/pages')) active @endif"><a href="{{ url('admin/pages') }}"><i class='fa fa-tags'></i><span>Pages</span></a></li>
+                        <li class="@if(request()->is('admin/pages/create')) active @endif"><a href="{{ url('admin/pages/create') }}"><i class='fa fa-plus'></i><span>Create Page</span></a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview @if(request()->is('admin/contents') || request()->is('admin/contents/*')) active @endif">
+                    <a href="#"><i class='fa fa-tags'></i><span>Page Contents</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/contents')) active @endif"><a href="{{ url('admin/contents') }}"><i class='fa fa-tags'></i><span>Page Contents</span></a></li>
+                        <li class="@if(request()->is('admin/contents/create')) active @endif"><a href="{{ url('admin/contents/create') }}"><i class='fa fa-plus'></i><span>Create Page Contents</span></a></li>
+                    </ul>
+                </li>
 
                 @endif
         </ul><!-- /.sidebar-menu -->

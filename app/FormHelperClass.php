@@ -15,11 +15,12 @@ namespace App;
 
 class FormHelperClass
 {
-    public static function delete_form($method, $action, $text = "Member")
+    public static function delete_form($method, $action, $text = "Member", $class = "inline")
     {
         $token = csrf_field();
         $action = url($action);
         $form = <<<FORM
+        <div class="$class">
         <form method="POST" action="$action" accept-charset="UTF-8" style="display:inline">
         <input name="_method" type="hidden" value="$method">
         $token
@@ -27,6 +28,7 @@ class FormHelperClass
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         </button>
         </form>
+        </div>
 FORM;
         return $form;
     }

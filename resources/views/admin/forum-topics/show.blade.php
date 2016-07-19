@@ -36,7 +36,7 @@
         </table>
     </div>
 
-    @if($category->forumPosts->count() > 0)
+    @if($topic->forumPosts->count() > 0)
         <h3>Forum Posts</h3>
 
         <table class="table table-bordered table-striped table-hover">

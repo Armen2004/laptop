@@ -31,7 +31,7 @@
                     <td>{{ $item->slug }}</td>
                     <td>{{ $item->description }}</td>
                     <td>
-                        <a href="{{ url('/admin/forum-topics/' . $item->id) }}" class="btn btn-success btn-xs" title="View">
+                        <a href="{{ url('/admin/forum-topics/' . $item->slug) }}" class="btn btn-success btn-xs" title="View">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
                         <a href="{{ url('/admin/forum-topics/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit">

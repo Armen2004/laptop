@@ -35,10 +35,10 @@
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{ $admin->image ? env('S3_PATH') . $admin->image : '/img/user2-160x160.jpg'}}" class="img-circle" alt="{{ $admin->name }}" />
+                                <img src="{{ $admin->image ? env('S3_PATH') . $admin->image : '/img/user2-160x160.jpg' }}" class="img-circle" alt="{{ $admin->name }}" />
                                 <p>
                                     {{ $admin->name }}
-                                    <small>Member since {{ $admin->created_at->diffForHumans(\Carbon\Carbon::now()) }}</small>
+                                    <small>Member since {{ $admin->created_at->diffForHumans() }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
