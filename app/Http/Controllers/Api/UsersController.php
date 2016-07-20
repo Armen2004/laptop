@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class UsersController extends ApiBaseController
 {
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -23,12 +27,19 @@ class UsersController extends ApiBaseController
         return response(['status' => true]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function logout()
     {
         $this->user->logout();
         return response(['status' => true]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function register(Request $request)
     {
         $this->validate($request, [
@@ -43,6 +54,9 @@ class UsersController extends ApiBaseController
         return response(['status' => true]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function check()
     {
         if ($this->user->check())

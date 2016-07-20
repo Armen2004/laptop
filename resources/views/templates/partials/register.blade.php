@@ -27,6 +27,7 @@
                     <div class="clearfix"></div>
                     <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
                     <button type="submit" ng-disabled="regForm.$invalid">JOIN</button>
+                    <p class="have_account" ng-controller="HomeController">Already a member? <a ng-href="javascript:void(0)" ng-click="login()">Login here</a></p>
                 </form>
             </div>
         </div>

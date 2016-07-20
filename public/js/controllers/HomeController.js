@@ -15,9 +15,16 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout',
         Placeholdem(document.querySelectorAll('[placeholder]'));
     }, 100);
 
-    $scope.signup = function (size) {
+    $scope.signup = function () {
         $uibModal.open({
-            templateUrl: 'templates/partials/modal.blade.php',
+            templateUrl: 'templates/partials/register.blade.php',
+            controller: 'ModalController'
+        })
+    };
+
+    $scope.login = function () {
+        $uibModal.open({
+            templateUrl: 'templates/partials/login.blade.php',
             controller: 'ModalController'
         })
     };

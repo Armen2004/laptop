@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper page-wrap">
     <!-------------- Header block start -------------->
     <header>
         <div class="container-fluid acc-page full-height-container">

@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class CoursesController extends ApiBaseController
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function show(Request $request)
     {
         $this->validate($request, [
@@ -27,14 +31,10 @@ class CoursesController extends ApiBaseController
             }])->where('user_type_id', $request->input('user_type'))->get());
     }
 
-    public function shows()
-    {
-        $l = Lesson::with(['users' => function ($query) {
-            $query->where('user_id', $this->user->id());
-        }])->get();
-        dd($l);//Lesson::find(1)->first()->users);
-    }
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getLesson(Request $request)
     {
         $this->validate($request, [
@@ -44,6 +44,9 @@ class CoursesController extends ApiBaseController
         return response(Lesson::with('admin', 'users')->whereSlug($request->input('slug'))->first());
     }
 
+    /**
+     * @param Request $request
+     */
     public function completeLesson(Request $request)
     {
         $this->validate($request, [
@@ -53,6 +56,10 @@ class CoursesController extends ApiBaseController
         $this->user->user()->lessons()->attach($request->input('id'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getNextLesson(Request $request)
     {
         $this->validate($request, [
@@ -62,6 +69,10 @@ class CoursesController extends ApiBaseController
         return response(Lesson::with('admin')->where('id', '>', $request->input('id'))->where('user_type_id', $this->user->user()->user_type_id)->first());
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function getPreviousLesson(Request $request)
     {
         $this->validate($request, [

@@ -20,56 +20,70 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
             templateUrl: 'templates/home/index.blade.php',
             controller: 'HomeController',
             access: {
-                restricted: false
+                // restricted: false
             }
         })
         .when('/continue-registration', {
             templateUrl: 'templates/home/congratulations.blade.php',
             controller: 'AuthController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/dashboard', {
             templateUrl: 'templates/account/index.blade.php',
             controller: 'AccountController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/posts', {
             templateUrl: 'templates/posts/index.blade.php',
             controller: 'PostsController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/post/:postId', {
             templateUrl: 'templates/posts/show.blade.php',
             controller: 'PostsController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/sales', {
             templateUrl: 'templates/sales/index.blade.php',
             controller: 'SalesController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/lessons', {
             templateUrl: 'templates/lessons/index.blade.php',
             controller: 'LessonsController',
             access: {
-                restricted: true
+                // restricted: true
             }
         })
         .when('/lesson/:lessonId', {
             templateUrl: 'templates/lessons/show.blade.php',
             controller: 'LessonsController',
             access: {
-                restricted: true
+                // restricted: true
+            }
+        })
+        .when('/forums', {
+            templateUrl: 'templates/forums/index.blade.php',
+            controller: 'ForumController',
+            access: {
+                // restricted: true
+            }
+        })
+        .when('/forum/:forumId', {
+            templateUrl: 'templates/forums/show.blade.php',
+            controller: 'ForumController',
+            access: {
+                // restricted: true
             }
         })
         .otherwise({
@@ -88,9 +102,9 @@ app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', functio
             $rootScope.isLoggedIn = response.data.loggedIn;
             $rootScope.userInfo = response.data.userInfo;
 
-            if (next.access.restricted && $rootScope.isLoggedIn === false) {
-                $location.path('/');
-            }
+            // if (next.access.restricted && $rootScope.isLoggedIn === false) {
+            //     $location.path('/');
+            // }
         });
 
     });

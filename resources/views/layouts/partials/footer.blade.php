@@ -1,4 +1,3 @@
-<div class="clr"></div>
 <!-------------- Footer block start -------------->
 <div class="footer-cont">
     <div class="container-fluid">
@@ -17,7 +16,7 @@
             <div class="col-md-5 col-sm-12">
                 <div class="footer-right-link">
                     <ul>
-                        <li><a ng-href="#/products">Our Products:</a></li>
+                        <li>Our Products:</li>
                         <li><a ng-href="#/premium">Premium Membership</a></li>
                         <li><a ng-href="#/">Laptop Startup</a></li>
                         <li><a ng-href="#/page">Page</a></li>

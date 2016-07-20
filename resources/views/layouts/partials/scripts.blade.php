@@ -26,6 +26,7 @@
 <script src="{{ asset('js/controllers/LessonsController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/ModalController.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/controllers/MenuController.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/controllers/ForumController.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/services/AuthService.js') }}" type="text/javascript"></script>
 
@@ -33,6 +34,7 @@
 <script src="{{ asset('js/factories/AuthFactory.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/factories/LessonFactory.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/factories/PostsFactory.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/factories/ForumFactory.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/filters/trustUrl.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/filters/toMinSec.js') }}" type="text/javascript"></script>

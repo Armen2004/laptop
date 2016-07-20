@@ -26,6 +26,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
     Route::post('register', 'UsersController@register');
     Route::post('check', 'UsersController@check');
 
+        Route::post('getForums', 'ForumController@all');
     Route::group(['middleware' => ['auth:user', 'online:user']], function () {
 
         Route::post('getCourses', 'CoursesController@show');
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
         Route::post('getPost', 'PostsController@show');
         Route::post('getNextPost', 'PostsController@getNextPost');
         Route::post('getPreviousPost', 'PostsController@getPreviousPost');
+
 
         Route::get('getCourses', 'CoursesController@shows');
         Route::get('/', function () {

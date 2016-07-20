@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper page-wrap">
     <div class="container-fluid acc-main full-height-container">
         <div class="row">
             <div class="col-md-12 no-padd content-section">

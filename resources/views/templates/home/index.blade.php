@@ -1,10 +1,11 @@
 <!-------------- Header block start -------------->
 <div class="container">
+    <a ng-href="#/" class="btn-orange pull-right" ng-hide="isLoggedIn" ng-click="login()"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Login</a>
     <div class="row">
         <div class="home-header-top">
             <div class="logo">
                 <a ng-href="#/">
-                    <img src="/images/logo.png">
+                    <img ng-src="{{ asset('images/logo.png') }}" alt="Logo">
                 </a>
             </div>
             <div class="home-top-right-txt col-xs-7 col-xs-offset-4 ">
@@ -19,18 +20,9 @@
 </div>
 <!-------------- Header block end -------------->
 <!-------------- Login block start -------------->
-<div class="container" ng-hide="isLoggedIn" ng-controller="AuthController">
-    <div class="home-login-block" ng-class="{ 'home-login-block-error': loginForm.user_email.$touched && loginForm.user_email.$invalid || loginForm.user_password.$touched && loginForm.user_password.$invalid}">
-        <form class="form-inline" name="loginForm" ng-submit="user_login(credentials)">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your email" ng-model="credentials.email" name="user_email" required="required" ng-pattern="email">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Your password" ng-model="credentials.password" name="user_password" required="required">
-            </div>
-                <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
-            <button type="submit" class="join-now-btn hvr-sweep-to-right" ng-disabled="loginForm.$invalid">JOIN NOW - IT’S FREE !</button>
-        </form>
+<div class="container" ng-hide="isLoggedIn">
+    <div class="home-login-block" >
+        <a class="join-now-btn hvr-sweep-to-right" ng-href="javascript:void(0)" ng-click="signup()">JOIN NOW - IT’S FREE !</a>
     </div>
 </div>
 <!-------------- Login block end -------------->
@@ -46,7 +38,8 @@
             </div>
             <div class="col-md-7 col-md-offset-1 col-sm-12">
                 <div class="banner-video-img">
-                    <iframe width="100%" height="345" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+                    {{--<iframe width="100%" height="345" src="http://www.youtube.com/embed/XGSy3_Czz8k"></iframe>--}}
+                    <img ng-src="{{ asset('images/video-img.jpg') }}" alt="Video Img">
                 </div>
             </div>
         </div>
@@ -59,7 +52,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="grid-box">
-                    <div class="grid-box-img"><img src="/images/img-1.gif"></div>
+                    <div class="grid-box-img"><img ng-src="{{ asset('images/img-1.gif') }}" alt="Img 1"></div>
                     <h3>
                         Quick-Start <br>
                         Online Marketing Guide
@@ -74,7 +67,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="grid-box">
-                    <div class="grid-box-img"><img src="/images/img-2.gif"></div>
+                    <div class="grid-box-img"><img ng-src="{{ asset('images/img-2.gif') }}" alt="Img 2"></div>
                     <h3>
                         Step By Step <br>
                         Video Training
@@ -88,7 +81,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="grid-box">
-                    <div class="grid-box-img"><img src="/images/img-3.gif"></div>
+                    <div class="grid-box-img"><img ng-src="{{ asset('images/img-3.gif') }}" alt="Img 3"></div>
                     <h3>Downloadable <br>
                         Roadmap to Success
                     </h3>
@@ -114,7 +107,7 @@
             <div class="home-ready-to-make-block">
 
                 <div class="sign-up-btn" ng-hide="isLoggedIn">
-                    <a class="hvr-sweep-to-left" ng-href="#/" ng-click="signup()">Signup For Your Free Account Now</a>
+                    <a class="hvr-sweep-to-left" ng-href="javascript:void(0)" ng-click="signup()">Signup For Your Free Account Now</a>
                 </div>
             </div>
         </div>
@@ -123,7 +116,7 @@
 <!-------------- Ready to make block end -------------->
 <!-------------- Testimonials block start -------------->
 <div class="home-testimonials-content">
-    <div class="laptop-img"><img src="/images/laptop-img.png"></div>
+    <div class="laptop-img"><img ng-src="{{ asset('images/laptop-img.png') }}" alt="Laptop Img"></div>
     <div class="container">
         <div class="testimonials-block">
             <div class="row">
@@ -136,7 +129,7 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="second-grid-box mt-50">
                         <div class="testimonials-img">
-                            <img src="/images/testimonials-img-3.png">
+                            <img ng-src="{{ asset('images/testimonials-img-3.png') }}" alt="Testimonials Img 3" >
                             <h4>This is where to start</h4>
                         </div>
                         <p>
@@ -150,7 +143,7 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="second-grid-box">
                         <div class="testimonials-img">
-                            <img src="/images/testimonials-img-1.png">
+                            <img ng-src="{{ asset('images/testimonials-img-1.png') }}" alt="Testimonials Img 1" >
                             <h4>Making well over $1000 a day</h4>
                         </div>
                         <p>
@@ -165,7 +158,7 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="second-grid-box test-last-part mt-50">
                         <div class="testimonials-img ">
-                            <img src="/images/testimonials-img-2.png">
+                            <img ng-src="{{ asset('images/testimonials-img-2.png') }}" alt="Testimonials Img 2" >
                             <h4>I owe my success to Startup </h4>
                         </div>
                         <p>
@@ -202,15 +195,15 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="checkout-left-img">
-                    <img src="/images/check-out-img.png">
-                    <img class="check-menu" src="/images/advacndeedMenu.jpg">
+                    <img ng-src="{{ asset('images/check-out-img.png') }}" alt="check Out Img" >
+                    <img class="check-menu" ng-src="{{ asset('images/advacndeedMenu.jpg') }}" alt="advacndeed Menu" >
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="checkout-cup-part">
-                    <img class="cup-img" src="/images/cup-img.png">
+                    <img class="cup-img" ng-src="{{ asset('images/cup-img.png') }}" alt="Cup Img" >
                     <div class="checkout-cup-content">
-                        <img src="/images/page-budy-logo.png">
+                        <img ng-src="{{ asset('images/page-budy-logo.png') }}" alt="Page Budy Logo" >
                         <p>Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site
                             Builder. It
                             includes pre-built templates from our community.</p>
@@ -231,7 +224,7 @@
             <div class="col-md-4 col-sm-12">
                 <div class="check-out-block-left-side">
                     <div class="laptop-logo">
-                        <img src="/images/laptop-logo-blue.png">
+                        <img ng-src="{{ asset('images/laptop-logo-blue.png') }}" alt="Laptop Logo Blue" >
                     </div>
                     <p>
                         Manage your revenue generation, website analytics, SEO, PPC and social campaigns, all in one
@@ -245,7 +238,7 @@
             </div>
             <div class="col-md-7 col-md-offset-1 col-sm-12">
                 <div class="checkout-right-img">
-                    <img src="/images/check-out-img2.png">
+                    <img ng-src="{{ asset('images/check-out-img2.png') }}" alt="Check Out Img" >
                     <h1>Learn <br> how to <br> make <br> money <br> online </h1>
                 </div>
             </div>
@@ -268,7 +261,7 @@
                             <h6>Game of Thrones meets Travelling Entrepreneurs </h6>
                         </div>
                         <div class="socal-bar-img">
-                            <img src="/images/forSocial.png">
+                            <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 1" >
                         </div>
                     </div>
                 </div>
@@ -281,7 +274,7 @@
             <div class="social-bar">
                 <div class="soc-bar">
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 2" >
                     </div>
                     <p>45 likes<span>1d</span></p>
                 </div>
@@ -298,17 +291,17 @@
                     </div>
                     <ul>
                         <li>
-                            <a ng-href="#/">
+                            <a ng-href="javascript:void(0)">
                                 161 posts
                             </a>
                         </li>
                         <li>
-                            <a ng-href="#/">
+                            <a ng-href="javascript:void(0)">
                                 2,341 followers
                             </a>
                         </li>
                         <li>
-                            <a ng-href="#/">
+                            <a ng-href="javascript:void(0)">
                                 1,002 following
                             </a>
                         </li>
@@ -317,7 +310,7 @@
 
                 <div class="soc-bar">
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 3" >
                     </div>
                     <p>45 likes<span>1d</span></p>
                 </div>
@@ -329,7 +322,7 @@
             <div class="social-bar">
                 <div class="soc-bar">
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 4" >
                     </div>
                     <p>45 likes<span>1d</span></p>
                 </div>
@@ -340,7 +333,7 @@
         <article class="white-panel">
             <div class="social-bar">
                 <div class="socal-bar-img">
-                    <img src="/images/crop.png">
+                    <img ng-src="{{ asset('images/crop.png') }}" alt="crop" >
                 </div>
             </div>
 
@@ -356,7 +349,7 @@
                         <h6>Game of Thrones meets Travelling Entrepreneurs </h6>
                     </div>
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 5" >
                     </div>
                 </div>
             </div>
@@ -368,7 +361,7 @@
             <div class="social-bar">
                 <div class="soc-bar">
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 6" >
                     </div>
                     <p>45 likes<span>1d</span></p>
                 </div>
@@ -385,12 +378,11 @@
                         <h6>Game of Thrones meets Travelling Entrepreneurs </h6>
                     </div>
                     <div class="socal-bar-img">
-                        <img src="/images/forSocial.png">
+                        <img ng-src="{{ asset('images/forSocial.png') }}" alt="For Social 7" >
                     </div>
                 </div>
             </div>
 
         </article>
-
     </section>
 </div>

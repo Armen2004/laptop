@@ -1,4 +1,4 @@
-<div class="wrapper clearfix">
+<div class="wrapper clearfix page-wrap">
     <!---Header start--->
     <header>
         <div class="container">

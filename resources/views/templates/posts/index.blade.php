@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper page-wrap">
     <!---Header start--->
     <header>
         <div class="container">
