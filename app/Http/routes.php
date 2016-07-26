@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('layouts.landing');
 });
 
-
+Route::get('test', 'Api\ForumController@test');
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     //Login Routes...
@@ -26,7 +26,9 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
     Route::post('register', 'UsersController@register');
     Route::post('check', 'UsersController@check');
 
-        Route::post('getForums', 'ForumController@all');
+    Route::post('password/reset', 'UsersController@reset');
+    Route::get('password/reset/{token}', 'UsersController@reset');
+
     Route::group(['middleware' => ['auth:user', 'online:user']], function () {
 
         Route::post('getCourses', 'CoursesController@show');
@@ -40,6 +42,11 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
         Route::post('getNextPost', 'PostsController@getNextPost');
         Route::post('getPreviousPost', 'PostsController@getPreviousPost');
 
+        Route::post('getForums', 'ForumController@all');
+        Route::post('getForum', 'ForumController@show');
+        Route::post('createPost', 'ForumController@createPost');
+        Route::post('likeTopic', 'ForumController@like');
+        Route::post('likeTopicUsers', 'ForumController@likeUsers');
 
         Route::get('getCourses', 'CoursesController@shows');
         Route::get('/', function () {
@@ -101,14 +108,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 // Templates
 Route::group(['prefix' => 'templates'], function () {
 
-    Route::get('{folder}/{page}', array(function ($folder, $page) {
-        $page = str_replace(".blade.php", "", $page);
+    Route::get('{folder}/{page}', function ($folder, $page) {
+//        $page = str_replace(".blade.php", "", $page);
 //        view()->addExtension('html', 'php');
         return view('templates.' . $folder . '.' . $page)->render();
-    }));
+    });
 
 });
 
 Route::any('{catchall}', function () {
+    dd(1);
     return redirect('/');
 })->where('catchall', '(.*)');

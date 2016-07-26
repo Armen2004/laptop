@@ -266,7 +266,7 @@ table {
 
 .header-part-3 span {
     margin: 0 5px;
-    max-width: 75px;
+    max-width: 175px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1297,6 +1297,7 @@ table {
     outline: 0;
     padding: 5px 15px;
     line-height: 20px;
+    font-family: FontAwesome;
 }
 
 .get-started-content button {
@@ -1321,17 +1322,17 @@ table {
     background: #4b8196;
 }
 
-.login-button, .login-button:hover{
+.login-button, .login-button:hover {
     background: #f56a3a !important;
 }
 
-.login-content{
+.login-content {
     background: #3e4652;
     padding: 70px 0 35px 0;
     margin: 0 135px;
 }
 
-.login-logo{
+.login-logo {
     margin: -120px 0 0 81px;
     position: absolute;
 }
@@ -1351,12 +1352,12 @@ table {
     font-family: 'aven-book';
 }
 
-.have_account{
+.have_account {
     margin-top: 5px;
     color: #FFFFFF;
 }
 
-.have_account a{
+.have_account a {
     color: #54b9e0;
     text-decoration: none;
 }
@@ -1368,7 +1369,7 @@ table {
     cursor: pointer;
 }
 
-.login-icon{
+.login-icon {
     display: inline-block;
     position: absolute;
     right: 160px;
@@ -1533,7 +1534,7 @@ table {
 
 /*****************/
 
-.home-header-top{
+.home-header-top {
     background-image: url('../images/header1.png');
     min-height: 510px;
     background-size: cover;
@@ -1557,7 +1558,7 @@ table {
     padding: 55px 0;
 }
 
-.btn-orange{
+.btn-orange {
     color: #FFFFFF;
     background-color: #f56a3a;
     border-color: #f56a3a;
@@ -1566,7 +1567,7 @@ table {
     text-decoration: none;
 }
 
-.btn-orange:hover, .btn-orange:focus{
+.btn-orange:hover, .btn-orange:focus {
     color: #FFFFFF;
     background-color: #f56a3a;
     border-color: #f56a3a;
@@ -2828,11 +2829,11 @@ section li a {
     margin-top: 20px;
 }
 
-.forum_background .row{
+.forum_background .row {
     margin-bottom: 10px;
 }
 
-.row_bordered{
+.row_bordered {
     border: 1px solid #cccccc;
     margin-right: 0;
 }
@@ -2848,23 +2849,41 @@ section li a {
     max-width: 350px;
     margin-left: 0px;
     margin-right: 0px;
-    padding-left:0px;
+    padding-left: 0px;
 }
 
 .forum_menu li {
     background: #3a3b3e;
 }
 
-.forum_menu a {
+.forum_menu a{
+    color: white;
     width: 100%;
     display: block;
-    padding: 37px;
-    color: #FFFFFF;
+    position: relative;
+    height: 50px;
+    color: #fff;
     font-size: 16px;
     text-decoration: none;
     height: 120px;
+    box-sizing: border-box;
+    padding: 37px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+}
+
+.forum-active {
+    background-color: #54b9e0 !important;
+}
+
+.forum_menu a:hover:after{
+    content: url("../images/arrow.png");
+    width: 31px;
+    height: 120px;
+    position: absolute;
+    right: -31px;
+    top: 0;
+    z-index: 1;
 }
 
 .forum_block h1 {
@@ -2872,7 +2891,7 @@ section li a {
     font-weight: bold;
     color: black;
     margin-top: 10px;
-    font-size: 54px;
+    font-size: 40px;
 }
 
 article {
@@ -2883,8 +2902,44 @@ article {
 article h2 {
     font-size: 28px;
     font-family: 'Montserrat', sans-serif;
-    font-style: "regular";
+    font-style: normal;
     padding: 15px 0;
+}
+
+#login-mine {
+    position: relative;
+    max-width: 300px;
+    background: #3e4652;
+    display: inline-block;
+    padding: 110px 30px 20px 30px;
+}
+
+#login-mine .close-icon {
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    padding: 10px;
+}
+
+#login-logo-id {
+    position: relative;
+    z-index: 2;
+    margin-bottom: -70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-mine input {
+    width: 225px;
+    font-family: FontAwesome;
+}
+
+#login-mine button {
+    width: 225px;
+}
+
+#login-mine form {
+    padding-bottom: 20px;
 }
 
 article p {
@@ -2915,7 +2970,8 @@ article p {
 .img_center {
     margin: 0 auto;
 }
-.forum_numbers{
+
+.forum_numbers {
     font-size: 20px;
 }
 
@@ -2943,38 +2999,15 @@ article p {
     font-size: 15px;
     font-family: "AvenirNextLTPro-Demi";
     font-weight: bold;
-
     color: #666666;
-}
-
-#forum_ps1 {
-    margin-top: 30px;
 }
 
 .forum_ps span {
     color: #5283aa;
 }
 
-.arrow {
-    clear: both;
-    width: 0;
-    height: 0;
-    border-top: 60px solid transparent;
-    border-bottom: 60px solid transparent;
-    border-left: 30px solid #54B9E0;
-    position: absolute;
-    right: -30px;
-    margin-top: -58px;
-    opacity: 0;
-    z-index: 1;
-}
-
 .forum_menu li a:hover {
     background: #54b9e0;
-}
-
-.forum_menu li a:hover .arrow {
-    opacity: 1;
 }
 
 .forum_circle {
@@ -2988,6 +3021,9 @@ article p {
     height: 140px;
     width: 148px;
     margin-top: 10px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
 }
 
 #tabs {
@@ -2995,11 +3031,7 @@ article p {
     height: auto !important;
 }
 
-.forum-butons-group{
-    margin-bottom: 80px;
-}
-
-.forum-butons-group ul li:nth-child(1) button{
+.forum-butons-group ul li:nth-child(2) button {
     margin-top: 15px;
     background: #93C152;
     color: #fff;
@@ -3008,11 +3040,11 @@ article p {
     border-radius: 5px;
 }
 
-.forum-butons-group ul li:nth-child(1) button span i{
+.forum-butons-group ul li:nth-child(2) button span i {
     padding-right: 10px;
 }
 
-.forum-butons-group ul li:nth-child(2) button{
+.forum-butons-group ul li:nth-child(3) button {
     margin-top: 15px;
     background: #686C6F;
     color: #fff;
@@ -3021,7 +3053,45 @@ article p {
     border-radius: 5px;
 }
 
-.forum-butons-group ul li:nth-child(2) button span i{
+ .forum_button_green{
+    margin-top: 15px;
+    background: #93C152;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#forum_reply{
+    background: #686C6F;
+}
+
+.forum_send{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.forum_reply2{
+    margin-top: 15px;
+    background: #686C6F;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+#forum_textarea{
+    margin: 3px;
+    width: 500px;
+    color: #d4d4d4;
+    border-color: #d4d4d4;
+}
+
+.forum_buttons{
+    padding-bottom: 10px;
+}
+
+.forum-butons-group ul li:nth-child(3) button span i {
     padding-left: 10px;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
@@ -3030,7 +3100,7 @@ article p {
     transform: rotateY(180deg);
 }
 
-.forum-butons-group ul li:nth-child(3) button{
+.forum-butons-group ul li:nth-child(4) button {
     margin-top: 15px;
     background: #7BA0BA;
     color: #fff;
@@ -3039,36 +3109,67 @@ article p {
     border-radius: 5px;
 }
 
-.forum-butons-group ul li:nth-child(3) button span i{
+.forum-butons-group ul li:nth-child(4) button span i {
     padding-right: 10px;
 }
 
-
-.forum_all{
+.forum_all {
     background: #f4f5f6;
 }
 
-.forum_data_top{
+.forum_data_top {
     font-family: AvenirNextLTPro-Demi;
-    font-size:10pt;
-    color:#999999;
+    font-size: 10pt;
+    color: #999999;
     margin-top: 10px;
     padding: 15px 0;
 }
 
-.forum_content{
+.forum_content {
     line-height: 1.5;
     font-size: 17px;
     text-align: justify;
+}
+
+
+
+.forum_img_comment{
+    width: 65%;
+    height:65%;
+}
+
+.forum_article_comment{
+    margin-top: 15%;
+    margin-left: -15%;
+}
+
+.forum_circle_comment{
+    width: 25%;
+    margin-left: 50%;
+    margin-top: -45%;
+}
+
+.forum_text_comment{
+    font-size:100%;
 }
 
 .page-wrap {
     min-height: 100%;
     padding-bottom: 20px;
 }
+
 .page-wrap:after {
     content: "";
     display: block;
+}
+
+.post-description{
+    padding-top: 10px;
+}
+
+.topic-title, .topic-title:hover{
+    color: #000000;
+    text-decoration: none;
 }
 
 /* Forum Css End */

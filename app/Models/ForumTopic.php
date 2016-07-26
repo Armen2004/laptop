@@ -27,7 +27,7 @@ class ForumTopic extends Model
      * @var array
      */
     protected $fillable = [
-        'forum_category_id', 'title', 'slug', 'user_id', 'description'
+        'forum_category_id', 'title', 'slug', 'user_id', 'description', 'likes'
     ];
 
     public function user()

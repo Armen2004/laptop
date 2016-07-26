@@ -1,5 +1,9 @@
 var app = angular.module('app', [
-    'ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'ngTouch', 'ui.bootstrap', 'toastr', '720kb.socialshare'
+    'ngRoute', 'ngAnimate',
+    'ngResource', 'ngSanitize',
+    'ngTouch', 'ngStorage', 'ui.bootstrap',
+    'toastr', '720kb.socialshare',
+    'ngCkeditor'
 ]);
 app
     .constant('BASE_URL', 'http://laptop.dev/api/')
@@ -17,73 +21,73 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
     
     $routeProvider
         .when('/', {
-            templateUrl: 'templates/home/index.blade.php',
+            templateUrl: 'templates/home/index',
             controller: 'HomeController',
             access: {
-                // restricted: false
+                restricted: false
             }
         })
         .when('/continue-registration', {
-            templateUrl: 'templates/home/congratulations.blade.php',
+            templateUrl: 'templates/home/congratulations',
             controller: 'AuthController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/dashboard', {
-            templateUrl: 'templates/account/index.blade.php',
+            templateUrl: 'templates/account/index',
             controller: 'AccountController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/posts', {
-            templateUrl: 'templates/posts/index.blade.php',
+            templateUrl: 'templates/posts/index',
             controller: 'PostsController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/post/:postId', {
-            templateUrl: 'templates/posts/show.blade.php',
+            templateUrl: 'templates/posts/show',
             controller: 'PostsController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/sales', {
-            templateUrl: 'templates/sales/index.blade.php',
+            templateUrl: 'templates/sales/index',
             controller: 'SalesController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/lessons', {
-            templateUrl: 'templates/lessons/index.blade.php',
+            templateUrl: 'templates/lessons/index',
             controller: 'LessonsController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/lesson/:lessonId', {
-            templateUrl: 'templates/lessons/show.blade.php',
+            templateUrl: 'templates/lessons/show',
             controller: 'LessonsController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/forums', {
-            templateUrl: 'templates/forums/index.blade.php',
+            templateUrl: 'templates/forums/index',
             controller: 'ForumController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .when('/forum/:forumId', {
-            templateUrl: 'templates/forums/show.blade.php',
+            templateUrl: 'templates/forums/show',
             controller: 'ForumController',
             access: {
-                // restricted: true
+                restricted: true
             }
         })
         .otherwise({
@@ -102,9 +106,9 @@ app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', functio
             $rootScope.isLoggedIn = response.data.loggedIn;
             $rootScope.userInfo = response.data.userInfo;
 
-            // if (next.access.restricted && $rootScope.isLoggedIn === false) {
-            //     $location.path('/');
-            // }
+            if (next.access.restricted && $rootScope.isLoggedIn === false) {
+                $location.path('/');
+            }
         });
 
     });

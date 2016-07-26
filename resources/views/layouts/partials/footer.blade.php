@@ -8,7 +8,7 @@
             <div class="col-md-2 col-sm-12">
                 <div class="footer-nav">
                     <ul>
-                        <li><a ng-href="#/about">About Us</a></li>
+                        <li><a ng-href="javascript:void(0)">About Us</a></li>
                         <li><a ng-href="#/posts">Blog</a></li>
                     </ul>
                 </div>
@@ -17,9 +17,9 @@
                 <div class="footer-right-link">
                     <ul>
                         <li>Our Products:</li>
-                        <li><a ng-href="#/premium">Premium Membership</a></li>
-                        <li><a ng-href="#/">Laptop Startup</a></li>
-                        <li><a ng-href="#/page">Page</a></li>
+                        <li><a ng-href="javascript:void(0)">Premium Membership</a></li>
+                        <li><a ng-href="javascript:void(0)">Laptop Startup</a></li>
+                        <li><a ng-href="javascript:void(0)">Page</a></li>
                     </ul>
                 </div>
             </div>

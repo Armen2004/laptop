@@ -9,19 +9,17 @@
                         <img ng-src="{{ asset('images/icons/close.png') }}" alt="Close Icon">
                     </span>
 
-                    <form ng-submit="user_login(credentials)" name="loginForm" ng-controller="AuthController">
+                    <form ng-submit="user_reset(credentials)" name="loginForm" ng-controller="AuthController">
 
                         <input type="text" class="login-mine" placeholder="&#xf0e0; Email" ng-model="credentials.email"  name="email" required="required" ng-pattern='email'>
                         <span ng-show="loginForm.email.$error.required" class="text-danger"></span>
                         <span ng-show="loginForm.email.$error.email" class="text-danger">Please enter valid email. Ex. example@example.com</span>
 
-                        <input type="password" placeholder="&#xf023; Password" class="login-password" ng-model="credentials.password" name="password" required="required" ng-pattern="password">
-                        <span ng-show="loginForm.password.$error.required"></span>
-                        <span ng-show="loginForm.password.$error.pattern" class="text-danger">Password required only a-zA-Z0-9_ symbols.</span>
                         <div class="clearfix"></div>
                         <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
-                        <button type="submit" class="login-button text-uppercase" ng-disabled="loginForm.$invalid">login</button>
-                        <p class="have_account text-right" ng-controller="HomeController"><a ng-href="javascript:void(0)" ng-click="reset_password()">Forgot Password ?</a></p>
+                        <button type="submit" class="login-button text-uppercase" ng-disabled="loginForm.$invalid">Reset password</button>
+                        <p class="have_account text-right" ng-controller="HomeController">Already a member? <a ng-href="javascript:void(0)" ng-click="login()">Login here</a></p>
+                        <p class="have_account text-right" ng-controller="HomeController"><a ng-href="javascript:void(0)" ng-click="signup()">Register a new membership</a></p>
                     </form>
                 </div>
             </div>

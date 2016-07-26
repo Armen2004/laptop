@@ -18,13 +18,13 @@ class CreateForumTopicsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
-            $table->bigInteger('view_count')->default(0);
+            $table->text('description');
+            $table->bigInteger('likes')->default(0);
             $table->timestamps();
 
             $table->foreign('forum_category_id')->references('id')->on('forum_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+
         });
     }
 

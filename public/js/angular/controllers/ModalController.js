@@ -4,4 +4,6 @@ app.controller('ModalController', ['$scope', '$uibModalInstance', function ($sco
         $uibModalInstance.dismiss('cancel');
     };
 
+    console.log($scope);
+
 }]);

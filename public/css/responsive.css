@@ -345,10 +345,10 @@
         min-height: 690px;
     }
 
-
-    .home-top-title{
-        font-size:40px;
+    .home-top-title {
+        font-size: 40px;
     }
+
     .testimonials-img {
         width: 350px;
         margin: 0 auto;
@@ -696,6 +696,14 @@
     .get-started-content button {
         width: 100%;
     }
+
+    .get-started {
+        padding-left: 0px;
+    }
+
+    .login-cont-all {
+        padding-left: 0px;
+    }
 }
 
 @media screen and (max-width: 1205px) {
@@ -719,7 +727,17 @@
     }
 
     .forum_menu {
-        width: 100%;
+        max-width: 100%;
+        padding-right: 0px;
+    }
+
+    .forum_menu a:hover:after {
+        content: " ";
+    }
+
+    .forum_background {
+        margin-right: 0;
+        margin-left: 0;
     }
 }
 
@@ -732,10 +750,6 @@
 }
 
 @media screen and (max-width: 600px) {
-
-    .forum_menu li a:hover .arrow {
-        opacity: 0;
-    }
 
     .forum_menu a {
         padding: 17px;
@@ -766,7 +780,4 @@
         font-size: 12px;
     }
 
-    .forum_menu {
-        margin-top: 98px;
-    }
 }

@@ -6,6 +6,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/angular-toastr.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/ng-ckeditor.css') }}" rel="stylesheet" type="text/css">
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Rochester' rel='stylesheet' type='text/css'>

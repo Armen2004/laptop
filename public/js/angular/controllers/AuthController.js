@@ -14,6 +14,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
             if (response.status == 200 && response.data.status) {
                 message = 'Logged in';
                 toastr.success(message);
+                $scope.$parent.close();
                 $location.path('/dashboard');
             } else {
                 message = 'These credentials do not match our records.';
@@ -86,6 +87,38 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
             console.log('error');
             console.log(error);
             toastr.error('Request Failed!', 'Error');
+
+        });
+    };
+        
+    $scope.user_reset = function (user) {
+        AuthFactory.doReset(user).then(function (response) {
+
+            console.log('success');
+            console.log(response);
+            return
+            var message;
+            if (response.status == 200 && !response.data.status) {
+                message = 'These credentials do not match our records.';
+                toastr.error(message, 'Error');
+            } else {
+                message = 'Logged in';
+                toastr.success(message);
+                $scope.$parent.close();
+                // $location.path('/continue-registration');
+            }
+
+        }, function (error) {
+
+            console.log('error');
+            console.log(error);
+            var message;
+            if (error.status == 422) {
+                message = error.data.email[0];
+            } else {
+                message = 'Request Failed!';
+            }
+            toastr.error(message, 'Error');
 
         });
     };

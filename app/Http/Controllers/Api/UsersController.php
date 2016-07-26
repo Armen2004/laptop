@@ -3,31 +3,39 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use Carbon\Carbon;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends ApiBaseController
 {
 
     /**
+     * Login in user
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');
 
-        $this->user->attempt($credentials);
-
-        return response(['status' => true]);
+        if ($this->user->attempt($credentials) == true)
+            return response(['status' => true]);
+        else
+            return response(['status' => false]);
     }
 
     /**
+     * Logout user
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function logout()
@@ -37,6 +45,8 @@ class UsersController extends ApiBaseController
     }
 
     /**
+     * Register user
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -55,6 +65,8 @@ class UsersController extends ApiBaseController
     }
 
     /**
+     * Check user
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function check()
@@ -68,6 +80,38 @@ class UsersController extends ApiBaseController
             'loggedIn' => false,
             'userInfo' => ''
         ]);
+    }
+
+    /**
+     * Reset user password
+     *
+     */
+    public function reset(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $token = csrf_token();
+
+        $emails = $request->input('email');
+        $email = Mail::send('templates.emails.password', ['token' => $token], function ($m) use ($emails) {
+            $m->to($emails)->subject('Your Password Reset Link');
+        });
+        dd($email);
+
+        if ($email) {
+            $db = DB::table('password_resets')->insert([
+                'email' => $emails,
+                'token' => $token,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+        if ($email && $db)
+            return response(['status' => true]);
+        else
+            return response(['status' => false]);
     }
 
 }
