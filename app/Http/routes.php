@@ -43,7 +43,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
         Route::post('getPreviousPost', 'PostsController@getPreviousPost');
 
         Route::post('getForums', 'ForumController@all');
-        Route::post('getForum', 'ForumController@show');
+        Route::post('getForum', 'ForumController@showForum');
+        Route::post('getTopic', 'ForumController@showTopic');
         Route::post('createPost', 'ForumController@createPost');
         Route::post('likeTopic', 'ForumController@like');
         Route::post('likeTopicUsers', 'ForumController@likeUsers');

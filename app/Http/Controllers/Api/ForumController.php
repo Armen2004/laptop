@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests;
 use App\Models\ForumPost;
 use App\Models\ForumTopic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\ForumCategory;
 use Illuminate\Support\Facades\DB;
@@ -34,9 +35,9 @@ class ForumController extends ApiBaseController
             $q->orderBy('parent_id');
             $q->orderBy('created_at', 'desc');
         }
-        , 'user' => function ($q) {
-            $q->with('userType');
-        }
+            , 'user' => function ($q) {
+                $q->with('userType');
+            }
         ])->get();
 
         $tree = [];
@@ -45,7 +46,7 @@ class ForumController extends ApiBaseController
             if ($topic->forumPosts->count() > 0) {
                 $topic->forumPosts = $this->buildTree($topic->forumPosts->toArray());
                 $tree[] = $topic;
-            }else{
+            } else {
                 $topic->forumPosts = [];
                 $tree[] = $topic->toArray();
             }
@@ -54,7 +55,8 @@ class ForumController extends ApiBaseController
     }
 
 
-    public function buildTree(array $elements, $parentId = 0) {
+    public function buildTree(array $elements, $parentId = 0)
+    {
         $branch = array();
 
         foreach ($elements as $element) {
@@ -70,41 +72,46 @@ class ForumController extends ApiBaseController
         return $branch;
     }
 
-    public function show(Request $request)
+    public function showForum(Request $request)
     {
         $this->validate($request, [
-            'slug' => 'required|exists:forum_topics,slug',
+            'slug' => 'required|exists:forum_categories,slug',
         ]);
 
         $forum_category = ForumCategory::orderBy('sort')->get();
 
-        $topic = ForumTopic::
-        with(['forumPosts' => function ($q) {
-            $q->with('user');
-            $q->orderBy('parent_id');
-            $q->orderBy('created_at', 'desc');
-        }, 'user' => function ($q) {
-            $q->with('userType');
+        $topic = ForumCategory::with(['forumTopics' => function ($query) {
+            $query->with(['forumPosts', 'user' => function ($q) {
+                $q->with('userType');
+            }]);
         }])->whereSlug($request->input('slug'))->first();
 
-        $tree = [];
-        $parent = 0;
-        $start = 0;
+        return response(['forum_category' => $forum_category, 'forum_topic' => $topic]);
+    }
 
-        foreach ($topic->forumPosts->toArray() as $key => $value) {
-            if ($value['parent_id'] == $parent) {
-                $tree[$start] = $value;
-                $start++;
-            } else {
-                foreach ($tree as $k => $v) {
-                    if ($v['id'] == $value['parent_id']) {
-                        $tree[$k]['childrens'][] = $value;
+    public function showTopic(Request $request)
+    {
+        $this->validate($request, [
+            'forumSlug' => 'required|exists:forum_categories,slug',
+            'topicSlug' => 'required|exists:forum_topics,slug',
+        ]);
+
+        $forum_category = ForumCategory::orderBy('sort')->get();
+
+        $topic = ForumCategory::with([
+            'forumTopics' => function ($query) use ($request) {
+                $query->whereSlug($request->input('topicSlug'));
+                $query->with([
+                    'forumPosts' => function ($q) {
+                        $q->orderBy('created_at', 'desc');
+                        $q->with('user');
+                    },
+                    'user' => function ($q) {
+                        $q->with('userType');
                     }
-                }
+                ]);
             }
-        }
-
-        $topic->forumPosts = $tree;
+        ])->whereSlug($request->input('forumSlug'))->first();
 
         return response(['forum_category' => $forum_category, 'forum_topic' => $topic]);
     }
@@ -118,10 +125,12 @@ class ForumController extends ApiBaseController
             'comment' => 'required',
         ]);
 
-        $post = $this->user->user()->forumPosts()->save(new ForumPost($request->all()));;
+        $post = $this->user->user()->forumPosts()->save(new ForumPost($request->all()));
+        $forum = ForumCategory::findOrFail(ForumTopic::whereSlug($request->input('slug'))->first()->forum_category_id);
 
+        $request->merge(['forumSlug' => $forum->slug,'topicSlug' => $request->input('slug') ]);
         if ($post)
-            return $this->show($request);
+            return $this->showTopic($request);
         else
             return response(['status' => 'ERROR!!!]']);
     }
@@ -139,7 +148,10 @@ class ForumController extends ApiBaseController
             'topicID' => 'required|integer|exists:forum_topics,id'
         ]);
 
-        $query = DB::table('forum_topic_user')->where('user_id', $this->user->user()->id)->where('forum_topic_id', $request->input('topicID'))->get();
+        $query = DB::table('forum_topic_user')
+            ->where('user_id', $this->user->user()->id)
+            ->where('forum_topic_id', $request->input('topicID'))
+            ->get();
 
         if (count($query) > 0) {
             return $this->all();
@@ -151,7 +163,8 @@ class ForumController extends ApiBaseController
 
             DB::table('forum_topic_user')->insert([
                 'user_id' => $this->user->user()->id,
-                'forum_topic_id' => $request->input('topicID')
+                'forum_topic_id' => $request->input('topicID'),
+                'created_at' => Carbon::now()
             ]);
 
             return $this->all();
@@ -165,9 +178,13 @@ class ForumController extends ApiBaseController
         ]);
 
         $query = DB::table('forum_topic_user')
+            ->select('users.*', 'user_types.name as user_type', 'forum_topic_user.*')
             ->join('users', 'users.id', '=', 'forum_topic_user.user_id')
-            ->where('user_id', $this->user->user()->id)
-            ->where('forum_topic_id', $request->input('topicID'))->get();
+            ->join('user_types', 'user_types.id', '=', 'users.user_type_id')
+//            ->where('user_id', $this->user->user()->id)
+            ->where('forum_topic_id', $request->input('topicID'))
+            ->orderBy('forum_topic_user.liked_at', 'desc')
+            ->get();
 
         return response($query);
     }

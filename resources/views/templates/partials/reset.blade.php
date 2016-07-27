@@ -19,7 +19,6 @@
                         <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
                         <button type="submit" class="login-button text-uppercase" ng-disabled="loginForm.$invalid">Reset password</button>
                         <p class="have_account text-right" ng-controller="HomeController">Already a member? <a ng-href="javascript:void(0)" ng-click="login()">Login here</a></p>
-                        <p class="have_account text-right" ng-controller="HomeController"><a ng-href="javascript:void(0)" ng-click="signup()">Register a new membership</a></p>
                     </form>
                 </div>
             </div>

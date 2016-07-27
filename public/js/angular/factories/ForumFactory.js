@@ -32,6 +32,14 @@ app.factory('ForumFactory', ['$http', '$q', '$sanitize', 'BASE_URL',
                 return this.sendRequest('POST', BASE_URL + 'getForum', forumData);
             },
 
+            getTopicBySlug: function (forumSlug, topicSlug) {
+                var forumData = {
+                    forumSlug: $sanitize(forumSlug),
+                    topicSlug: $sanitize(topicSlug)
+                };
+                return this.sendRequest('POST', BASE_URL + 'getTopic', forumData);
+            },
+
             createPost: function (data) {
                 var forumData = {
                     forum_topic_id: $sanitize(data['forum_topic_id']),

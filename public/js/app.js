@@ -77,14 +77,21 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
             }
         })
         .when('/forums', {
-            templateUrl: 'templates/forums/index',
+            templateUrl: 'templates/forums/main',
             controller: 'ForumController',
             access: {
                 restricted: true
             }
         })
         .when('/forum/:forumId', {
-            templateUrl: 'templates/forums/show',
+            templateUrl: 'templates/forums/main',
+            controller: 'ForumController',
+            access: {
+                restricted: true
+            }
+        })
+        .when('/forum/:forumId/:topicId', {
+            templateUrl: 'templates/forums/main',
             controller: 'ForumController',
             access: {
                 restricted: true

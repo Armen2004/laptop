@@ -708,16 +708,33 @@
 
 @media screen and (max-width: 1205px) {
 
-    .forum_left {
-        width: 100%;
-    }
+    .row_bordered {
+
+        margin-left: 0;}
 
     .forum_circle {
         margin-left: -50px;
         margin-top: 120px;
     }
+    .row_bordered_post {
 
+         margin-left: 0px;
+     }
+
+    .forum_content {
+
+        padding-left: 10px;
+    }
+    .forum_circle_post {
+        margin-left: -41px;
+        margin-top: 74px;
+        position: relative;
+    }
+    .forum_name_post{
+        padding-left: 24px;
+    }
 }
+
 
 @media screen and (max-width: 991px) {
 
@@ -739,14 +756,28 @@
         margin-right: 0;
         margin-left: 0;
     }
-}
 
+    .forum_circle_post {
+        margin-left: -41px;
+        margin-top: 74px;
+        position: relative;
+    }
+
+    .forum_content {
+
+        padding-left: 10px;
+    }
+}
 @media screen and (max-width: 404px) {
 
     .forum_circle {
         margin-left: 100px;
         margin-top: -47px;
     }
+.forum_block{
+    padding: 0;
+}
+
 }
 
 @media screen and (max-width: 600px) {

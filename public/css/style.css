@@ -1180,6 +1180,7 @@ table {
     font-family: 'mon-reg';
     text-transform: uppercase;
     color: #45aed0;
+    text-decoration: none;
 }
 
 /*Blog Inner page*/
@@ -1323,7 +1324,7 @@ table {
 }
 
 .login-button, .login-button:hover {
-    background: #f56a3a !important;
+    /*background: #f56a3a !important;*/
 }
 
 .login-content {
@@ -2829,13 +2830,18 @@ section li a {
     margin-top: 20px;
 }
 
-.forum_background .row {
-    margin-bottom: 10px;
-}
-
 .row_bordered {
     border: 1px solid #cccccc;
     margin-right: 0;
+    margin-bottom: 10px;
+    /*background-color: #f4f5f6;*/
+}
+
+.row_bordered_post {
+    border: 1px solid #cccccc;
+    margin-right: 0;
+    margin-bottom: 10px;
+    background-color: #f4f5f6;
 }
 
 .forum_block {
@@ -2909,7 +2915,7 @@ article h2 {
 #login-mine {
     position: relative;
     max-width: 300px;
-    background: #3e4652;
+
     display: inline-block;
     padding: 110px 30px 20px 30px;
 }
@@ -2960,6 +2966,11 @@ article p {
     font-family: "AvenirNextLTPro-Demi";
     font-weight: bold;
 }
+.forum_name_post {
+    font-size: 20px;
+    font-family: "AvenirNextLTPro-Demi";
+    font-weight: bold;
+}
 
 .forum_data {
     font-size: 15px;
@@ -2988,11 +2999,22 @@ article p {
     margin-left: 0px;
     margin-right: 0px;
 }
+.forum_right_post {
+    margin-left: 0px;
+    margin-right: 0px;
+    /*padding-left: 0;*/
+    padding-top: 5px;
+}
+
+.forum_left_post {
+    margin-left: 0px;
+    margin-right: 0px;
+}
 
 .forum_left {
     margin-left: 0px;
     margin-right: 0px;
-    background: #f4f5f6;
+    background-color: #f4f5f6;
 }
 
 .forum_ps {
@@ -3016,11 +3038,26 @@ article p {
     position: relative;
 }
 
+.forum_circle_post{
+    margin-left: 75px;
+    margin-top: -47px;
+    position: relative;
+}
+
 .forum_img {
     position: relative;
     height: 140px;
     width: 148px;
     margin-top: 10px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.forum_img_post{
+    position: relative;
+    height: 125px;
+    width: 125px;
+    margin-top: 5px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
@@ -3072,7 +3109,7 @@ article p {
 }
 
 .forum_reply2{
-    margin-top: 15px;
+    margin-top: 10px;
     background: #686C6F;
     color: #fff;
     border: none;
@@ -3127,10 +3164,15 @@ article p {
 
 .forum_content {
     line-height: 1.5;
-    font-size: 17px;
+    font-size: 16px;
     text-align: justify;
 }
 
+.forum_content a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #337ab7;
+}
 
 
 .forum_img_comment{
@@ -3140,13 +3182,13 @@ article p {
 
 .forum_article_comment{
     margin-top: 15%;
-    margin-left: -15%;
+
 }
 
 .forum_circle_comment{
     width: 25%;
     margin-left: 50%;
-    margin-top: -45%;
+
 }
 
 .forum_text_comment{
@@ -3167,9 +3209,57 @@ article p {
     padding-top: 10px;
 }
 
-.topic-title, .topic-title:hover{
+.topic-title, .topic-title:hover, .topic-title:focus{
     color: #000000;
     text-decoration: none;
+}
+
+.liked-users{
+    cursor: pointer;
+}
+
+.forum_users_list{
+    max-height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.forum_list_name{
+    margin-top: 50px;
+}
+
+.forum_list_search{
+    font-family: FontAwesome;
+    /*border-radius: 3px;*/
+}
+
+#liked-user{
+    background-color: #fff;
+    width: 50%;
+    margin: 0 auto;
+    height: 600px;
+}
+.like_border{
+    border-bottom: 1px solid #CCCCCC;
+}
+.forum_img_like{
+    position: relative;
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.forum_circle_like{
+    margin-left: 70px;
+    margin-top: -47px;
+    position: relative;
+}
+.forum_blue_like{
+    color: #54b9e0;
+    font-size: 15px;
+    font-family: "AvenirNextLTPro-Demi";
+    font-weight: bold;
 }
 
 /* Forum Css End */
