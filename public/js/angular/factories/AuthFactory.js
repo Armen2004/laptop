@@ -52,6 +52,17 @@ app.factory('AuthFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($h
                 email: $sanitize(user.email),
                 _token: $sanitize(user._token)
             };
+            return this.sendRequest('POST', BASE_URL + 'password/email', userData);
+        },
+
+        doResetPassword: function (user) {
+            var userData = {
+                email: $sanitize(user.email),
+                token: $sanitize(user.token),
+                _token: $sanitize(user._token),
+                password: $sanitize(user.password),
+                password_confirmation: $sanitize(user.password_confirmation)
+            };
             return this.sendRequest('POST', BASE_URL + 'password/reset', userData);
         },
         

@@ -21,7 +21,7 @@
                         <div class="clearfix"></div>
                         <input type="hidden" ng-model="credentials._token" ng-init="credentials._token='{{ csrf_token() }}'">
                         <button type="submit" class="login-button text-uppercase" ng-disabled="loginForm.$invalid">login</button>
-                        <p class="have_account text-right" ng-controller="HomeController"><a ng-href="javascript:void(0)" ng-click="reset_password()">Forgot Password ?</a></p>
+                        <p class="have_account text-right" ng-controller="HomeController"><a ng-href="javascript:void(0)" ng-click="reset_email()">Forgot Password ?</a></p>
                     </form>
                 </div>
             </div>

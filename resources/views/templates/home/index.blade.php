@@ -25,6 +25,7 @@
         <a class="join-now-btn hvr-sweep-to-right" ng-href="javascript:void(0)" ng-click="signup()">JOIN NOW - IT’S FREE !</a>
     </div>
 </div>
+<a ng-href="javascript:void(0)" class="hidden" id="resetModalShower" ng-click="reset_password(); $event.stopPropagation();"></a>
 <!-------------- Login block end -------------->
 <div class="home-top-banner">
     <div class="container">

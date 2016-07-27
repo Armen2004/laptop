@@ -26,8 +26,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
     Route::post('register', 'UsersController@register');
     Route::post('check', 'UsersController@check');
 
-    Route::post('password/reset', 'UsersController@reset');
-    Route::get('password/reset/{token}', 'UsersController@reset');
+    Route::post('password/email', 'UsersController@resetEmail');
+    Route::post('password/reset', 'UsersController@resetPassword');
 
     Route::group(['middleware' => ['auth:user', 'online:user']], function () {
 
@@ -118,6 +118,6 @@ Route::group(['prefix' => 'templates'], function () {
 });
 
 Route::any('{catchall}', function () {
-    dd(1);
+    dd('error');
     return redirect('/');
 })->where('catchall', '(.*)');

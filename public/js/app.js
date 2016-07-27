@@ -16,11 +16,25 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
     $interpolateProvider.endSymbol('%>');
 
     angular.extend(toastrConfig, {
-        closeButton: true
+        closeButton: true,
+        allowHtml: true
     });
     
     $routeProvider
+        // .when('/test', {
+        //     templateUrl: 'templates/emails/password',
+        //     access: {
+        //         restricted: false
+        //     }
+        // })
         .when('/', {
+            templateUrl: 'templates/home/index',
+            controller: 'HomeController',
+            access: {
+                restricted: false
+            }
+        })
+        .when('/password/reset/:token', {
             templateUrl: 'templates/home/index',
             controller: 'HomeController',
             access: {
@@ -31,7 +45,7 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', function (
             templateUrl: 'templates/home/congratulations',
             controller: 'AuthController',
             access: {
-                restricted: true
+                restricted: false
             }
         })
         .when('/dashboard', {
