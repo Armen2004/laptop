@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class PostsController extends ApiBaseController
 {
     /**
+     * Get all posts with admin functionality
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function all()
@@ -17,6 +19,8 @@ class PostsController extends ApiBaseController
     }
 
     /**
+     * Show correct post with admin functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -30,6 +34,8 @@ class PostsController extends ApiBaseController
     }
 
     /**
+     * Show next post functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -43,6 +49,8 @@ class PostsController extends ApiBaseController
     }
 
     /**
+     * Show previous post functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */

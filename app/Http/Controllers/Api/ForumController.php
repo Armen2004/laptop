@@ -27,6 +27,9 @@ class ForumController extends ApiBaseController
         }])->orderBy('sort')->get());
     }
 
+    /**
+     * @return array
+     */
     public function test()
     {
         $topics = ForumTopic::
@@ -56,6 +59,11 @@ class ForumController extends ApiBaseController
     }
 
 
+    /**
+     * @param array $elements
+     * @param int $parentId
+     * @return array
+     */
     public function buildTree(array $elements, $parentId = 0)
     {
         $branch = array();
@@ -73,6 +81,10 @@ class ForumController extends ApiBaseController
         return $branch;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function showForum(Request $request)
     {
         $this->validate($request, [
@@ -90,6 +102,12 @@ class ForumController extends ApiBaseController
         return response(['forum_category' => $forum_category, 'forum_topic' => $topic]);
     }
 
+    /**
+     * Show Topic functionality
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function showTopic(Request $request)
     {
         $this->validate($request, [
@@ -117,6 +135,12 @@ class ForumController extends ApiBaseController
         return response(['forum_category' => $forum_category, 'forum_topic' => $topic]);
     }
 
+    /**
+     * Create Post functionality
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function createPost(Request $request)
     {
         $this->validate($request, [
@@ -138,7 +162,7 @@ class ForumController extends ApiBaseController
 
 
     /**
-     * like topic functionality
+     * Like topic functionality
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
@@ -173,6 +197,12 @@ class ForumController extends ApiBaseController
         }
     }
 
+    /**
+     * List of users who liked topic
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function likeUsers(Request $request)
     {
         $this->validate($request, [

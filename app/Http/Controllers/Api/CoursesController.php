@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 class CoursesController extends ApiBaseController
 {
     /**
+     * Get course and lesson by user type functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -32,6 +34,8 @@ class CoursesController extends ApiBaseController
     }
 
     /**
+     * Get lesson by slug functionality.
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -45,6 +49,8 @@ class CoursesController extends ApiBaseController
     }
 
     /**
+     * Complete Lesson functionality
+     *
      * @param Request $request
      */
     public function completeLesson(Request $request)
@@ -57,6 +63,8 @@ class CoursesController extends ApiBaseController
     }
 
     /**
+     * Get next lesson functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -70,6 +78,8 @@ class CoursesController extends ApiBaseController
     }
 
     /**
+     * Get previous lesson functionality
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */

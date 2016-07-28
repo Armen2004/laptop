@@ -84,8 +84,10 @@ class UsersController extends ApiBaseController
     }
 
     /**
-     * Reset user password
+     * Send Reset password link to user
      *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function resetEmail(Request $request)
     {
@@ -115,6 +117,12 @@ class UsersController extends ApiBaseController
             return response(['status' => false]);
     }
 
+    /**
+     * Reset password functionality
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function resetPassword(Request $request)
     {
         $this->validate($request, [
