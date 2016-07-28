@@ -12,6 +12,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         }, 100);
 
         $scope.user_login = function (user) {
+            $scope.credentials = null;
             AuthFactory.doLogin(user).then(function (response) {
 
                 // console.log('success');
@@ -38,6 +39,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_register = function (user) {
+            $scope.credentials = null;
             AuthFactory.doRegister(user).then(function (response) {
 
                 // console.log('success');
@@ -90,8 +92,6 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
 
         $scope.user_reset = function (user) {
             $scope.credentials = null;
-            console.log(1)
-            return
             AuthFactory.doReset(user).then(function (response) {
 
                 // console.log('success');
@@ -119,9 +119,10 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_reset_password = function (user) {
+            $scope.credentials = null;
             if ($scope.token == undefined) return;
             user.token = $scope.token;
-            console.log(user);
+            // console.log(user);
             AuthFactory.doResetPassword(user).then(function (response) {
 
                 console.log('success');

@@ -1,5 +1,5 @@
-app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$location', 'ForumFactory',
-    function ($scope, $uibModal, $routeParams, $location, ForumFactory) {
+app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$location', '$route', 'ForumFactory', 'toastr',
+    function ($scope, $uibModal, $routeParams, $location, $route, ForumFactory, toastr) {
 
         $scope.forum = {
             comment: 'Enter Post Here &nbsp;'
@@ -14,6 +14,7 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
                     $scope.customPagination(1, 3, $scope.currentForum.forum_topics);
 
                 }, function (error) {
+                    errorMessage(error.data);
                     console.log(error);
                 });
             } else {
@@ -26,6 +27,7 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
                     $scope.customPagination(1, 3, $scope.currentForum.forum_posts);
 
                 }, function (error) {
+                    errorMessage(error.data);
                     console.log(error);
                 });
             }
@@ -38,6 +40,7 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
                 $scope.customPagination(1, 3, $scope.currentForum.forum_topics);
 
             }, function (error) {
+                errorMessage(error.data);
                 console.log(error);
             });
         }
@@ -78,8 +81,23 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
 
         $scope.like_topic = function (topicID) {
             ForumFactory.likeTopic(topicID).then(function (response) {
-                $scope.like_user = response.data;
+                console.log(response);
+
+                if (response.status == 200 && !response.data.status) {
+                    errorMessage(response.data);
+                    return false;
+                }
+
+                $route.reload();
+
+                console.log(1);
+
+                //$scope.forums = response.data;
+                //$scope.currentForum = response.data[0];
+
+                //$scope.customPagination(1, 3, $scope.currentForum.forum_topics);
             }, function (error) {
+                errorMessage(error.data);
                 console.log(error);
             });
         };
@@ -94,6 +112,7 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
                     scope: $scope
                 });
             }, function (error) {
+                errorMessage(error.data);
                 console.log(error);
             });
         };
@@ -148,6 +167,7 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
                 $scope.id = true;
                 $scope.customPagination(1, 3, $scope.currentForum.forum_posts);
             }, function (error) {
+                errorMessage(error.data);
                 console.log(error);
             });
         };
@@ -155,6 +175,15 @@ app.controller('ForumController', ['$scope', '$uibModal', '$routeParams', '$loca
         $scope.replayToTopic = function (forum, data, topic) {
             $scope.createPost(data, topic);
             $location.path('/forum/' + forum.slug + '/' + topic.slug);
+        };
+
+        function errorMessage(error) {
+            var data = "";
+            angular.forEach(error, function (value, key) {
+                if(value != false) data += value + "<br/>";
+            }, data);
+
+            toastr.error(data, 'Error!');
         }
 
     }]);

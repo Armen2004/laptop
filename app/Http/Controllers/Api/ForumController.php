@@ -30,11 +30,12 @@ class ForumController extends ApiBaseController
     public function test()
     {
         $topics = ForumTopic::
-        with(['forumPosts' => function ($q) {
-            $q->with('user');
-            $q->orderBy('parent_id');
-            $q->orderBy('created_at', 'desc');
-        }
+        with([
+            'forumPosts' => function ($q) {
+                $q->with('user');
+                $q->orderBy('parent_id');
+                $q->orderBy('created_at', 'desc');
+            }
             , 'user' => function ($q) {
                 $q->with('userType');
             }
@@ -128,11 +129,11 @@ class ForumController extends ApiBaseController
         $post = $this->user->user()->forumPosts()->save(new ForumPost($request->all()));
         $forum = ForumCategory::findOrFail(ForumTopic::whereSlug($request->input('slug'))->first()->forum_category_id);
 
-        $request->merge(['forumSlug' => $forum->slug,'topicSlug' => $request->input('slug') ]);
+        $request->merge(['forumSlug' => $forum->slug, 'topicSlug' => $request->input('slug')]);
         if ($post)
             return $this->showTopic($request);
         else
-            return response(['status' => 'ERROR!!!]']);
+            return response(['status' => false]);
     }
 
 
@@ -154,7 +155,7 @@ class ForumController extends ApiBaseController
             ->get();
 
         if (count($query) > 0) {
-            return $this->all();
+            return response(['status' => false, 'message' => 'You always thanks for this topic.']);
         } else {
 
             $topic = ForumTopic::findOrFail($request->input('topicID'));
@@ -164,10 +165,11 @@ class ForumController extends ApiBaseController
             DB::table('forum_topic_user')->insert([
                 'user_id' => $this->user->user()->id,
                 'forum_topic_id' => $request->input('topicID'),
-                'created_at' => Carbon::now()
+                'liked_at' => Carbon::now()
             ]);
 
-            return $this->all();
+            return response(['status' => true]);
+//            return $this->all();
         }
     }
 
