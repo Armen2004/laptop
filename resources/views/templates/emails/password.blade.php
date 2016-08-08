@@ -11,7 +11,6 @@
         <h1>Password Reset</h1>
         <div>
             <h2> Reset your password, complete this form: <a href="{{ url('/') . '#/password/reset/' . $token }}">Reset</a>.</h2>
-            <p>This link will expire in 120 minutes.</p>
         </div>
     </div>
 </div>

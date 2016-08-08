@@ -1,7 +1,8 @@
-app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', 'AuthFactory', '$routeParams',
-    function ($scope, $location, $timeout, toastr, AuthFactory, $routeParams) {
+app.controller('AuthController', ['$scope', '$rootScope', '$location', '$timeout', 'toastr', 'AuthFactory', '$routeParams',
+    function ($scope, $rootScope, $location, $timeout, toastr, AuthFactory, $routeParams) {
 
         $scope.email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        $rootScope.loading = false;
 
         if ($routeParams.token) {
             $scope.token = $routeParams.token;
@@ -12,8 +13,9 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         }, 100);
 
         $scope.user_login = function (user) {
-            $scope.credentials = null;
+            $rootScope.loading = true;
             AuthFactory.doLogin(user).then(function (response) {
+                $rootScope.loading = false;
 
                 // console.log('success');
                 // console.log(response);
@@ -29,6 +31,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 }
 
             }, function (error) {
+                $rootScope.loading = false;
 
                 console.log('error');
                 console.log(error);
@@ -39,8 +42,9 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_register = function (user) {
-            $scope.credentials = null;
+            $rootScope.loading = true;
             AuthFactory.doRegister(user).then(function (response) {
+                $rootScope.loading = false;
 
                 // console.log('success');
                 // console.log(response);
@@ -56,6 +60,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 }
 
             }, function (error) {
+                $rootScope.loading = false;
 
                 console.log('error');
                 console.log(error);
@@ -66,7 +71,9 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_logout = function () {
+            $rootScope.loading = true;
             AuthFactory.doLogout().then(function (response) {
+                $rootScope.loading = false;
 
                 // console.log('success');
                 // console.log(response);
@@ -81,6 +88,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 }
 
             }, function (error) {
+                $rootScope.loading = false;
 
                 console.log('error');
                 console.log(error);
@@ -91,15 +99,16 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_reset = function (user) {
-            $scope.credentials = null;
+            $rootScope.loading = true;
             AuthFactory.doReset(user).then(function (response) {
+                $rootScope.loading = false;
 
-                // console.log('success');
-                // console.log(response);
+                console.log('success');
+                console.log(response);
 
                 var message;
                 if (response.status == 200 && !response.data.status) {
-                    message = 'These credentials do not match our records.';
+                    message = 'Error!';
                     toastr.error(message, 'Error');
                 } else {
                     message = 'Please check your email';
@@ -109,6 +118,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 }
 
             }, function (error) {
+                $rootScope.loading = false;
 
                 console.log('error');
                 console.log(error);
@@ -119,11 +129,12 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
         };
 
         $scope.user_reset_password = function (user) {
-            $scope.credentials = null;
+            $rootScope.loading = true;
             if ($scope.token == undefined) return;
             user.token = $scope.token;
             // console.log(user);
             AuthFactory.doResetPassword(user).then(function (response) {
+                $rootScope.loading = false;
 
                 console.log('success');
                 console.log(response);
@@ -139,6 +150,7 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
                 }
 
             }, function (error) {
+                $rootScope.loading = false;
 
                 console.log('error');
                 console.log(error);
@@ -151,10 +163,13 @@ app.controller('AuthController', ['$scope', '$location', '$timeout', 'toastr', '
 
         function errorMessage(error) {
             var data = "";
-            angular.forEach(error, function (value, key) {
-                data += value + "<br/>";
-            }, data);
-
+            if (angular.isString(error)) {
+                data = "Error!!!";
+            } else {
+                angular.forEach(error, function (value, key) {
+                    data += value + "<br/>";
+                }, data);
+            }
             toastr.error(data, 'Error!');
         }
 

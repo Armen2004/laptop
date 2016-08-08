@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
 use App\Models\Course;
 use App\Models\Lesson;
 use Illuminate\Http\Request;

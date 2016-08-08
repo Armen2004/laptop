@@ -16,6 +16,7 @@ class CreateUserTypesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('price')->default(0);
+            $table->integer('duration')->default(365);
             $table->timestamps();
         });
     }

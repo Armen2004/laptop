@@ -65,6 +65,13 @@ app.factory('AuthFactory', ['$http', '$q', '$sanitize', 'BASE_URL', function ($h
             };
             return this.sendRequest('POST', BASE_URL + 'password/reset', userData);
         },
+
+        checkToken: function (token) {
+            var userData = {
+                token: $sanitize(token)
+            };
+            return this.sendRequest('POST', BASE_URL + 'checkToken', userData);
+        },
         
         checkUser: function () {
             return this.sendRequest('POST', BASE_URL + 'check');

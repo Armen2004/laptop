@@ -1,5 +1,5 @@
-app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routeParams',
-    function ($scope, $uibModal, $timeout, $routeParams) {
+app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routeParams', 'AuthFactory', '$location',
+    function ($scope, $uibModal, $timeout, $routeParams, AuthFactory, $location) {
 
         $scope.email = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -17,10 +17,21 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
 
         if ($routeParams.token) {
             // $scope.token = $routeParams.token;
-            $timeout(function () {
-                angular.element('#resetModalShower').triggerHandler('click');
+            AuthFactory.checkToken($routeParams.token).then(function (response) {
+                if (response.data.status) {
+                    $scope.credentials = {};
+                    $scope.credentials.email = response.data.email;
+                    $timeout(function () {
+                        angular.element('#resetModalShower').triggerHandler('click');
+                    });
+                }
+
+            }, function (error) {
+                console.log(error);
+                // $location.path('/');
             });
         }
+
 
         $scope.signup = function () {
 
@@ -66,7 +77,8 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
 
             $uibModal.open({
                 templateUrl: 'templates/partials/recover',
-                controller: 'ModalController'
+                controller: 'ModalController',
+                scope:$scope
             })
         }
 

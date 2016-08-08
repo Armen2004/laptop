@@ -4,6 +4,7 @@
 <script src="{{ asset('js/jquery.sliphover.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/placeholdem.js') }}" type="text/javascript"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/spin.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
 
@@ -18,6 +19,7 @@
 <script src="{{ asset('js/angular/angular-socialshare.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/ngStorage.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/ng-ckeditor.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/angular/angular-spinner.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/controllers/HomeController.js') }}" type="text/javascript"></script>

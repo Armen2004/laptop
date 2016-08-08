@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Post;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 
 class PostsController extends ApiBaseController

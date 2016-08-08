@@ -13,6 +13,7 @@
                 <th>S.No</th>
                 <th> Name</th>
                 <th> Price</th>
+                <th> Duration</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <td>{{ $x }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->price }}$</td>
+                    <td>{{ $item->duration }} day</td>
                     <td>
                         <a href="{{ url('/admin/user-types/' . $item->id) }}" class="btn btn-success btn-xs" title="View User Type">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>

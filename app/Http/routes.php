@@ -28,6 +28,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     Route::post('password/email', 'UsersController@resetEmail');
     Route::post('password/reset', 'UsersController@resetPassword');
+    Route::post('checkToken', 'UsersController@checkToken');
 
     Route::group(['middleware' => ['auth:user', 'online:user']], function () {
 

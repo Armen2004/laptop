@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use Carbon\Carbon;
-use App\Http\Requests;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 
 class UsersController extends ApiBaseController
 {
-
     /**
      * Login in user
      *
@@ -95,26 +93,32 @@ class UsersController extends ApiBaseController
             'email' => 'required|email|exists:users,email',
         ]);
 
-        $token = csrf_token();
-
-        $emails = $request->input('email');
-        $email = Mail::send('templates.emails.password', ['token' => $token], function ($message) use ($emails) {
-            $message->from('us@example.com', 'Your Password Reset Link');
-            $message->to($emails)->subject('Your Password Reset Link');
-        });
-
-        if ($email) {
-            $db = DB::table('password_resets')->insert([
-                'email' => $emails,
-                'token' => $token,
-                'created_at' => Carbon::now(),
-            ]);
-        }
-
-        if ($email && $db)
+        if ($this->send($request->input('email')) && $this->store($request->input('email')))
             return response(['status' => true]);
         else
             return response(['status' => false]);
+    }
+
+    private function send($email)
+    {
+        return Mail::send('templates.emails.password', ['token' => csrf_token()], function ($message) use ($email) {
+            $message->from('noreply@laptopstartup.com', 'Your Password Reset Link');
+            $message->to($email)->subject('Your Password Reset Link');
+        });
+    }
+
+    private function store($email)
+    {
+        if (DB::table('password_resets')->where('email', $email)->count() > 0) {
+            DB::table('password_resets')->where('email', $email)->delete();
+        }
+
+
+        return DB::table('password_resets')->insert([
+            'email' => $email,
+            'token' => csrf_token(),
+            'created_at' => Carbon::now()
+        ]);
     }
 
     /**
@@ -146,6 +150,21 @@ class UsersController extends ApiBaseController
         $this->user->login($user);
 
         return response(['status' => true]);
+    }
+
+    public function checkToken(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required|exists:password_resets,token',
+        ]);
+        if (DB::table('password_resets')->where('token', $request->input('token'))->first())
+            return response([
+                'status' => true,
+                'email' => DB::table('password_resets')->where('token', $request->input('token'))->first()->email
+            ]);
+        else
+            return response(['status' => false]);
+
     }
 
 }

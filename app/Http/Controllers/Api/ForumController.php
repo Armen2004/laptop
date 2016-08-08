@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
 use App\Models\ForumPost;
 use App\Models\ForumTopic;
 use Carbon\Carbon;

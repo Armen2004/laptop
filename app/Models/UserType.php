@@ -26,7 +26,7 @@ class UserType extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'duration'];
 
     public function user()
     {

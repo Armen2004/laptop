@@ -760,7 +760,7 @@ table {
 .panel-heading a:before {
     content: '\f078';
     position: absolute;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
     right: 5px;
     top: 10px;
     font-size: 24px;
@@ -802,7 +802,7 @@ table {
     top: 30px;
 
     transition: all 0.5s;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
 }
 
 .panel-title .collapsed:before {
@@ -1049,16 +1049,19 @@ table {
 
 .content-left {
     width: 320px !important;
-    position: relative;
+    position: absolute;
+    float: right;
     background-color: #333b46;
     right: 0;
     top: 0;
     display: none;
+
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
+
 }
 
 .open-menu {
@@ -1291,17 +1294,21 @@ table {
     margin-top: calc(50% - 400px);
 }
 
-.get-started-content input {
+#register-form{
+    padding: 0;
+}
+
+.get-started-content .login-form input {
     display: inherit;
     margin: 15px auto;
     width: 300px;
     outline: 0;
-    padding: 5px 15px;
+    padding: 0 30px;
     line-height: 20px;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
 }
 
-.get-started-content button {
+.get-started-content .login-form button {
     width: 300px;
     padding: 10px 0;
     background: #54b9e0;
@@ -1319,7 +1326,7 @@ table {
     line-height: 28px;
 }
 
-.get-started-content button:hover {
+.get-started-content .login-form button:hover {
     background: #4b8196;
 }
 
@@ -1338,17 +1345,17 @@ table {
     position: absolute;
 }
 
-.get-started-content input::-webkit-input-placeholder {
+.get-started-content .login-form input::-webkit-input-placeholder {
     color: #000;
     font-family: 'aven-book';
 }
 
-.get-started-content input::-moz-placeholder {
+.get-started-content .login-form input::-moz-placeholder {
     color: #000;
     font-family: 'aven-book';
 }
 
-.get-started-content input:-ms-input-placeholder {
+.get-started-content .login-form input:-ms-input-placeholder {
     color: #000;
     font-family: 'aven-book';
 }
@@ -2912,15 +2919,16 @@ article h2 {
     padding: 15px 0;
 }
 
-#login-mine {
+.login-form {
     position: relative;
     max-width: 300px;
 
     display: inline-block;
-    padding: 110px 30px 20px 30px;
+    /*padding: 110px 30px 20px 30px;*/
+    padding: 80px 0 0 0;
 }
 
-#login-mine .close-icon {
+.login-form .close-icon {
     cursor: pointer;
     right: 0;
     top: 0;
@@ -2935,16 +2943,16 @@ article h2 {
     margin-right: auto;
 }
 
-#login-mine input {
+.login-form input {
     width: 225px;
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
 }
 
-#login-mine button {
+.login-form button {
     width: 225px;
 }
 
-#login-mine form {
+.login-form form {
     padding-bottom: 20px;
 }
 
@@ -3228,7 +3236,7 @@ article p {
 }
 
 .forum_list_search{
-    font-family: FontAwesome;
+    /*font-family: FontAwesome;*/
     /*border-radius: 3px;*/
 }
 
@@ -3263,3 +3271,34 @@ article p {
 }
 
 /* Forum Css End */
+
+.loading {
+    background-color: rgba(0,0,0,.3);
+    z-index: 9999;
+    width: 100%;
+    margin: 0;
+    min-height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

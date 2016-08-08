@@ -26,6 +26,16 @@ class CreateForumTopicsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
+
+        Schema::create('forum_topic_user', function(Blueprint $table) {
+            $table->unsignedInteger('forum_topic_id');
+            $table->unsignedInteger('user_id');
+            $table->timestamp('liked_at');
+
+            $table->foreign('forum_topic_id')->references('id')->on('forum_topics')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+        });
     }
 
     /**
@@ -35,6 +45,7 @@ class CreateForumTopicsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('forum_topic_user');
         Schema::drop('forum_topics');
     }
 }
