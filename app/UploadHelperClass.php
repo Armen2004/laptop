@@ -22,7 +22,7 @@ class UploadHelperClass
 
     /**
      * Image Upload functionality
-     * 
+     *
      * @param Request $request
      * @param $path
      * @param bool $oldFile
@@ -58,7 +58,7 @@ class UploadHelperClass
 
     /**
      * Video upload functionality
-     * 
+     *
      * @param Request $request
      * @param $path
      * @param bool $oldFile
@@ -70,7 +70,7 @@ class UploadHelperClass
         if ($oldFile && $this->s3->exists($oldFile)) {
             $this->deleteFile($oldFile);
         }
-        
+
         $video = $request->file('video_file');
 
         $file = sha1(time()) . '.' . $video->getClientOriginalExtension();
@@ -86,7 +86,7 @@ class UploadHelperClass
 
     /**
      * PDF upload functionality
-     * 
+     *
      * @param Request $request
      * @param $path
      * @param bool $oldFile
@@ -98,7 +98,7 @@ class UploadHelperClass
         if ($oldFile && $this->s3->exists($oldFile)) {
             $this->deleteFile($oldFile);
         }
-        
+
         $pdf = $request->file('pdf_file');
 
         $file = sha1(time()) . '.' . $pdf->getClientOriginalExtension();
@@ -124,6 +124,25 @@ class UploadHelperClass
             return $this->s3->delete($file);
         }
         return false;
+    }
+
+    public function uploadImageFlow($file_location, $path, $oldFile = false)
+    {
+        if ($oldFile && $this->s3->exists($oldFile)) {
+            $this->deleteFile($oldFile);
+        }
+
+        $image = Image::make($file_location)->encode('jpg', 90);
+
+        $file = sha1(time()) . '.jpg';
+
+        $upload = $this->s3->put($path . '/' . $file, $image->stream()->__toString(), 'public');
+
+        if (!$upload) {
+            abort(404);
+        }
+
+        return $path . '/' . $file;
     }
 
 }

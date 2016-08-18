@@ -161,6 +161,25 @@ app.controller('AuthController', ['$scope', '$rootScope', '$location', '$timeout
 
         };
 
+        $scope.upload = function (file, event, flow) {
+            flow.upload()
+        };
+
+        $scope.success = function (file, message, flow) {
+            message = JSON.parse(message);
+            toastr.success(message.message);
+            $rootScope.userInfo.image =  message.image;
+            flow.cancel();
+            $scope.$parent.close();
+        };
+
+        $scope.error = function (file, message, flow) {
+            errorMessage('Something happened please try again later.');
+            flow.cancel();
+            $scope.$parent.close();
+        };
+
+
         function errorMessage(error) {
             var data = "";
             if (angular.isString(error)) {

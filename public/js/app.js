@@ -3,7 +3,8 @@ var app = angular.module('app', [
     'ngResource', 'ngSanitize',
     'ngTouch', 'ngStorage', 'ui.bootstrap',
     'toastr', '720kb.socialshare',
-    'ngCkeditor', 'angularSpinner'
+    'ngCkeditor', 'angularSpinner', 'angular-svg-round-progressbar',
+    'flow'
 ]);
 app
     .constant('BASE_URL', 'http://laptop.dev/api/')
@@ -107,6 +108,13 @@ app.config(['$routeProvider', '$interpolateProvider', 'toastrConfig', 'usSpinner
                     restricted: true
                 }
             })
+            .when('/my-forum-activity', {
+                templateUrl: 'templates/forums/main',
+                controller: 'ForumController',
+                access: {
+                    restricted: true
+                }
+            })
             .when('/forum/:forumId', {
                 templateUrl: 'templates/forums/main',
                 controller: 'ForumController',
@@ -137,9 +145,14 @@ app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', functio
             $rootScope.isLoggedIn = response.data.loggedIn;
             $rootScope.userInfo = response.data.userInfo;
 
-            if (next.access.restricted && $rootScope.isLoggedIn === false) {
+            if (next.access != undefined) {
+                if (next.access.restricted && $rootScope.isLoggedIn === false) {
+                    $location.path('/');
+                }
+            } else {
                 $location.path('/');
             }
+
         });
 
     });

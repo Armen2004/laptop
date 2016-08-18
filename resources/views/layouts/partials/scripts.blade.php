@@ -20,6 +20,8 @@
 <script src="{{ asset('js/angular/ngStorage.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/ng-ckeditor.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/angular-spinner.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/angular/roundProgress.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/angular/ng-flow-standalone.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/angular/controllers/HomeController.js') }}" type="text/javascript"></script>

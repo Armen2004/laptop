@@ -710,31 +710,34 @@
 
     .row_bordered {
 
-        margin-left: 0;}
+        margin-left: 0;
+    }
 
     .forum_circle {
         margin-left: -50px;
         margin-top: 120px;
     }
+
     .row_bordered_post {
 
-         margin-left: 0px;
-     }
+        margin-left: 0px;
+    }
 
     .forum_content {
 
         padding-left: 10px;
     }
+
     .forum_circle_post {
         margin-left: -41px;
         margin-top: 74px;
         position: relative;
     }
-    .forum_name_post{
+
+    .forum_name_post {
         padding-left: 24px;
     }
 }
-
 
 @media screen and (max-width: 991px) {
 
@@ -764,19 +767,20 @@
     }
 
     .forum_content {
-
         padding-left: 10px;
     }
 }
+
 @media screen and (max-width: 404px) {
 
     .forum_circle {
         margin-left: 100px;
         margin-top: -47px;
     }
-.forum_block{
-    padding: 0;
-}
+
+    .forum_block {
+        padding: 0;
+    }
 
 }
 
@@ -812,3 +816,132 @@
     }
 
 }
+
+/* Dashboard Start */
+
+@media screen and (max-width: 1433px) {
+    .collapse .nav li a {
+        font-size: 20px;
+    }
+
+    .shadow p {
+        font-size: 14px;
+    }
+
+    .navbar-brand img {
+        width: 160px;
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    .collapse .nav li a {
+        font-size: 18px;
+    }
+
+    .collapse .nav > li > a {
+        padding: 5px 10px;
+    }
+
+    .navbar-brand img {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 1065px) {
+    .collapse .nav li a {
+        font-size: 16px;
+    }
+
+    .shadow p {
+        font-size: 11px;
+    }
+
+    .navbar-brand img {
+        width: 140px;
+    }
+
+    .notification {
+        width: 600px;
+        top: 36px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .shadow p {
+        font-size: 14px;
+    }
+
+    .navbar-brand img {
+        width: 130px;
+    }
+}
+
+@media screen and (max-width: 993px) {
+    #dashboard_profile {
+        background: #333b46;
+        min-height: 100%;
+        position: relative;
+    }
+
+    .dashboard_content h1 {
+        font-size: 36px;
+    }
+
+    .notification {
+        width: 520px;
+    }
+
+}
+
+@media screen and (max-width: 880px) {
+    .notification-center {
+        left: -350px;
+    }
+
+    .notification-arrow-center {
+        margin-left: 334px;
+    }
+
+}
+
+@media screen and (max-width: 835px) {
+    .notification-center {
+        left: -429px;
+    }
+
+    .notification-arrow-center {
+        float: right;
+        margin-left: 0px;
+        margin-right: 70px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .icon_bell {
+        margin-left: 13px;
+    }
+
+    .dashboard_content h1 {
+        font-size: 30px;
+    }
+
+    .navbar-header {
+        height: 104px;
+    }
+
+    .notification-arrow {
+        display: none;
+    }
+
+    #myNavbar {
+        padding: 20px 35px;
+    }
+
+    #myNavbar .notification-center {
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+}
+
+/* Dashboard End */

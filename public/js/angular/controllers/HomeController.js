@@ -41,7 +41,8 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
 
             $uibModal.open({
                 templateUrl: 'templates/partials/register',
-                controller: 'ModalController'
+                controller: 'ModalController',
+                size: 'full-with'
             })
         };
 
@@ -53,7 +54,8 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
 
             $uibModal.open({
                 templateUrl: 'templates/partials/login',
-                controller: 'ModalController'
+                controller: 'ModalController',
+                size: 'full-with'
             })
         };
 
@@ -65,7 +67,8 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
 
             $uibModal.open({
                 templateUrl: 'templates/partials/reset',
-                controller: 'ModalController'
+                controller: 'ModalController',
+                size: 'full-with'
             })
         };
 
@@ -78,7 +81,8 @@ app.controller('HomeController', ['$scope', '$uibModal', '$timeout', '$routePara
             $uibModal.open({
                 templateUrl: 'templates/partials/recover',
                 controller: 'ModalController',
-                scope:$scope
+                size: 'full-with',
+                scope: $scope
             })
         }
 

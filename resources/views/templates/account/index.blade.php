@@ -1,94 +1,185 @@
-<div class="wrapper page-wrap">
-    <!-------------- Header block start -------------->
-    <header>
-        <div class="container-fluid acc-page full-height-container">
-            <div class="row">
-                <div class="col-md-12 no-padd content-section">
-                    <!--header start-->
-                    <div class="col-md-12 no-padd">
-                        <div class="col-md-4 header-part-1 clearfix">
-                            <div class="block-container text-center">
-                                <img ng-src="/images/logo-s.png" alt="" class="img-responsive">
-                                <span class="search-block">
-                                    <input type="text" placeholder="Search">
-                                </span>
+<div class="container-fluid dashboard-container">
+
+    <!-- NAVBAR START -->
+        @include('templates.partials._nav')
+    <!-- NAVBAR END -->
+
+    <div class="row">
+
+        <!--CONTENT START-->
+        <div class="col-md-9 content">
+            <section class="row">
+                <div class="col-md-12 dashboard_content">
+                    <h1> What do you want to do today ? </h1>
+                    <div class="col-md-3 shadow dashboard_block_1 text-center">
+                        <p class="dashboard_block_title">FREE LESSONS</p>
+                        {{--<canvas class="loader"></canvas>--}}
+                        <div class="progress progress-bar-dashboard">75% complete</div>
+                        <round-progress max="100" current="75" color="#329BC3" bgcolor="#f1f1f1" radius="100" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
+                        <div class="row">
+                            <div class="dashboard_block_link col-xs-12"><a ng-href="javascript:void(0)">ASSES AGAIN</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 shadow text-center dashboard-block-pink">
+                        <div class="col-md-12" ng-if="userInfo.user_type_id==1">
+                            <div class="col-md-12">
+                                <img ng-src="{{ asset('images/logopremium.png') }}" alt="Logo Premium" class="img-responsive">
+                            </div>
+                            <p class="col-md-12 no-padding text-pink">
+                                Easy Drag & Drop Pages in minutes You'll get immediate access to our communities
+                                Site Builder. It includes pre-built templates from our community.
+                            </p>
+                        </div>
+                        <div ng-if="userInfo.user_type_id>1">
+                            <p class="dashboard_block_title text-center">PREMIUM TRAINING</p>
+                            <div class="progress progress-bar-dashboard">27% complete</div>
+                            <round-progress max="100" current="25" color="#E93E7B" bgcolor="#f1f1f1" radius="100" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
+                        </div>
+
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row">
+                            <div class="dashboard_block_link col-xs-12 text-center block-pink">
+                                <a ng-href="javascript:void(0)">CONTINUE</a>
                             </div>
                         </div>
-                        <div class="col-md-5 header-part-2 clearfix">
-                            <div class="col-md-4 col-sm-4 col-xs-4 text-block">
-                                <p>your free</p>
-                                <p>membership plan</p>
-                                <p>expires in</p>
+                    </div>
+                    <div class="col-md-3 shadow dashboard-block-green text-center">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <img ng-src="{{ asset('images/60.png') }}" alt="Logo 60" class="img_60">
                             </div>
-                            <div class="col-md-8 col-sm-8 timer-block no-padd">
-                                <ul class="timer clearfix">
-                                    <li><span>06</span><p>DAYS</p></li>
-                                    <li><span>04</span><p>HOURS</p></li>
-                                    <li><span>34</span><p>Minutes</p></li>
-                                </ul>
-                                <div class="button-block">
-                                    <button class="upgrade-btn">upgrade for 1$</button>
+                            <p class="col-md-12 no-padding">
+                                Easy Drag & Drop Pages in minutes You'll get immediate access to our communities Site
+                                Builder. It includes pre-built templates from our community.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="dashboard_block_link block-green-link col-xs-12 no-padding">
+                                <a ng-href="javascript:void(0)">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 shadow text-center">
+                        <img ng-src="{{ asset('images/page_buddy.png') }}" alt="Logo Page Buddy" class="buddy_img">
+                        <p>Last saved page: </p>
+                        <img ng-src="{{ asset('images/lastpage.png') }}" alt="Logo Last Page" class="last_img">
+                        <div class="row">
+                            <div class="dashboard_block_link col-xs-12 text-center block-orange">
+                                <a ng-href="javascript:void(0)">OPEN</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 no-padding">
+                        <div class="col-md-6  dashboard-block-left dashboard_block_all">
+
+                            <div class="col-xs-12 video_tag" ng-if="userInfo.user_type_id==1">
+                                <video controls class="col-md-12 no-padding">
+                                    <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
+                                </video>
+                                <div class="clearfix">&nbsp;</div>
+                                <button class="col-md-18 btn video_button">DOWNLOAD ROADMAP</button>
+                            </div>
+
+                            <div ng-if="userInfo.user_type_id>1">
+                                <div class="dashboard-text-first-title">
+                                    <p class="block-text ">COMING AUGUST 16TH...</p>
+                                </div>
+                                <p class="block-text-title dashboard-block-left-text " id="title-local">
+                                    Local Business Kickstarter
+                                </p>
+                                <div class="col-xs-12 dashboard-block-left-text border-none" id="first-block-img">
+                                    <p class="img_text">by Sam Baker</p>
+                                    <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                </div>
+                                <div class="col-xs-12 dashboard-block-left-text dashboard-block-left-text-double">
+                                    <h5>LESSON 1:</h5>
+                                    <h4>Introduction</h4>
+                                    <p>
+                                        For anyone who wants to set up a website to make extra income but doesn't make a
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 dashboard-block-left-text">
+                                    <h5>LESSON 2:</h5>
+                                    <h4>Brainstorming</h4>
+                                    <p>
+                                        For anyone who wants to set up a website to make extra income but doesn't make a
+                                    </p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="pull-right"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 header-part-3 user-account-details user-area text-center">
-                            <span class="user-name"><% userInfo.name %></span>
-                            <img ng-src="<% S3_URL + userInfo.image %>" alt="<% userInfo.name %>">
-                            <i class="fa fa-power-off" aria-hidden="true" ng-click="user_logout()" ng-controller="AuthController"></i>
-                            <span class="open-menu">
-                                <img ng-src="/images/icons/open-menu.png" alt="">
-                            </span>
-                        </div>
-                    </div>
-                    <!--header END-->
-                    <div class="col-md-8 col-md-offset-2 header-part-2 home-p clearfix">
-                        <ul class="web-header">
-                            <li><a ng-href="javascript:void(0)">Questions?</a></li>
-                            <li><a ng-href="javascript:void(0)">0800-448938</a></li>
-                            <li><a ng-href="javascript:void(0)">Support</a></li>
-                            <li><a ng-href="javascript:void(0)">Favorites</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 demo acc-page-content" id="sliphover">
-                        <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
-                            <a ng-href="javascript:void(0)">
-                                <img ng-src="/images/laptop_startup_premium.png" alt="Laptop Startup Premium" class="img-responsive" title="Laptop Startup Premium">
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
-                            <a ng-href="javascript:void(0)">
-                                <img ng-src="/images/online_pages_builder.png" alt="Online Pages Builder" class="img-responsive" title="Online Pages Builder">
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
-                            <a ng-href="javascript:void(0)">
-                                <img ng-src="/images/60_day_challenge.png" alt="60 Day Challenge" class="img-responsive" title="60 Day Challenge">
-                            </a>
-                        </div>
-                        <div class="col-md-3 col-xs-6 col-sm-6 no-padd same-height">
-                            <a ng-href="javascript:void(0)">
-                                <img ng-src="/images/marketplace.png" alt="Marketplace" class="img-responsive" title="Marketplace">
-                            </a>
-                        </div>
-                        <div class="col-md-6 no-padd big-same-height">
-                            <a ng-href="javascript:void(0)">
-                                <img ng-src="/images/8_digital_marketing_trends_to_watch_out_for_in_2016.png" alt="8 Digital Marketing Trends To Watch Out For In 2016" class="img-responsive" title="8 Digital Marketing Trends To Watch Out For In 2016">
-                            </a>
-                        </div>
-                        <div class="col-md-6 no-padd big-same-height">
-                            <a ng-href="#/forums">
-                                <img ng-src="/images/laptop_startup_forum.png" alt="Laptop Startup Forum" class="img-responsive" title="Laptop Startup Forum">
-                            </a>
+                        <div class="col-md-6 dashboard-block-right dashboard_block_all">
+                            <div class="dashboard-text-first-title">
+                                <p class="block-text">FROM OUR COMMUNITY FORUM...</p>
+                            </div>
+
+                            <div class="dashboard-block-right-text">
+                                <h6>NEWS & INFORMATION</h6>
+                                <div class="col-xs-3 block-img-right text-center no-padding">
+                                    <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                </div>
+                                <div class="col-xs-9 no-padding">
+                                    <p class="col-xs-12 no-padding" style="padding:5px 0">
+                                        <strong class="pull-left">Sam Baker</strong>
+                                        <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
+                                    </p>
+                                    <p class="col-xs-10 no-padding text-justify">
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    </p>
+                                    <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
+                                </div>
+                            </div>
+                            <div class="dashboard-block-right-text">
+                                <h6>NEWS & INFORMATION</h6>
+                                <div class="col-xs-3 block-img-right text-center no-padding">
+                                    <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                </div>
+                                <div class="col-xs-9 no-padding">
+                                    <p class="col-xs-12 no-padding" style="padding:5px 0">
+                                        <strong class="pull-left">Sam Baker</strong>
+                                        <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
+                                    </p>
+                                    <p class="col-xs-10 no-padding text-justify">
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    </p>
+                                    <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
+                                </div>
+                            </div>
+                            <div class="dashboard-block-right-text">
+                                <h6>NEWS & INFORMATION</h6>
+                                <div class="col-xs-3 block-img-right text-center no-padding">
+                                    <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                </div>
+                                <div class="col-xs-9 no-padding">
+                                    <p class="col-xs-12 no-padding" style="padding:5px 0">
+                                        <strong class="pull-left">Sam Baker</strong>
+                                        <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
+                                    </p>
+                                    <p class="col-xs-10 no-padding text-justify">
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    </p>
+                                    <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @if(auth()->guard('user')->user()->user_type_id > 1)
-                    @include('templates.partials.paid-menu')
-                @else
-                    @include('templates.partials.free-menu')
-                @endif
-            </div>
+            </section>
         </div>
-    </header>
-    <!-------------- Header block end -------------->
+        <!--CONTENT END-->
+
+        <!--RIGHT MENU START-->
+            @include('templates.partials._menu')
+        <!--RIGHT MENU START-->
+
+    </div>
+
 </div>

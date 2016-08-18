@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('layouts.landing');
 });
 
-Route::get('test', 'Api\ForumController@test');
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
 
     //Login Routes...
@@ -31,6 +30,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
     Route::post('checkToken', 'UsersController@checkToken');
 
     Route::group(['middleware' => ['auth:user', 'online:user']], function () {
+
+        Route::any('upload', 'UsersController@changeAvatar');
 
         Route::post('getCourses', 'CoursesController@show');
         Route::post('getLesson', 'CoursesController@getLesson');

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use File;
 use App\User;
+use Flow\Config;
 use Carbon\Carbon;
+use App\UploadHelperClass;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +76,7 @@ class UsersController extends ApiBaseController
         if ($this->user->check())
             return response([
                 'loggedIn' => true,
-                'userInfo' => $this->user->user()
+                'userInfo' => $this->user->user()->with('userType')->where('id', $this->user->id())->first()
             ]);
         return response([
             'loggedIn' => false,
@@ -99,6 +102,12 @@ class UsersController extends ApiBaseController
             return response(['status' => false]);
     }
 
+    /**
+     * Send Email to user
+     *
+     * @param $email
+     * @return mixed
+     */
     private function send($email)
     {
         return Mail::send('templates.emails.password', ['token' => csrf_token()], function ($message) use ($email) {
@@ -107,12 +116,15 @@ class UsersController extends ApiBaseController
         });
     }
 
+    /**
+     * @param $email
+     * @return mixed
+     */
     private function store($email)
     {
         if (DB::table('password_resets')->where('email', $email)->count() > 0) {
             DB::table('password_resets')->where('email', $email)->delete();
         }
-
 
         return DB::table('password_resets')->insert([
             'email' => $email,
@@ -152,6 +164,12 @@ class UsersController extends ApiBaseController
         return response(['status' => true]);
     }
 
+    /**
+     * Check token before restore user password
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function checkToken(Request $request)
     {
         $this->validate($request, [
@@ -165,6 +183,37 @@ class UsersController extends ApiBaseController
         else
             return response(['status' => false]);
 
+    }
+
+    /**
+     * Change user avatar
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function changeAvatar(Request $request)
+    {
+        $temp_dir = public_path('tmp');
+        try {
+            $config = (new Config())->setTempDir($temp_dir);
+
+            $file_location = $temp_dir . '/' . $request->input('flowFilename');
+
+            if (\Flow\Basic::save($file_location, $config, new \Flow\Request())) {
+
+                $user = User::findOrFail($this->user->id());
+                $oldImage = $user->image;
+                $user->image = (new UploadHelperClass)->uploadImageFlow($file_location, 'users', $oldImage);
+                $user->save();
+                File::cleanDirectory($temp_dir);
+                return response(['message' => "Profile image updated successfully.", 'image' => $user->image], 200);
+            } else {
+                return response([], 204);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception(sprintf("Error saving image %s", $e->getMessage()));
+        }
     }
 
 }
