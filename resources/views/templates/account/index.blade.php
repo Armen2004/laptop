@@ -61,8 +61,14 @@
                     </div>
                     <div class="col-md-3 shadow text-center">
                         <img ng-src="{{ asset('images/page_buddy.png') }}" alt="Logo Page Buddy" class="buddy_img">
-                        <p>Last saved page: </p>
-                        <img ng-src="{{ asset('images/lastpage.png') }}" alt="Logo Last Page" class="last_img">
+                        <div ng-if="userInfo.user_type_id>1">
+                            <p>Last saved page: </p>
+                            <img ng-src="{{ asset('images/lastpage.png') }}" alt="Logo Last Page" class="last_img">
+                        </div>
+                        <p class="col-md-12" ng-if="userInfo.user_type_id==1">
+                            Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site
+                            Builder. It includes pre-built templates from our community.
+                        </p>
                         <div class="row">
                             <div class="dashboard_block_link col-xs-12 text-center block-orange">
                                 <a ng-href="javascript:void(0)">OPEN</a>
@@ -70,9 +76,12 @@
                         </div>
                     </div>
                     <div class="col-md-12 no-padding">
-                        <div class="col-md-6  dashboard-block-left dashboard_block_all">
+                        <div class="col-md-6 dashboard-block-left dashboard_block_all">
 
                             <div class="col-xs-12 video_tag" ng-if="userInfo.user_type_id==1">
+                                <div class="dashboard-text-first-title">
+                                    <p class="block-text ">What It Means To Belong To Laptop Startup</p>
+                                </div>
                                 <video controls class="col-md-12 no-padding">
                                     <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
                                 </video>

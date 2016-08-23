@@ -53,9 +53,89 @@
     src: url('opensans-semibold-webfont.eot');
     src: url('opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-semibold-webfont.woff2') format('woff2'), url('opensans-semibold-webfont.woff') format('woff'), url('opensans-semibold-webfont.ttf') format('truetype'), url('opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
     font-weight: bold;
+    font-style: normal; @font-face {
+    font-family: 'montserratbold';
+    src: url('montserrat-bold-webfont.woff2') format('woff2'),
+    url('montserrat-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+}
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url('montserrat-regular_1-webfont.woff2') format('woff2'),
+    url('montserrat-regular_1-webfont.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'montserratregular';
+    src: url('montserrat-regular-webfont.woff2') format('woff2'),
+    url('montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir LT Std';
+    src: url('AvenirLTStd-Roman.eot');
+    src: url('AvenirLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+    url('AvenirLTStd-Roman.woff') format('woff'),
+    url('AvenirLTStd-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('Helvetica.eot');
+    src: url('Helvetica.eot?#iefix') format('embedded-opentype'),
+    url('Helvetica.woff') format('woff'),
+    url('Helvetica.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir LT Std';
+    src: url('AvenirLTStd-Heavy.eot');
+    src: url('AvenirLTStd-Heavy.eot?#iefix') format('embedded-opentype'),
+    url('AvenirLTStd-Heavy.woff') format('woff'),
+    url('AvenirLTStd-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('AvenirNextLTPro-Demi.eot');
+    src: url('AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'),
+    url('AvenirNextLTPro-Demi.woff') format('woff'),
+    url('AvenirNextLTPro-Demi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('AvenirNextLTPro-Bold.eot');
+    src: url('AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('AvenirNextLTPro-Bold.woff') format('woff'),
+    url('AvenirNextLTPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    src: url('AvenirNextLTPro-HeavyCn.eot');
+    src: url('AvenirNextLTPro-HeavyCn.eot?#iefix') format('embedded-opentype'),
+    url('AvenirNextLTPro-HeavyCn.woff') format('woff'),
+    url('AvenirNextLTPro-HeavyCn.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
 
 /*********/

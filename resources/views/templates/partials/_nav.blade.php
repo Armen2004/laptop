@@ -47,8 +47,7 @@
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">BLOG</a></li>
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">FORUM</a></li>
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">My Account</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
+
                         <li class="dropdown">
                             <a class="dropdown-toggle text-uppercase" type="button" data-toggle="dropdown">
                                 <i class="fa fa-bell icon_bell " aria-hidden="true">

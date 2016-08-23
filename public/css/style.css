@@ -3356,6 +3356,7 @@ article p {
 .nav li a .icon_bell {
     position: absolute;
     left: -5px;
+    color: #868789;
 }
 
 .icon-replay {
@@ -3363,15 +3364,28 @@ article p {
 }
 
 .red-circle {
-    width: 15px;
-    height: 15px;
-    background: #ff0000;
+    width: 25px;
+    height: 25px;
+    background: #f24124;
     border-radius: 50%;
     color: #fff;
     position: absolute;
-    top: -5px;
-    font-size: 15px;
+    top: -15px;
+    font-size: 17px;
+    right: -5px;
+    text-align: center;
+    font-weight: bold;
 }
+
+.notification-bell{
+
+    margin-left:300px;
+}
+
+
+
+
+
 
 .header-img {
 
@@ -3477,8 +3491,7 @@ ul li .notification .notification-block div a {
     text-align: center;
     /*padding-top: 34px;*/
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-family: 'montserratbold';
     font-size: 26px;
     /*padding-bottom: 34px;*/
 }
@@ -3516,8 +3529,9 @@ section .dashboard_content {
 }
 
 .dashboard_content h1 {
-    font-size: 46px;
-    font-family: "Myriad Pro";
+    font-size: 70px;
+    font-family: "Helvetica";
+    font-weight: lighter;
     color: #484646;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -3657,12 +3671,15 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
     text-align: justify;
 }
 
-.dashboard-block-pink .text-pink {
-    padding-top: 10px;
-}
+
 
 .dashboard-block-pink div img {
-    padding-top: 20px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 18px;
+    max-width: 120px;
+    max-height: 100px;
+
 }
 
 .dashboard_block_link a, .dashboard_block_link a:hover, .dashboard_block_link a:focus {
@@ -3672,7 +3689,16 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
     color: #fff;
     text-decoration: none;
 }
+.shadow p{
 
+font-family: "Myriad Pro";
+font-size: 14px;
+color: #333333;
+}
+
+.dashboard-block-pink p {
+    text-align: justify;
+}
 .dashboard_block_link {
     background: #329bc3;
     padding: 15px;
@@ -3703,12 +3729,13 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
     font-family: "Myriad Pro";
     font-size: 14px;
     color: #333333;
+    text-align: justify;
 }
 
-.dashboard-block-green img {
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
+/*.dashboard-block-green img {*/
+    /*margin-top: 25px;*/
+    /*margin-bottom: 25px;*/
+/*}*/
 
 .dashboard-block-green p {
     text-align: justify;
@@ -3718,9 +3745,17 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
     border-top: 1px solid #d2d2d2;
 }
 
+.block-text {
+    text-transform: uppercase;
+}
+
 .buddy_img {
     max-width: 100%;
+    margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 39px;
+
+    max-height: 100px;
 }
 
 .last_img {
@@ -3729,7 +3764,11 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
 }
 
 .img_60 {
-    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    max-width: 120px;
+    max-height: 100px;
 }
 
 .dashboard-block-left-text, .dashboard-block-right-text {
@@ -3884,6 +3923,48 @@ video {
 #myNavbar .navbar-nav .dropdown-menu li a {
     padding: 5px 10px;
 }
+
+.dropdown-menu li a p {
+    font-size: 20px;
+}
+
+
+.dashboard-container .row header #myNavbar .navbar-nav .product-drop{
+
+    width: 430px;
+}
+
+
+
+.dashboard-container .row header .navbar div #myNavbar .navbar-nav .product-drop img{
+
+    width: 90px;
+    height: 40px;
+}
+
+
+.dashboard-container .row header .navbar div #myNavbar .navbar-nav .product-drop a{
+
+    width: 100%;
+}
+
+.dashboard-container .row header .navbar div #myNavbar .navbar-nav .product-drop p{
+
+    text-align: left;
+}
+
+.navbar-brand img{
+    width: 170px;
+}
+
+
+
+
+
+
+
+
+
 
 #myNavbar .navbar-nav li {
     cursor: pointer;
