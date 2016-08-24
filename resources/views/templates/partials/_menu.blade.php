@@ -1,4 +1,4 @@
-<div id="dashboard_profile" class="col-md-3" ng-controller="MenuController">
+<div id="dashboard_profile" class="col-md-2" ng-controller="MenuController">
     <div class="row">
         <span class="col-xs-12 text-right logout-button">
             <i class="fa fa-power-off fa-2x icon_off" aria-hidden="true" ng-controller="AuthController" ng-click="user_logout()"></i>

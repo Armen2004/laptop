@@ -7,7 +7,7 @@
     <div class="row">
 
         <!--CONTENT START-->
-        <div class="col-md-9 content">
+        <div class="col-md-10 content">
             <section class="row">
                 <div class="col-md-12 dashboard_content">
                     <h1> What do you want to do today ? </h1>
@@ -15,9 +15,9 @@
                         <p class="dashboard_block_title">FREE LESSONS</p>
                         {{--<canvas class="loader"></canvas>--}}
                         <div class="progress progress-bar-dashboard">75% complete</div>
-                        <round-progress max="100" current="75" color="#329BC3" bgcolor="#f1f1f1" radius="100" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
+                        <round-progress max="100" current="75" color="#329BC3" bgcolor="#f1f1f1" radius="125" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
                         <div class="row">
-                            <div class="dashboard_block_link col-xs-12"><a ng-href="javascript:void(0)">ASSES AGAIN</a></div>
+                            <div class="dashboard_block_link col-xs-12"><a ng-href="javascript:void(0)">CONTINUE RECENTLY WATCHED</a></div>
                         </div>
                     </div>
                     <div class="col-md-3 shadow text-center dashboard-block-pink">
@@ -25,7 +25,7 @@
                             <div class="col-md-12">
                                 <img ng-src="{{ asset('images/logopremium.png') }}" alt="Logo Premium" class="img-responsive">
                             </div>
-                            <p class="col-md-12 no-padding text-pink">
+                            <p class="col-md-12  text-pink">
                                 Easy Drag & Drop Pages in minutes You'll get immediate access to our communities
                                 Site Builder. It includes pre-built templates from our community.
                             </p>
@@ -39,7 +39,7 @@
                         <div class="clearfix">&nbsp;</div>
                         <div class="row">
                             <div class="dashboard_block_link col-xs-12 text-center block-pink">
-                                <a ng-href="javascript:void(0)">CONTINUE</a>
+                                <a ng-href="javascript:void(0)">UPGRADE </a>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <div class="col-md-12">
                                 <img ng-src="{{ asset('images/60.png') }}" alt="Logo 60" class="img_60">
                             </div>
-                            <p class="col-md-12 no-padding">
+                            <p class="col-md-12 ">
                                 Easy Drag & Drop Pages in minutes You'll get immediate access to our communities Site
                                 Builder. It includes pre-built templates from our community.
                             </p>
@@ -82,7 +82,7 @@
                                 <div class="dashboard-text-first-title">
                                     <p class="block-text ">What It Means To Belong To Laptop Startup</p>
                                 </div>
-                                <video controls class="col-md-12 no-padding">
+                                <video controls class="col-md-12 ">
                                     <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
                                 </video>
                                 <div class="clearfix">&nbsp;</div>
@@ -91,7 +91,7 @@
 
                             <div ng-if="userInfo.user_type_id>1">
                                 <div class="dashboard-text-first-title">
-                                    <p class="block-text ">COMING AUGUST 16TH...</p>
+                                    <p class="block-text  ">COMING AUGUST 16TH...</p>
                                 </div>
                                 <p class="block-text-title dashboard-block-left-text " id="title-local">
                                     Local Business Kickstarter
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-6 dashboard-block-right dashboard_block_all">
                             <div class="dashboard-text-first-title">
-                                <p class="block-text">FROM OUR COMMUNITY FORUM...</p>
+                                <p class="block-text other-title">FROM OUR COMMUNITY FORUM...</p>
                             </div>
 
                             <div class="dashboard-block-right-text">

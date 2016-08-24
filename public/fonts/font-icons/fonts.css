@@ -40,26 +40,28 @@
     font-style: normal;
 }
 
-/* Mozilla fix */
-@-moz-document url-prefix() {
-    @font-face {
-        font-family: 'open_sansbold';
-        src: url('opensans-bold-webfont.eot');
-        src: url('opensans-bold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-bold-webfont.woff2') format('woff2'), url('opensans-bold-webfont.woff') format('woff'), url('opensans-bold-webfont.ttf') format('truetype'), url('opensans-bold-webfont.svg#open_sansbold') format('svg');
-        font-weight: bold;
-        font-style: normal;
-    } @font-face {
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('opensans-bold-webfont.eot');
+    src: url('opensans-bold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-bold-webfont.woff2') format('woff2'), url('opensans-bold-webfont.woff') format('woff'), url('opensans-bold-webfont.ttf') format('truetype'), url('opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'open_sanssemibold';
     src: url('opensans-semibold-webfont.eot');
     src: url('opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-semibold-webfont.woff2') format('woff2'), url('opensans-semibold-webfont.woff') format('woff'), url('opensans-semibold-webfont.ttf') format('truetype'), url('opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
     font-weight: bold;
-    font-style: normal; @font-face {
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'montserratbold';
     src: url('montserrat-bold-webfont.woff2') format('woff2'),
     url('montserrat-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
 }
 
 @font-face {
@@ -79,24 +81,70 @@
 }
 
 @font-face {
-    font-family: 'Avenir LT Std';
-    src: url('AvenirLTStd-Roman.eot');
-    src: url('AvenirLTStd-Roman.eot?#iefix') format('embedded-opentype'),
-    url('AvenirLTStd-Roman.woff') format('woff'),
-    url('AvenirLTStd-Roman.ttf') format('truetype');
+    font-family: 'AvenirNextLTPro-Regular';
+    src: url('AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('AvenirNextLTPro-Regular.otf')  format('opentype'),
+    url('AvenirNextLTPro-Regular.woff') format('woff'),
+    url('AvenirNextLTPro-Regular.ttf')  format('truetype'),
+    url('AvenirNextLTPro-Regular.svg#AvenirNextLTPro-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
+
 @font-face {
-    font-family: 'Helvetica';
-    src: url('Helvetica.eot');
-    src: url('Helvetica.eot?#iefix') format('embedded-opentype'),
-    url('Helvetica.woff') format('woff'),
-    url('Helvetica.ttf') format('truetype');
-    font-weight: 500;
+    font-family: 'AvenirLTStd-Roman';
+    src: url('AvenirLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+    url('AvenirLTStd-Roman.woff') format('woff'), url('AvenirLTStd-Roman.ttf')  format('truetype'),
+    url('AvenirLTStd-Roman.svg#AvenirLTStd-Roman') format('svg');
+    font-weight: normal;
     font-style: normal;
 }
+
+
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('Georgia.eot?#iefix') format('embedded-opentype'),
+    url('Georgia.woff') format('woff'),
+    url('Georgia.ttf')  format('truetype'),
+    url('Georgia.svg#Georgia') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'AvenirLTStd-Medium';
+    src: url('AvenirLTStd-Medium.eot?#iefix') format('embedded-opentype'),
+    url('AvenirLTStd-Medium.otf')  format('opentype'),
+    url('AvenirLTStd-Medium.woff') format('woff'),
+    url('AvenirLTStd-Medium.ttf')  format('truetype'),
+    url('AvenirLTStd-Medium.svg#AvenirLTStd-Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Helvetica';
+    src: url('Helvetica.eot?#iefix') format('embedded-opentype'),
+    url('Helvetica.otf')  format('opentype'),
+    url('Helvetica.woff') format('woff'),
+    url('Helvetica.ttf')  format('truetype'),
+    url('Helvetica.svg#Helvetica') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HelveticaLight';
+    src: url('HelveticaLight.eot?#iefix') format('embedded-opentype'),
+    url('HelveticaLight.woff') format('woff'),
+    url('HelveticaLight.ttf')  format('truetype'),
+    url('HelveticaLight.svg#HelveticaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 @font-face {
     font-family: 'Avenir LT Std';
