@@ -23,7 +23,7 @@
             <div class="dashboard_menu">
                 <ul class="nav nav-pills nav-stacked nav_menu">
                     <li ng-class="{'active': isActive('/dashboard')}"><a ng-href="#/dashboard" class="text-uppercase">DASHBOARD</a></li>
-                    <li ng-class="{'active': isActive('/my-lessons')}"><a ng-href="#/dashboard" class="text-uppercase">MY Account</a></li>
+                    <li ng-class="{'active': isActive('/my-lessons')}"><a ng-href="#/dashboard" class="text-uppercase">MY ACCOUNT</a></li>
                     <li ng-class="{'active': isActive('/forums')}"><a ng-href="#/dashboard" class="text-uppercase">MY FORUM ACTIVITY</a></li>
                     <li ng-class="{'active': isActive('/my-lessons')}"><a ng-href="#/dashboard" class="text-uppercase">MY LESSONS</a></li>
                 </ul>
@@ -31,11 +31,11 @@
 
             <div class="col-xs-12 no-padding" ng-if="userInfo.user_type_id==1 && trial" ng-controller="MenuController">
                 <div class="counter">
-                    <div class="col-xs-12 text-center">
-                        <h2 class="text-uppercase">TRIAL LAPTOP STARTUP PREMIUM FOR $1. EXPIRES IN</h2>
+                    <div class="col-xs-12 text-center counter-title">
+                        <h2 class="text-uppercase">YOUR FREE MEMBERSHIP PLAN EXPIRES IN </h2>
                     </div>
                     <div id="countdown"></div><!-- /#Countdown Div -->
-                    <div class="col-xs-12 text-center">
+                    <div class="col-xs-12 ">
                         <button class="btn">UPGRADE FOR $1</button>
                     </div>
                 </div> <!-- /.Counter Div -->

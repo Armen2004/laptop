@@ -47,10 +47,9 @@ app.controller('MenuController', ['$rootScope', '$scope', '$uibModal', '$locatio
                 var start_date = new Date().getTime();
                 var time = getTimeRemaining(new Date(end_date), new Date(start_date));
                 countdown.innerHTML = '' +
-                    '<span class="col-xs-3 text-center no-padding">' + time.seconds + ' <br><b>Seconds</b></span>' +
-                    '<span class="col-xs-3 text-center no-padding">' + time.minutes + ' <br><b>Minutes</b></span>' +
-                    '<span class="col-xs-3 text-center no-padding">' + time.hours + ' <br><b>Hours</b></span>' +
-                    '<span class="col-xs-3 text-center no-padding">' + time.days + ' <br><b>Days</b></span>';
+                    '<span class="col-xs-3 text-center  counter-number">' + time.minutes + ' <br><b>Minutes</b></span>' +
+                    '<span class="col-xs-3 text-center  counter-number">' + time.hours + ' <br><b>Hours</b></span>' +
+                    '<span class="col-xs-3 text-center counter-number">' + time.days + ' <br><b>Days</b></span>';
 
                 if (time.total <= 0) {
                     $scope.stopTimer();
@@ -99,9 +98,21 @@ function completedLesson(data) {
 function getTimeRemaining(endtime, starttime) {
     var t = Date.parse(endtime) - Date.parse(starttime);
     var seconds = Math.floor((t / 1000) % 60);
+    if(seconds < 10){
+        seconds = '0' + seconds;
+    }
     var minutes = Math.floor((t / 1000 / 60) % 60);
+    if(minutes < 10){
+        minutes = '0' + minutes;
+    }
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    if(hours < 10){
+        hours = '0' + hours;
+    }
     var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    if(days < 10){
+        days = '0' + days;
+    }
     return {
         'total': t,
         'days': days,

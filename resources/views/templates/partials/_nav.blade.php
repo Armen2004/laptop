@@ -1,4 +1,4 @@
-<header>
+<header >
     <div class="row">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -15,28 +15,28 @@
                         <img ng-src="{{ asset('images/logopremium.png') }}" alt="Top Logo Premium">
                     </a>
                 </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav navbar-left">
+                <div class="collapse navbar-collapse " id="myNavbar" >
+                    <ul class="nav navbar-nav navbar-left col-xs-8">
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">LESSONS</a></li>
                         {{--<li><a ng-href="javascript:void(0)" class="text-uppercase">PRODUCTS</a></li>--}}
-                        <li class="dropdown">
+                        <li class="dropdown" id="product">
                             <a class="dropdown-toggle text-uppercase" type="button" data-toggle="dropdown">
                                 PRODUCTS <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu row product-drop">
-                                <li>
+                                <li class="drop-menu-60">
                                     <a ng-href="javascript:void(0)" class="text-uppercase col-xs-12 no-padding">
                                         <img ng-src="{{ asset('images/60.png') }}" alt="60 Days Logo" class="col-xs-4 img-responsive">
-                                        <p class="col-xs-8 no-padding text-left">60 DAY CHALLANGE</p>
+                                        <p class="col-xs-4 no-padding text-left">60 DAY CHALLANGE</p>
                                     </a>
                                 </li>
-                                <li>
+                                <li class="drop-menu-premium">
                                     <a ng-href="javascript:void(0)" class="text-uppercase col-xs-12 no-padding">
                                         <img ng-src="{{ asset('images/logopremium.png') }}" alt="Laptop Premium Logo" class="col-xs-4 img-responsive">
                                         <p class="col-xs-8 no-padding text-left">LAPTOP STARTUP PREMIUM</p>
                                     </a>
                                 </li>
-                                <li>
+                                <li class="drop-menu-buddy">
                                     <a ng-href="javascript:void(0)" class="text-uppercase col-xs-12 no-padding">
                                         <img ng-src="{{ asset('images/buddy.png') }}" alt="Buddy Logo" class="col-xs-4 img-responsive">
                                         <p class="col-xs-8 no-padding text-left">PAGE BUDDY</p>
@@ -48,9 +48,14 @@
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">FORUM</a></li>
                         <li><a ng-href="javascript:void(0)" class="text-uppercase">My Account</a></li>
 
+
+                    </ul>
+
+                    <ul class="nav navbar-nav col-xs-2">
+
                         <li class="dropdown">
                             <a class="dropdown-toggle text-uppercase" type="button" data-toggle="dropdown">
-                                <i class="fa fa-bell icon_bell " aria-hidden="true">
+                                <i class="fa fa-bell fa-2x icon_bell " aria-hidden="true">
                                     <div class="red-circle">2</div>
                                 </i>
                             </a>
@@ -107,7 +112,7 @@
                         </li>
                         <li>
                             <a ng-href="javascript:void(0)">
-                                <i class="fa fa-question-circle icon_question" aria-hidden="true"></i>
+                                <i class="fa fa-question-circle icon_question fa-2x" aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>

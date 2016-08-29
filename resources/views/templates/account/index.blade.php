@@ -14,8 +14,8 @@
                     <div class="col-md-3 shadow dashboard_block_1 text-center">
                         <p class="dashboard_block_title">FREE LESSONS</p>
                         {{--<canvas class="loader"></canvas>--}}
-                        <div class="progress progress-bar-dashboard">75% complete</div>
-                        <round-progress max="100" current="75" color="#329BC3" bgcolor="#f1f1f1" radius="125" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
+                        <div class="progress progress-bar-dashboard"><p>26%<span class="lesson-complete">complete</span></p></div>
+                        <round-progress max="100" current="26" color="#329BC3" bgcolor="#f1f1f1" radius="140" stroke="10" semi="false" rounded="true" clockwise="true" responsive="false" duration="800" animation="easeInOutQuart" animation-delay="0"></round-progress>
                         <div class="row">
                             <div class="dashboard_block_link col-xs-12"><a ng-href="javascript:void(0)">CONTINUE RECENTLY WATCHED</a></div>
                         </div>
@@ -25,9 +25,8 @@
                             <div class="col-md-12">
                                 <img ng-src="{{ asset('images/logopremium.png') }}" alt="Logo Premium" class="img-responsive">
                             </div>
-                            <p class="col-md-12  text-pink">
-                                Easy Drag & Drop Pages in minutes You'll get immediate access to our communities
-                                Site Builder. It includes pre-built templates from our community.
+                            <p class="col-md-12  text-pink text-shadow-block">
+                                Full Laptop Startup access. You get 12 training modules showing you step by step how to create a business online. New training added every month.
                             </p>
                         </div>
                         <div ng-if="userInfo.user_type_id>1">
@@ -48,9 +47,8 @@
                             <div class="col-md-12">
                                 <img ng-src="{{ asset('images/60.png') }}" alt="Logo 60" class="img_60">
                             </div>
-                            <p class="col-md-12 ">
-                                Easy Drag & Drop Pages in minutes You'll get immediate access to our communities Site
-                                Builder. It includes pre-built templates from our community.
+                            <p class="col-md-12 text-shadow-block">
+                                Every day new action steps are delivered into your account. Within 60 days you will have your very own online business setup and making money. We will be with you every step of the way..
                             </p>
                         </div>
                         <div class="row">
@@ -65,29 +63,32 @@
                             <p>Last saved page: </p>
                             <img ng-src="{{ asset('images/lastpage.png') }}" alt="Logo Last Page" class="last_img">
                         </div>
-                        <p class="col-md-12" ng-if="userInfo.user_type_id==1">
-                            Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site
-                            Builder. It includes pre-built templates from our community.
-                        </p>
+                        <p class="col-md-12 text-shadow-block" ng-if="userInfo.user_type_id==1">
+                            Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site Builder. It includes pre-built templates from our community.
                         <div class="row">
                             <div class="dashboard_block_link col-xs-12 text-center block-orange">
                                 <a ng-href="javascript:void(0)">OPEN</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 no-padding">
+                    <div class="col-md-12 no-padding dashboard-blocks-all">
                         <div class="col-md-6 dashboard-block-left dashboard_block_all">
+<div class="row">
 
                             <div class="col-xs-12 video_tag" ng-if="userInfo.user_type_id==1">
                                 <div class="dashboard-text-first-title">
                                     <p class="block-text ">What It Means To Belong To Laptop Startup</p>
                                 </div>
-                                <video controls class="col-md-12 ">
+                                <div class="row">
+
+                                <video>
                                     <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
                                 </video>
+                                </div>
                                 <div class="clearfix">&nbsp;</div>
                                 <button class="col-md-18 btn video_button">DOWNLOAD ROADMAP</button>
                             </div>
+</div>
 
                             <div ng-if="userInfo.user_type_id>1">
                                 <div class="dashboard-text-first-title">
@@ -119,7 +120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 dashboard-block-right dashboard_block_all">
+                        <div class="col-md-6 no-padding  dashboard-block-right dashboard_block_all">
                             <div class="dashboard-text-first-title">
                                 <p class="block-text other-title">FROM OUR COMMUNITY FORUM...</p>
                             </div>
@@ -128,17 +129,16 @@
                                 <h6>NEWS & INFORMATION</h6>
                                 <div class="col-xs-3 block-img-right text-center no-padding">
                                     <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                    <p class="col-md-12">Sam Baker</p>
                                 </div>
                                 <div class="col-xs-9 no-padding">
                                     <p class="col-xs-12 no-padding" style="padding:5px 0">
-                                        <strong class="pull-left">Sam Baker</strong>
+
                                         <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
                                     </p>
-                                    <p class="col-xs-10 no-padding text-justify">
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    <p class="col-xs-9 no-padding text-justify">
+                                        Hey guys,</br>
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>
@@ -147,16 +147,16 @@
                                 <h6>NEWS & INFORMATION</h6>
                                 <div class="col-xs-3 block-img-right text-center no-padding">
                                     <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                    <p class="col-md-12">Sam Baker</p>
                                 </div>
                                 <div class="col-xs-9 no-padding">
                                     <p class="col-xs-12 no-padding" style="padding:5px 0">
-                                        <strong class="pull-left">Sam Baker</strong>
+
                                         <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
                                     </p>
-                                    <p class="col-xs-10 no-padding text-justify">
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    <p class="col-xs-9 no-padding text-justify">
+                                        Hey guys,</br>
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>
@@ -165,15 +165,16 @@
                                 <h6>NEWS & INFORMATION</h6>
                                 <div class="col-xs-3 block-img-right text-center no-padding">
                                     <img ng-src="{{ asset('images/profile-sm.png') }}" alt="Profile Logo" class="img-circle" width="80px" height="80px">
+                                    <p class="col-md-12">Sam Baker</p>
                                 </div>
                                 <div class="col-xs-9 no-padding">
                                     <p class="col-xs-12 no-padding" style="padding:5px 0">
-                                        <strong class="pull-left">Sam Baker</strong>
+
                                         <span class="pull-right block-right-date">08-02-2016 04:40 AM</span>
                                     </p>
-                                    <p class="col-xs-10 no-padding text-justify">
-                                        Hey guys, I'm in the process of writing up some rules and guid
-                                        Hey guys, I'm in the process of writing up some rules and guid
+                                    <p class="col-xs-9 no-padding text-justify">
+                                        Hey guys,</br>
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>

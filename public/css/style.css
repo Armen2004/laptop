@@ -50,70 +50,70 @@ q:before, q:after {
 
 /* Fonts */
 
-@import url(../fonts/font-icons/fonts.css);
+@import url('../fonts/font-icons/fonts.css');
 
-@font-face {
-    font-family: 'open_sansbold';
-    src: url('../fonts/font-icons/opensans-bold-webfont.eot');
-    src: url('../fonts/font-icons/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/font-icons/opensans-bold-webfont.woff2') format('woff2'),
-    url('../fonts/font-icons/opensans-bold-webfont.woff') format('woff'),
-    url('../fonts/font-icons/opensans-bold-webfont.ttf') format('truetype'),
-    url('../fonts/font-icons/opensans-bold-webfont.svg#open_sansbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+/*@font-face {*/
+    /*font-family: 'open_sansbold';*/
+    /*src: url('../fonts/font-icons/opensans-bold-webfont.eot');*/
+    /*src: url('../fonts/font-icons/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),*/
+    /*url('../fonts/font-icons/opensans-bold-webfont.woff2') format('woff2'),*/
+    /*url('../fonts/font-icons/opensans-bold-webfont.woff') format('woff'),*/
+    /*url('../fonts/font-icons/opensans-bold-webfont.ttf') format('truetype'),*/
+    /*url('../fonts/font-icons/opensans-bold-webfont.svg#open_sansbold') format('svg');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/
 
 /* Fonts */
-@font-face {
-    font-family: 'aven-b';
-    src: url('../fonts/AvenirLTStd-Black.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-b';*/
+    /*src: url('../fonts/AvenirLTStd-Black.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-r';
-    src: url('../fonts/AvenirLTStd-Roman.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-r';*/
+    /*src: url('../fonts/AvenirLTStd-Roman.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-reg';
-    src: url('../fonts/AvenirNextLTPro-Regular.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-reg';*/
+    /*src: url('../fonts/AvenirNextLTPro-Regular.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-med';
-    src: url('../fonts/AvenirNextLTPro-MediumCn.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-med';*/
+    /*src: url('../fonts/AvenirNextLTPro-MediumCn.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'mon-reg';
-    src: url('../fonts/Montserrat-Regular.ttf');
-}
+/*@font-face {*/
+    /*font-family: 'mon-reg';*/
+    /*src: url('../fonts/Montserrat-Regular.ttf');*/
+/*}*/
 
-@font-face {
-    font-family: 'mon-bold';
-    src: url('../fonts/Montserrat-Bold.otf');
-}
+/*@font-face {*/
+    /*font-family: 'mon-bold';*/
+    /*src: url('../fonts/Montserrat-Bold.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'Myrid-reg';
-    src: url('../fonts/MyriadPro-Regular.otf');
-}
+/*@font-face {*/
+    /*font-family: 'Myrid-reg';*/
+    /*src: url('../fonts/MyriadPro-Regular.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-hev';
-    src: url('../fonts/AvenirLTStd-Heavy.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-hev';*/
+    /*src: url('../fonts/AvenirLTStd-Heavy.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-book';
-    src: url('../fonts/AvenirLTStd-Book.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-book';*/
+    /*src: url('../fonts/AvenirLTStd-Book.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-obl';
-    src: url('../fonts/AvenirLTStd-Oblique.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-obl';*/
+    /*src: url('../fonts/AvenirLTStd-Oblique.otf');*/
+/*}*/
 
 table {
     border-collapse: collapse;
@@ -3315,32 +3315,32 @@ article p {
     padding-right: 30px;
 }
 
-/* Dashboard Start */
+/*!* Dashboard Start *!*/
 
-@font-face {
-    font-family: 'mon-bold';
-    src: url('../fonts/Montserrat-Bold.otf');
-}
+/*@font-face {*/
+    /*font-family: 'mon-bold';*/
+    /*src: url('../fonts/Montserrat-Bold.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-b';
-    src: url('../fonts/AvenirLTStd-Light.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-b';*/
+    /*src: url('../fonts/AvenirLTStd-Light.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-b';
-    src: url('../fonts/AvenirNextLTPro-Demi.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-b';*/
+    /*src: url('../fonts/AvenirNextLTPro-Demi.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-med';
-    src: url('../fonts/AvenirNextLTPro-MediumCn.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-med';*/
+    /*src: url('../fonts/AvenirNextLTPro-MediumCn.otf');*/
+/*}*/
 
-@font-face {
-    font-family: 'aven-reg';
-    src: url('../fonts/AvenirNextLTPro-Regular.otf');
-}
+/*@font-face {*/
+    /*font-family: 'aven-reg';*/
+    /*src: url('../fonts/AvenirNextLTPro-Regular.otf');*/
+/*}*/
 
 .no-padding {
     padding-right: 0 !important;
@@ -3355,7 +3355,7 @@ article p {
 
 .nav li a .icon_bell {
     position: absolute;
-    left: -5px;
+
     color: #868789;
 }
 
@@ -3492,8 +3492,10 @@ ul li .notification .notification-block div a {
     /*padding-top: 34px;*/
     text-decoration: none;
     font-family: 'montserratbold';
-    font-size: 26px;
-    /*padding-bottom: 34px;*/
+    font-size: 18px;
+    left: 53px;
+    padding-left: 42px;
+    top: -6px;
 }
 
 #dashboard_profile {
@@ -3530,7 +3532,7 @@ section .dashboard_content {
 
 .dashboard_content h1 {
     font-size: 70px;
-    font-family: "Helvetica";
+    font-family: HelveticaLight;
     font-weight: lighter;
     color: #484646;
     margin-top: 20px;
@@ -3561,7 +3563,7 @@ section {
 .circleBase p {
     font-family: "AvenirNext LT Pro MediumCn", Helvetica, sans-serif;
     color: #457182;
-    font-size: 13px;;
+    font-size: 13px;
 }
 
 .name-text {
@@ -3569,9 +3571,9 @@ section {
 }
 
 .name-text h2 {
-    font-family: "AvenirNext LT Pro Regular", Helvetica, sans-serif;
+    font-family: AvenirNextLTPro-Regular;
     color: #fdfcfc;
-    font-size: 25px;;
+    font-size: 25px;
 }
 
 .name-text h4 {
@@ -3581,6 +3583,8 @@ section {
 
 .name-text .text-blue {
     color: #6b9cb4;
+    font-family: Avenir Next LT Pro;
+    font-weight: bold;
 }
 
 .name-text .text-pink {
@@ -3588,7 +3592,7 @@ section {
 }
 
 .name-text p {
-    font-family: "AvenirNext LT Pro HeavyCn", Helvetica, sans-serif;
+    font-family: AvenirLTStd-Roman;
     font-size: 16px;
     color: #999999;
 }
@@ -3601,7 +3605,7 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li a {
     text-decoration: none;
     color: #b4b5b6;
     font-size: 16px;
-    font-family: "AvenirNext LT Pro MediumCn", Helvetica, sans-serif;
+    font-family: AvenirLTStd-Medium;
     text-decoration: none;
     padding: 23px;
 }
@@ -3638,7 +3642,7 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
 
 .dashboard_content .shadow .dashboard_block_title {
     color: #212426;
-    font-family: 'Montserrat', sans-serif;
+    font-family: montserratregular;
     font-size: 16px;
     margin-top: 20px;
     text-align: center;
@@ -3673,6 +3677,8 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
 
 
 
+
+
 .dashboard-block-pink div img {
     margin: 0 auto;
     margin-top: 20px;
@@ -3683,19 +3689,17 @@ div#dashboard_profile div.dashboard_menu ul.nav_menu li.active > a {
 }
 
 .dashboard_block_link a, .dashboard_block_link a:hover, .dashboard_block_link a:focus {
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-size: 14px;
+    font-family: montserratbold;
     color: #fff;
     text-decoration: none;
 }
-.shadow p{
-
-font-family: "Myriad Pro";
-font-size: 14px;
-color: #333333;
+.shadow p {
+    font-family: AvenirLTStd-Roman;
+    font-size: 17px;
+    color: #333333;
+    text-align: justify;
 }
-
 .dashboard-block-pink p {
     text-align: justify;
 }
@@ -3719,18 +3723,12 @@ color: #333333;
 }
 
 .block-text {
-    font-family: Montserrat, Helvetica, sans-serif;
-    font-size: 17px;
-    font-weight: bold;
+    font-family: montserratregular;
+    font-size: 18px;
     margin-bottom: 0;
 }
 
-.shadow p {
-    font-family: "Myriad Pro";
-    font-size: 14px;
-    color: #333333;
-    text-align: justify;
-}
+
 
 /*.dashboard-block-green img {*/
     /*margin-top: 25px;*/
@@ -3801,7 +3799,7 @@ color: #333333;
 
 .dashboard-block-right-text h6 {
     font-size: 11px;
-    font-family: Montserrat, Helvetica, sans-serif;
+    font-family: montserratregular;
     color: #45aed0;
     margin-top: 10px;
 }
@@ -3810,6 +3808,20 @@ color: #333333;
     padding-top: 10px;
 }
 
+
+.block-img-right strong{
+
+    font-family: Avenir Next LT Pro;
+    font-weight: bold;
+
+
+}
+
+
+
+
+
+
 .dashboard-block-right-text .block-img-right p {
     font-family: "AvenirNext LT Pro Bold", Helvetica, sans-serif;
     font-size: 14px;
@@ -3817,7 +3829,7 @@ color: #333333;
 }
 
 .dashboard-block-right-text div p {
-    font-family: "AvenirNext LT Pro Bold", Helvetica, sans-serif;
+    font-family: Georgia;
     font-size: 14px;
     color: #333333;
 }
@@ -3845,7 +3857,7 @@ color: #333333;
 }
 
 .dashboard_profile_edit {
-    font-family: "AvenirNext LT Pro MediumCn", Helvetica, sans-serif;
+    font-family: AvenirLTStd-Medium;
     font-size: 13px;
     margin-top: 10px;
     color: #457182;
@@ -3854,10 +3866,9 @@ color: #333333;
 
 .dashboard-block-right-text div .block-right-date {
     font-size: 10px;
+    font-family: AvenirLTStd-Medium;
     color: #999999;
-    /*
-	margin-top:-30px;
-	*/
+
 }
 
 .video_tag {
@@ -3870,15 +3881,16 @@ color: #333333;
     color: #fff;
     font-size: 16px;
     width: 100%;
+    font-family: montserratbold;
     /*position: absolute;*/
     /*right: 190px;*/
     /*top: 200px;*/
 }
 
-video {
-    width: 100%;
-    height: 100%;
-}
+/*video {*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
     background-color: #FFFFFF;
@@ -3954,15 +3966,28 @@ video {
 }
 
 .navbar-brand img{
-    width: 170px;
+    width: 107px;
+    position: relative;
+    left: 44px;
+    top: 7px;
 }
 
 
 
 
+.content section .dashboard_content .shadow .progress-bar-dashboard p{
+    font-family: HelveticaNeue-Thin;
+    color: #33445a;
+    font-size: 80px;
+
+}
 
 
-
+.content section .dashboard_content .shadow .progress-bar-dashboard p span{
+    font-family: montserratregular;
+    color: #3d4d62;
+    font-size: 27.2px;
+}
 
 
 
@@ -3985,7 +4010,7 @@ video {
 }
 
 .counter h2 {
-    font-family: Helvetica;
+    font-family: montserratregular;
     font-size: 16px;
     color: #cccccc;
     margin: 35px 0;
@@ -4091,6 +4116,11 @@ video {
 .blog-icons .icon-facebook {
     color: #607fad;
 }
+
+.icon_off{
+    color: #1f232a;
+}
+
 
 .blog-mini-title p i {
     font-size: 17px;
