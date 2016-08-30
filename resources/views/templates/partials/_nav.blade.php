@@ -115,6 +115,12 @@
                                 <i class="fa fa-question-circle icon_question fa-2x" aria-hidden="true"></i>
                             </a>
                         </li>
+
+                        <li class="navigation-menu-drop">
+                            <a ng-href="javascript:void(0)">
+                                <img src="images/profile-sm.png" class="notification-logo">
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

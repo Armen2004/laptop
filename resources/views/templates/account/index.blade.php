@@ -64,7 +64,7 @@
                             <img ng-src="{{ asset('images/lastpage.png') }}" alt="Logo Last Page" class="last_img">
                         </div>
                         <p class="col-md-12 text-shadow-block" ng-if="userInfo.user_type_id==1">
-                            Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site Builder. It includes pre-built templates from our community.
+                            Easy Drag & Drop Pages in minutes You’ll get immediate access to our communities Site Builder. It includes pre-built templates from our community.
                         <div class="row">
                             <div class="dashboard_block_link col-xs-12 text-center block-orange">
                                 <a ng-href="javascript:void(0)">OPEN</a>
@@ -73,22 +73,22 @@
                     </div>
                     <div class="col-md-12 no-padding dashboard-blocks-all">
                         <div class="col-md-6 dashboard-block-left dashboard_block_all">
-<div class="row">
+                            <div class="row">
 
-                            <div class="col-xs-12 video_tag" ng-if="userInfo.user_type_id==1">
-                                <div class="dashboard-text-first-title">
-                                    <p class="block-text ">What It Means To Belong To Laptop Startup</p>
-                                </div>
-                                <div class="row">
+                                <div class="col-xs-12 video_tag" ng-if="userInfo.user_type_id==1">
+                                    <div class="dashboard-text-first-title">
+                                        <p class="block-text ">What It Means To Belong To Laptop Startup</p>
+                                    </div>
+                                    <div class="row">
 
-                                <video>
-                                    <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
-                                </video>
+                                    <video>
+                                        <source ng-src="{{ asset('video/Paul.mp4') }}" type="video/mp4">
+                                    </video>
+                                    </div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <button class="col-md-18 btn video_button">DOWNLOAD ROADMAP</button>
                                 </div>
-                                <div class="clearfix">&nbsp;</div>
-                                <button class="col-md-18 btn video_button">DOWNLOAD ROADMAP</button>
                             </div>
-</div>
 
                             <div ng-if="userInfo.user_type_id>1">
                                 <div class="dashboard-text-first-title">
@@ -138,7 +138,7 @@
                                     </p>
                                     <p class="col-xs-9 no-padding text-justify">
                                         Hey guys,</br>
-                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>
@@ -156,7 +156,7 @@
                                     </p>
                                     <p class="col-xs-9 no-padding text-justify">
                                         Hey guys,</br>
-                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>
@@ -174,7 +174,7 @@
                                     </p>
                                     <p class="col-xs-9 no-padding text-justify">
                                         Hey guys,</br>
-                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
+                                        I'm in the process of writing up some rules and guidelines for the community. What rules or guideline suggestions do you have?
                                     </p>
                                     <i class="fa fa-reply col-xs-2 fa-2x icon-replay fa-flip-horizontal text-center no-padding" aria-hidden="false"></i>
                                 </div>
