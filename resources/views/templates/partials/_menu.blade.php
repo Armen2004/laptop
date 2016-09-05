@@ -32,7 +32,7 @@
             <div class="col-xs-12 no-padding" ng-if="userInfo.user_type_id==1 && trial" ng-controller="MenuController">
                 <div class="counter">
                     <div class="col-xs-12 text-center counter-title">
-                        <h2 class="text-uppercase">YOUR FREE MEMBERSHIP PLAN EXPIRES IN </h2>
+                        <h2 class="text-uppercase">YOUR FREE MEMBERSHIP PLAN EXPIRES IN </h2>
                     </div>
                     <div id="countdown"></div><!-- /#Countdown Div -->
                     <div class="col-xs-12 ">

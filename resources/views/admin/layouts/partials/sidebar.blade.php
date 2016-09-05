@@ -36,6 +36,14 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li class="@if(request()->is('admin/dashboard')) active @endif"><a href="{{ url('admin/dashboard') }}"><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>
 
+                <li class="treeview @if(request()->is('admin/notifications') || request()->is('admin/notifications/*')) active @endif">
+                    <a href="#"><i class='fa fa-bell'></i><span>Custom Notifications</span><i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li class="@if(request()->is('admin/notifications')) active @endif"><a href="{{ url('admin/notifications') }}"><i class='fa fa-bell'></i><span>Custom Notification</span></a></li>
+                        <li class="@if(request()->is('admin/notifications/create')) active @endif"><a href="{{ url('admin/notifications/create') }}"><i class='fa fa-bell'></i><span>Create Custom Notification</span></a></li>
+                    </ul>
+                </li>
+
                 <li class="treeview @if(request()->is('admin/user-types') || request()->is('admin/user-types/*')) active @endif">
                     <a href="#"><i class='fa fa-user'></i><span>User Types</span><i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -81,26 +89,26 @@
                     <ul class="treeview-menu">
 
                         <li class="treeview @if(request()->is('admin/forum-categories') || request()->is('admin/forum-categories/*')) active @endif">
-                            <a href="#"><i class='fa fa-tags'></i><span>Forum categories</span><i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class='fa fa-tags'></i><span>Forum Categories</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li class="@if(request()->is('admin/forum-categories')) active @endif"><a href="{{ url('admin/forum-categories') }}"><i class='fa fa-tags'></i><span>Forum categories</span></a></li>
-                                <li class="@if(request()->is('admin/forum-categories/create')) active @endif"><a href="{{ url('admin/forum-categories/create') }}"><i class='fa fa-plus'></i><span>Create forum category</span></a></li>
+                                <li class="@if(request()->is('admin/forum-categories')) active @endif"><a href="{{ url('admin/forum-categories') }}"><i class='fa fa-tags'></i><span>Forum Categories</span></a></li>
+                                <li class="@if(request()->is('admin/forum-categories/create')) active @endif"><a href="{{ url('admin/forum-categories/create') }}"><i class='fa fa-plus'></i><span>Create Forum Category</span></a></li>
                             </ul>
                         </li>
 
                         <li class="treeview @if(request()->is('admin/forum-topics') || request()->is('admin/forum-topics/*')) active @endif">
-                            <a href="#"><i class='fa fa-tags'></i><span>Forum topics</span><i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class='fa fa-tags'></i><span>Forum Topics</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li class="@if(request()->is('admin/forum-topics')) active @endif"><a href="{{ url('admin/forum-topics') }}"><i class='fa fa-tags'></i><span>Forum topics</span></a></li>
-                                <li class="@if(request()->is('admin/forum-topics/create')) active @endif"><a href="{{ url('admin/forum-topics/create') }}"><i class='fa fa-plus'></i><span>Create forum topic</span></a></li>
+                                <li class="@if(request()->is('admin/forum-topics')) active @endif"><a href="{{ url('admin/forum-topics') }}"><i class='fa fa-tags'></i><span>Forum Topics</span></a></li>
+                                <li class="@if(request()->is('admin/forum-topics/create')) active @endif"><a href="{{ url('admin/forum-topics/create') }}"><i class='fa fa-plus'></i><span>Create Forum Topic</span></a></li>
                             </ul>
                         </li>
 
                         <li class="treeview @if(request()->is('admin/forum-posts') || request()->is('admin/forum-posts/*')) active @endif">
-                            <a href="#"><i class='fa fa-tags'></i><span>Forum posts</span><i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class='fa fa-tags'></i><span>Forum Posts</span><i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
                                 <li class="@if(request()->is('admin/forum-posts')) active @endif"><a href="{{ url('admin/forum-posts') }}"><i class='fa fa-tags'></i><span>Forum Posts</span></a></li>
-                                <li class="@if(request()->is('admin/forum-posts/create')) active @endif"><a href="{{ url('admin/forum-posts/create') }}"><i class='fa fa-plus'></i><span>Create forum post</span></a></li>
+                                <li class="@if(request()->is('admin/forum-posts/create')) active @endif"><a href="{{ url('admin/forum-posts/create') }}"><i class='fa fa-plus'></i><span>Create Forum Post</span></a></li>
                             </ul>
                         </li>
 
@@ -123,7 +131,7 @@
                     </ul>
                 </li>
 
-                @endif
+            @endif
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

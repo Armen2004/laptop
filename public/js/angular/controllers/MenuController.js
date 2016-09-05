@@ -98,19 +98,19 @@ function completedLesson(data) {
 function getTimeRemaining(endtime, starttime) {
     var t = Date.parse(endtime) - Date.parse(starttime);
     var seconds = Math.floor((t / 1000) % 60);
-    if(seconds < 10){
+    if (seconds < 10) {
         seconds = '0' + seconds;
     }
     var minutes = Math.floor((t / 1000 / 60) % 60);
-    if(minutes < 10){
+    if (minutes < 10) {
         minutes = '0' + minutes;
     }
     var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-    if(hours < 10){
+    if (hours < 10) {
         hours = '0' + hours;
     }
     var days = Math.floor(t / (1000 * 60 * 60 * 24));
-    if(days < 10){
+    if (days < 10) {
         days = '0' + days;
     }
     return {

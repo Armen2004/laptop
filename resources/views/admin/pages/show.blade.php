@@ -5,18 +5,9 @@
         <a href="{{ url('admin/pages/' . $page->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Page">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         </a>
-        {!! Form::open([
-            'method'=>'DELETE',
-            'url' => ['admin/pages', $page->id],
-            'style' => 'display:inline'
-        ]) !!}
-        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true"/>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-xs',
-                'title' => 'Delete Page',
-                'onclick'=>'return confirm("Confirm delete?")'
-        )) !!}
-        {!! Form::close() !!}
+
+        {!! App\FormHelperClass::delete_form("DELETE", 'admin/pages/' . $page->id, 'Page') !!}
+
     </h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">

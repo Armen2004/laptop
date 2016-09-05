@@ -29,18 +29,9 @@
                         <a href="{{ url('admin/contents/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Content">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['admin/contents', $item->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Content" />', array(
-                                'type' => 'submit',
-                                'class' => 'btn btn-danger btn-xs',
-                                'title' => 'Delete Content',
-                                'onclick'=>'return confirm("Confirm delete?")'
-                        ))!!}
-                        {!! Form::close() !!}
+
+                        {!! App\FormHelperClass::delete_form("DELETE", 'admin/contents/' . $item->id, 'Content') !!}
+
                     </td>
                 </tr>
             @endforeach

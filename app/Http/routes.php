@@ -1,5 +1,11 @@
 <?php
 
+Route::get('artisan-test', function () {
+    $artisan = Artisan::call('notifications', []);
+
+    dd($artisan);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -104,6 +110,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('forum-topics', 'ForumTopicsController', ['except' => ['show']]);
         Route::get('forum-topics/{slug}', 'ForumTopicsController@show')->where('slug', '[A-Za-z0-9-_]+');
         Route::resource('forum-posts', 'ForumPostsController');
+
+        Route::resource('notifications', 'NotificationsController', ['except' => ['edit', 'update']]);
 
     });
 });
