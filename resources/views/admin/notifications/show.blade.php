@@ -2,9 +2,9 @@
 
 @section('content')
     <h1>Notification {{ $notification->id }}
-        <a href="{{ url('admin/notifications/' . $notification->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Notification">
+        {{--<a href="{{ url('admin/notifications/' . $notification->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Notification">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        </a>
+        </a>--}}
 
         {!! App\FormHelperClass::delete_form("DELETE", 'admin/notifications/' . $notification->id, 'Notification') !!}
 
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th> Content</th>
-                <td> {{ $notification->content }} </td>
+                <td> {{ $notification->custom_notification_content }} </td>
             </tr>
             </tbody>
         </table>

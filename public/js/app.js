@@ -140,7 +140,6 @@ app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', functio
     $rootScope.SITE_URL = SITE_URL;
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-
         AuthFactory.checkUser().then(function (response) {
             $rootScope.isLoggedIn = response.data.loggedIn;
             $rootScope.userInfo = response.data.userInfo;
@@ -152,8 +151,6 @@ app.run(['$rootScope', '$location', 'AuthFactory', 'S3_URL', 'SITE_URL', functio
             } else {
                 $location.path('/');
             }
-
         });
-
     });
 }]);

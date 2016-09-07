@@ -19,14 +19,14 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td>{{ $item->title }}</td><td>{{ $item->content }}</td>
+                    <td>{{ $item->title }}</td><td>{{ $item->custom_notification_content }}</td>
                     <td>
                         <a href="{{ url('/admin/notifications/' . $item->id) }}" class="btn btn-success btn-xs" title="View Notification">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ url('/admin/notifications/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Notification">
+                        {{--<a href="{{ url('/admin/notifications/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Notification">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </a>
+                        </a>--}}
 
                         {!! App\FormHelperClass::delete_form("DELETE", 'admin/notifications/' . $item->id, 'Notification') !!}
 
